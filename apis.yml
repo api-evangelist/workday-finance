@@ -1,0 +1,121 @@
+name: Workday Finance APIs
+description: APIs for Workday's cloud-based financial management system, enabling enterprise resource planning, accounting, and financial analytics
+image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
+url: https://www.workday.com/en-us/products/financial-management/overview.html
+created: '2024'
+modified: '2024'
+tags:
+- Finance
+- ERP
+- Accounting
+- Financial Management
+- Cloud
+- Enterprise
+apis:
+- name: Workday Financial Management API
+  description: Core API for financial management operations including general ledger, accounts payable, accounts receivable, and banking
+  image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
+  humanURL: https://www.workday.com/en-us/products/financial-management/overview.html
+  baseURL: https://wd2-impl-services1.workday.com/ccx/service
+  tags:
+  - Finance
+  - General Ledger
+  - Accounting
+  - Banking
+  properties:
+  - type: X-documentation
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Financial_Management/v41.2/index.html
+  - type: X-api-spec
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Financial_Management/v41.2/Financial_Management.wsdl
+  contact:
+  - FN: Workday API Support
+    email: api-support@workday.com
+    X-twitter: workday
+- name: Workday Revenue Management API
+  description: API for managing revenue recognition, contracts, and billing processes
+  humanURL: https://www.workday.com/en-us/products/financial-management/revenue-management.html
+  baseURL: https://wd2-impl-services1.workday.com/ccx/service
+  tags:
+  - Revenue
+  - Billing
+  - Contracts
+  properties:
+  - type: X-documentation
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Revenue_Management/v41.2/index.html
+  - type: X-api-spec
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Revenue_Management/v41.2/Revenue_Management.wsdl
+- name: Workday Expenses API
+  description: API for expense management, including expense reports, approval workflows, and reimbursements
+  humanURL: https://www.workday.com/en-us/products/spend-management/expenses.html
+  baseURL: https://wd2-impl-services1.workday.com/ccx/service
+  tags:
+  - Expenses
+  - Spend Management
+  - Reimbursement
+  properties:
+  - type: X-documentation
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Expenses/v41.2/index.html
+  - type: X-api-spec
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Expenses/v41.2/Expenses.wsdl
+- name: Workday Cash Management API
+  description: API for managing cash positions, bank transactions, and treasury operations
+  humanURL: https://www.workday.com/en-us/products/financial-management/cash-management.html
+  baseURL: https://wd2-impl-services1.workday.com/ccx/service
+  tags:
+  - Cash Management
+  - Treasury
+  - Banking
+  properties:
+  - type: X-documentation
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Cash_Management/v41.2/index.html
+  - type: X-api-spec
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Cash_Management/v41.2/Cash_Management.wsdl
+- name: Workday Budgets API
+  description: API for budget planning, tracking, and analysis
+  humanURL: https://www.workday.com/en-us/products/financial-management/budget-management.html
+  baseURL: https://wd2-impl-services1.workday.com/ccx/service
+  tags:
+  - Budgets
+  - Planning
+  - Financial Planning
+  properties:
+  - type: X-documentation
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Budgets/v41.2/index.html
+  - type: X-api-spec
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Budgets/v41.2/Budgets.wsdl
+- name: Workday Projects API
+  description: API for project management, tracking project costs, billing, and resource allocation
+  humanURL: https://www.workday.com/en-us/products/financial-management/projects.html
+  baseURL: https://wd2-impl-services1.workday.com/ccx/service
+  tags:
+  - Projects
+  - Project Management
+  - Cost Tracking
+  properties:
+  - type: X-documentation
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Projects/v41.2/index.html
+  - type: X-api-spec
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Projects/v41.2/Projects.wsdl
+common:
+- type: X-portal
+  url: https://community.workday.com/api
+- type: X-authentication
+  url: https://doc.workday.com/r/Enterprise_Interface_API_Concepts_and_Resources/Authentication
+- type: X-getting-started
+  url: https://doc.workday.com/r/Enterprise_Interface_API_Concepts_and_Resources/Getting_Started_with_Workday_Web_Services
+- type: X-rate-limits
+  url: https://doc.workday.com/r/Enterprise_Interface_API_Concepts_and_Resources/Rate_Limiting
+- type: X-terms-of-service
+  url: https://www.workday.com/en-us/legal.html
+- type: X-privacy-policy
+  url: https://www.workday.com/en-us/privacy.html
+- type: X-support
+  url: https://www.workday.com/en-us/customer-service/support.html
+- type: X-status
+  url: https://status.workday.com/
+- type: X-blog
+  url: https://blog.workday.com/
+maintainers:
+- FN: Workday
+  email: api-support@workday.com
+  X-twitter: workday
