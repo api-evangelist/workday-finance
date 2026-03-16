@@ -1,13 +1,15 @@
-specificationVersion: '0.18'
+aid: workday-finance
+specificationVersion: '0.19'
 name: Workday Finance APIs
 description: >-
   APIs for Workday's cloud-based financial management system, enabling
   enterprise resource planning, accounting, financial analytics, procurement,
   grants management, inventory, and settlement services.
-image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
-url: https://www.workday.com/en-us/products/financial-management/overview.html
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/workday-finance/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-03-04'
+modified: '2026-03-16'
 tags:
 - Finance
 - ERP
