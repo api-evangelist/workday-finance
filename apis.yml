@@ -1,6 +1,6 @@
 aid: workday-finance
 specificationVersion: '0.19'
-name: Workday Finance APIs
+name: Workday Finance
 description: >-
   APIs for Workday's cloud-based financial management system, enabling
   enterprise resource planning, accounting, financial analytics, procurement,
