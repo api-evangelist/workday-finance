@@ -1,0 +1,103 @@
+extends: spectral:oas
+rules:
+
+  workday-finance-operation-id-required:
+    description: All operations must have an operationId.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  workday-finance-operation-summary-required:
+    description: All operations must have a summary.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  workday-finance-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  workday-finance-tags-required:
+    description: All operations must have at least one tag.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  workday-finance-path-kebab-case:
+    description: Path segments must use kebab-case.
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-zA-Z0-9{}-]+)+$"
+
+  workday-finance-response-200-schema:
+    description: GET operations must define a schema for 200 responses.
+    severity: warn
+    given: "$.paths[*].get.responses.200.content.application/json.schema"
+    then:
+      function: truthy
+
+  workday-finance-bearer-auth-defined:
+    description: Bearer authentication must be defined in security schemes.
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+
+  workday-finance-pagination-params:
+    description: Collection GET endpoints should support limit and offset parameters.
+    severity: warn
+    given: "$.paths[*].get.parameters[*][?(@.name == 'limit')]"
+    then:
+      field: schema.type
+      function: pattern
+      functionOptions:
+        match: "integer"
+
+  workday-finance-tenant-in-server-url:
+    description: Server URLs must include tenant variable for multi-tenancy.
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "\\{tenant\\}"
+
+  workday-finance-financial-amounts-as-number:
+    description: Financial amount fields should use number type for precision.
+    severity: hint
+    given: "$.components.schemas[*].properties[?(@property.match(/[Aa]mount|[Bb]alance|[Cc]ost|[Pp]rice/))]"
+    then:
+      field: type
+      function: pattern
+      functionOptions:
+        match: "number"
+
+  workday-finance-date-fields-format:
+    description: Date fields must specify date or date-time format.
+    severity: warn
+    given: "$.components.schemas[*].properties[?(@property.match(/[Dd]ate$|[Oo]n$/))]"
+    then:
+      field: format
+      function: truthy
+
+  workday-finance-info-contact:
+    description: API info must include contact details.
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy

@@ -1,0 +1,243 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Workday Finance Financial Management API"
+  description: "Core API for financial management operations including general ledger, accounts payable, accounts receivable, cost centers, worktags, and financial periods."
+  tags:
+    - Workday
+    - Finance
+    - General Ledger
+    - Accounting
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      WORKDAY_FINANCE_ACCESS_TOKEN: WORKDAY_FINANCE_ACCESS_TOKEN
+      WORKDAY_TENANT: WORKDAY_TENANT
+
+capability:
+  consumes:
+    - type: http
+      namespace: financial-management
+      baseUri: https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}
+      description: "Workday financial management core API"
+      authentication:
+        type: bearer
+        token: "{{WORKDAY_FINANCE_ACCESS_TOKEN}}"
+      resources:
+        - name: accounts
+          path: /accounts
+          description: "General ledger account management"
+          operations:
+            - name: list-accounts
+              method: GET
+              description: "List financial accounts"
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of results"
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Pagination offset"
+                - name: type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by account type"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-account
+              method: GET
+              description: "Get financial account details"
+              inputParameters:
+                - name: accountId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Account identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: journal-entries
+          path: /journalEntries
+          description: "Journal entry management"
+          operations:
+            - name: list-journal-entries
+              method: GET
+              description: "List journal entries"
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of results"
+                - name: period
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by accounting period"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-journal-entry
+              method: POST
+              description: "Create a journal entry"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  period: "{{tools.period}}"
+                  lines: "{{tools.lines}}"
+            - name: get-journal-entry
+              method: GET
+              description: "Get journal entry details"
+              inputParameters:
+                - name: journalEntryId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Journal entry identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: cost-centers
+          path: /costCenters
+          description: "Cost center management"
+          operations:
+            - name: list-cost-centers
+              method: GET
+              description: "List cost centers"
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of results"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: worktags
+          path: /worktags
+          description: "Worktag dimension management"
+          operations:
+            - name: list-worktags
+              method: GET
+              description: "List worktags"
+              inputParameters:
+                - name: type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by worktag type"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: financial-periods
+          path: /financialPeriods
+          description: "Financial period management"
+          operations:
+            - name: list-financial-periods
+              method: GET
+              description: "List financial periods"
+              inputParameters:
+                - name: fiscalYear
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by fiscal year"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: financial-management-rest-api
+      resources:
+        - path: /v1/accounts
+          name: accounts
+          description: "Financial account management"
+          operations:
+            - method: GET
+              name: list-accounts
+              description: "List financial accounts"
+              call: "financial-management.list-accounts"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: financial-management-mcp
+      transport: http
+      tools:
+        - name: list-accounts
+          description: "List general ledger accounts"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "financial-management.list-accounts"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-journal-entries
+          description: "List journal entries by period"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "financial-management.list-journal-entries"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-journal-entry
+          description: "Create a new journal entry"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "financial-management.create-journal-entry"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-cost-centers
+          description: "List cost center organizations"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "financial-management.list-cost-centers"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-worktags
+          description: "List worktag dimension values"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "financial-management.list-worktags"
+          outputParameters:
+            - type: object
+              mapping: "$."

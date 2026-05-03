@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workday-finance/main/json-schema/workday-finance-purchase-order-schema.json",
+  "title": "Workday Finance Purchase Order",
+  "description": "Schema for a Workday Finance purchase order.",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "descriptor": {"type": "string"},
+    "purchaseOrderNumber": {"type": "string"},
+    "status": {"type": "string", "enum": ["draft", "submitted", "approved", "received", "closed"]},
+    "supplier": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "descriptor": {"type": "string"}
+      }
+    },
+    "totalAmount": {"type": "number", "format": "double"},
+    "currency": {"type": "string"},
+    "orderDate": {"type": "string", "format": "date"},
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lineNumber": {"type": "integer"},
+          "item": {"type": "string"},
+          "quantity": {"type": "number"},
+          "unitCost": {"type": "number"},
+          "totalCost": {"type": "number"}
+        }
+      }
+    },
+    "href": {"type": "string", "format": "uri"}
+  },
+  "required": ["id", "purchaseOrderNumber", "status", "supplier"]
+}

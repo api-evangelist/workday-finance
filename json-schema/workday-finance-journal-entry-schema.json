@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workday-finance/main/json-schema/workday-finance-journal-entry-schema.json",
+  "title": "Workday Finance Journal Entry",
+  "description": "Schema for a Workday Finance general ledger journal entry.",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string", "description": "Journal entry unique identifier"},
+    "descriptor": {"type": "string", "description": "Display name"},
+    "journalEntryNumber": {"type": "string", "description": "Sequential journal entry number"},
+    "status": {"type": "string", "enum": ["draft", "posted", "reversed"]},
+    "period": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "descriptor": {"type": "string"}
+      }
+    },
+    "postingDate": {"type": "string", "format": "date"},
+    "memo": {"type": "string"},
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lineOrder": {"type": "integer"},
+          "account": {
+            "type": "object",
+            "properties": {
+              "id": {"type": "string"},
+              "descriptor": {"type": "string"}
+            }
+          },
+          "debitAmount": {"type": "number", "format": "double"},
+          "creditAmount": {"type": "number", "format": "double"},
+          "currency": {"type": "string"},
+          "memo": {"type": "string"},
+          "worktags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {"type": "string"},
+                "descriptor": {"type": "string"}
+              }
+            }
+          }
+        },
+        "required": ["lineOrder", "account"]
+      }
+    },
+    "createdOn": {"type": "string", "format": "date-time"},
+    "href": {"type": "string", "format": "uri"}
+  },
+  "required": ["id", "journalEntryNumber", "status"]
+}

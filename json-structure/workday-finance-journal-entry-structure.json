@@ -1,0 +1,31 @@
+{
+  "name": "Workday Finance Journal Entry",
+  "description": "Structure of a Workday Finance journal entry",
+  "fields": [
+    {"name": "id", "type": "string", "required": true},
+    {"name": "descriptor", "type": "string"},
+    {"name": "journalEntryNumber", "type": "string", "required": true},
+    {"name": "status", "type": "enum", "values": ["draft","posted","reversed"]},
+    {"name": "period", "type": "object", "fields": [{"name": "id", "type": "string"}, {"name": "descriptor", "type": "string"}]},
+    {"name": "postingDate", "type": "string", "format": "date"},
+    {"name": "memo", "type": "string"},
+    {
+      "name": "lines",
+      "type": "array",
+      "description": "Debit/credit line items",
+      "items": {
+        "type": "object",
+        "fields": [
+          {"name": "lineOrder", "type": "integer"},
+          {"name": "account", "type": "object"},
+          {"name": "debitAmount", "type": "number"},
+          {"name": "creditAmount", "type": "number"},
+          {"name": "currency", "type": "string"},
+          {"name": "worktags", "type": "array"}
+        ]
+      }
+    },
+    {"name": "createdOn", "type": "string", "format": "date-time"},
+    {"name": "href", "type": "string", "format": "uri"}
+  ]
+}

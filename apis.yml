@@ -39,6 +39,8 @@ apis:
         url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Financial_Management/v41.2/Financial_Management.html
       - type: X-wsdl
         url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Financial_Management/v41.2/Financial_Management.wsdl
+      - type: OpenAPI
+        url: openapi/workday-finance-financial-management-openapi.yml
     contact:
       - FN: Workday API Support
         email: api-support@workday.com
@@ -155,6 +157,8 @@ apis:
         url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Resource_Management/v45.2/Resource_Management.html
       - type: X-wsdl
         url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Resource_Management/v45.2/Resource_Management.wsdl
+      - type: OpenAPI
+        url: openapi/workday-finance-procurement-openapi.yml
   - name: Workday Settlement Services API
     description: >-
       SOAP API for settlement management and payment services. Supports payment
@@ -255,6 +259,20 @@ common:
     url: https://community.workday.com/articles/16827
   - type: Reference
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: Spectral Rules
+    url: rules/workday-finance-rules.yml
+  - type: Naftiko Capabilities
+    url: capabilities/financial-operations.yaml
+  - type: JSON-LD
+    url: json-ld/workday-finance-context.jsonld
+  - type: JSONSchema
+    url: json-schema/workday-finance-journal-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/workday-finance-supplier-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/workday-finance-purchase-order-schema.json
+  - type: Vocabulary
+    url: vocabulary/workday-finance-vocabulary.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

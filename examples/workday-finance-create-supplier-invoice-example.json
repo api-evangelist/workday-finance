@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://wd2-impl-services1.workday.com/ccx/api/resource-management/v45.2/{tenant}/supplierInvoices",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "supplier": "supplier_acme_corp",
+      "invoiceNumber": "INV-2026-00421",
+      "invoiceDate": "2026-04-30",
+      "dueDate": "2026-05-30",
+      "totalAmount": 12500.00,
+      "currency": "USD"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "si_00421",
+      "descriptor": "INV-2026-00421",
+      "invoiceNumber": "INV-2026-00421",
+      "status": "submitted",
+      "supplier": {"id": "supplier_acme_corp", "descriptor": "Acme Corporation"},
+      "invoiceDate": "2026-04-30",
+      "dueDate": "2026-05-30",
+      "totalAmount": 12500.00,
+      "currency": "USD",
+      "href": "https://wd2-impl-services1.workday.com/ccx/api/resource-management/v45.2/tenant1/supplierInvoices/si_00421"
+    }
+  }
+}

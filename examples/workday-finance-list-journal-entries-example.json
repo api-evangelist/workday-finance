@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}/journalEntries",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Accept": "application/json"
+    },
+    "parameters": {
+      "limit": 20,
+      "period": "FY2026-Q1"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "total": 2,
+      "data": [
+        {
+          "id": "je_001",
+          "descriptor": "JE-2026-0001",
+          "journalEntryNumber": "JE-2026-0001",
+          "status": "posted",
+          "period": {"id": "period_q1_2026", "descriptor": "Q1 FY2026"},
+          "postingDate": "2026-01-31",
+          "lines": [
+            {
+              "lineOrder": 1,
+              "account": {"id": "acct_6000", "descriptor": "6000 Operating Expenses"},
+              "debitAmount": 5000.00,
+              "creditAmount": 0,
+              "currency": "USD",
+              "memo": "Office supplies"
+            },
+            {
+              "lineOrder": 2,
+              "account": {"id": "acct_1000", "descriptor": "1000 Cash"},
+              "debitAmount": 0,
+              "creditAmount": 5000.00,
+              "currency": "USD"
+            }
+          ],
+          "createdOn": "2026-01-31T10:00:00Z",
+          "href": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/tenant1/journalEntries/je_001"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workday-finance/main/json-schema/workday-finance-supplier-invoice-schema.json",
+  "title": "Workday Finance Supplier Invoice",
+  "description": "Schema for a Workday Finance supplier invoice.",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string", "description": "Invoice unique identifier"},
+    "descriptor": {"type": "string"},
+    "invoiceNumber": {"type": "string", "description": "Supplier-assigned invoice number"},
+    "status": {"type": "string", "enum": ["draft", "submitted", "approved", "paid", "cancelled"]},
+    "supplier": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "descriptor": {"type": "string"},
+        "href": {"type": "string", "format": "uri"}
+      }
+    },
+    "invoiceDate": {"type": "string", "format": "date"},
+    "dueDate": {"type": "string", "format": "date"},
+    "totalAmount": {"type": "number", "format": "double", "description": "Total invoice amount"},
+    "currency": {"type": "string", "description": "ISO 4217 currency code"},
+    "purchaseOrder": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "descriptor": {"type": "string"}
+      }
+    },
+    "href": {"type": "string", "format": "uri"}
+  },
+  "required": ["id", "invoiceNumber", "status", "supplier", "totalAmount"]
+}

@@ -1,0 +1,101 @@
+name: Workday Finance Vocabulary
+description: Vocabulary and taxonomy for Workday Finance APIs covering financial management, procurement, expense management, and the procure-to-pay lifecycle.
+url: https://raw.githubusercontent.com/api-evangelist/workday-finance/main/vocabulary/workday-finance-vocabulary.yml
+created: '2026-05-03'
+modified: '2026-05-03'
+
+domains:
+  - name: General Ledger
+    description: Core financial accounting concepts
+    terms:
+      - name: Account
+        description: A general ledger account used to record financial transactions
+        synonyms: [GL Account, General Ledger Account, Chart of Accounts Entry]
+        values: [asset, liability, equity, revenue, expense]
+      - name: Journal Entry
+        description: A record of a financial transaction in the general ledger using debit and credit lines
+        synonyms: [GL Entry, Accounting Entry, Ledger Entry]
+        related: [Account, JournalEntryLine, Period]
+      - name: Worktag
+        description: A financial dimension used to tag transactions for reporting and analysis
+        synonyms: [Financial Dimension, Cost Segment, Accounting Dimension]
+        related: [JournalEntry, CostCenter]
+      - name: Financial Period
+        description: A defined time interval (month, quarter, year) for financial reporting and close
+        synonyms: [Accounting Period, Fiscal Period, Period]
+        related: [JournalEntry, FiscalYear]
+      - name: Cost Center
+        description: An organizational unit used for financial tracking and cost allocation
+        synonyms: [Cost Unit, Department, Profit Center]
+        related: [Worktag, Account]
+
+  - name: Procurement
+    description: Procure-to-pay process concepts
+    terms:
+      - name: Supplier
+        description: An external vendor or service provider from whom goods or services are purchased
+        synonyms: [Vendor, Creditor, Payee]
+        related: [PurchaseOrder, SupplierInvoice]
+      - name: Purchase Order
+        description: A formal document authorizing a purchase from a supplier
+        synonyms: [PO, Procurement Order]
+        related: [Supplier, Requisition, SupplierInvoice]
+      - name: Supplier Invoice
+        description: A bill from a supplier requesting payment for goods or services delivered
+        synonyms: [Invoice, AP Invoice, Vendor Invoice]
+        related: [Supplier, PurchaseOrder, Payment]
+      - name: Requisition
+        description: An internal request to purchase goods or services, subject to approval before becoming a PO
+        synonyms: [Purchase Requisition, PR, Procurement Request]
+        related: [PurchaseOrder]
+
+  - name: Expense Management
+    description: Employee expense and reimbursement concepts
+    terms:
+      - name: Expense Report
+        description: A document submitted by an employee listing business expenses for reimbursement
+        synonyms: [Expense Claim, T&E Report]
+      - name: Expense Line
+        description: A single expense item within an expense report
+        synonyms: [Expense Item]
+        related: [ExpenseReport]
+
+  - name: Financial Reporting
+    description: Reporting and analytics concepts
+    terms:
+      - name: Financial Report
+        description: A structured summary of financial data for a period or entity
+        synonyms: [Finance Report, Accounting Report]
+      - name: Budget
+        description: A financial plan defining expected revenues and expenditures for a period
+        synonyms: [Spending Plan, Financial Plan]
+        related: [CostCenter, Account]
+      - name: Fiscal Year
+        description: A 12-month accounting period used for annual financial reporting
+        synonyms: [FY, Financial Year, Annual Period]
+        related: [FinancialPeriod]
+
+  - name: Cash Management
+    description: Treasury and cash management concepts
+    terms:
+      - name: Cash Position
+        description: The amount of liquid assets available at a given time
+        synonyms: [Liquidity, Cash Balance]
+      - name: Bank Account
+        description: A financial account held at a banking institution
+        related: [Settlement, Payment]
+      - name: Settlement
+        description: The final transfer of funds to complete a financial transaction
+        synonyms: [Payment Settlement, Disbursement]
+        related: [SupplierInvoice, BankAccount]
+
+tags:
+  - Accounting
+  - Banking
+  - Cloud
+  - Enterprise
+  - ERP
+  - Finance
+  - Financial Management
+  - Procurement
+  - Workday

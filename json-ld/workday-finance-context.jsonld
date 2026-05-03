@@ -1,0 +1,56 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "wd": "https://www.workday.com/ontology/finance/",
+    "fibo": "https://spec.edmcouncil.org/fibo/ontology/",
+
+    "JournalEntry": "wd:JournalEntry",
+    "Account": "wd:Account",
+    "CostCenter": "wd:CostCenter",
+    "Worktag": "wd:Worktag",
+    "FinancialPeriod": "wd:FinancialPeriod",
+    "Supplier": "schema:Organization",
+    "PurchaseOrder": "schema:Order",
+    "SupplierInvoice": "schema:Invoice",
+    "Requisition": "wd:Requisition",
+
+    "id": "@id",
+    "descriptor": "schema:name",
+    "name": "schema:name",
+    "description": "schema:description",
+    "status": "wd:status",
+    "href": "schema:url",
+
+    "journalEntryNumber": "wd:journalEntryNumber",
+    "postingDate": "schema:datePosted",
+    "period": {"@id": "wd:period", "@type": "@id"},
+    "lines": "wd:lines",
+    "debitAmount": {"@id": "fibo:debitAmount", "@type": "schema:MonetaryAmount"},
+    "creditAmount": {"@id": "fibo:creditAmount", "@type": "schema:MonetaryAmount"},
+    "currency": "schema:currency",
+    "worktags": "wd:worktags",
+
+    "accountNumber": "wd:accountNumber",
+    "accountType": "wd:accountType",
+    "balance": "schema:amount",
+    "company": {"@id": "schema:legalName", "@type": "@id"},
+
+    "invoiceNumber": "schema:confirmationNumber",
+    "invoiceDate": "schema:dateIssued",
+    "dueDate": "schema:paymentDueDate",
+    "totalAmount": "schema:totalPaymentDue",
+    "supplier": {"@id": "schema:seller", "@type": "@id"},
+    "purchaseOrder": {"@id": "schema:referencesOrder", "@type": "@id"},
+
+    "purchaseOrderNumber": "schema:orderNumber",
+    "orderDate": "schema:orderDate",
+
+    "fiscalYear": "wd:fiscalYear",
+    "startDate": "schema:startDate",
+    "endDate": "schema:endDate",
+
+    "supplierNumber": "wd:supplierNumber",
+    "paymentTerms": "wd:paymentTerms",
+    "taxId": "wd:taxId"
+  }
+}
