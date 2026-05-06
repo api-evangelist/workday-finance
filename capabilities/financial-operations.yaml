@@ -1,269 +1,530 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Workday Finance Financial Operations"
-  description: "Unified capability for financial operations combining general ledger management, procurement, and accounts payable workflows. Enables finance teams to manage the full procure-to-pay and record-to-report lifecycle."
+  label: Workday Finance Financial Operations
+  description: Unified capability for financial operations combining general ledger management, procurement, and accounts
+    payable workflows. Enables finance teams to manage the full procure-to-pay and record-to-report lifecycle.
   tags:
-    - Workday
-    - Finance
-    - Financial Management
-    - Procurement
-    - Accounts Payable
-    - General Ledger
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Workday
+  - Finance
+  - Financial Management
+  - Procurement
+  - Accounts Payable
+  - General Ledger
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      WORKDAY_FINANCE_ACCESS_TOKEN: WORKDAY_FINANCE_ACCESS_TOKEN
-      WORKDAY_TENANT: WORKDAY_TENANT
-
+- namespace: env
+  keys:
+    WORKDAY_FINANCE_ACCESS_TOKEN: WORKDAY_FINANCE_ACCESS_TOKEN
+    WORKDAY_TENANT: WORKDAY_TENANT
 capability:
   consumes:
-    - import: financial-management
-      location: ./shared/financial-management.yaml
-    - import: procurement
-      location: ./shared/procurement.yaml
-
+  - type: http
+    namespace: financial-management
+    baseUri: https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}
+    description: Workday financial management core API
+    authentication:
+      type: bearer
+      token: '{{WORKDAY_FINANCE_ACCESS_TOKEN}}'
+    resources:
+    - name: accounts
+      path: /accounts
+      description: General ledger account management
+      operations:
+      - name: list-accounts
+        method: GET
+        description: List financial accounts
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of results
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Pagination offset
+        - name: type
+          in: query
+          type: string
+          required: false
+          description: Filter by account type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-account
+        method: GET
+        description: Get financial account details
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+          description: Account identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: journal-entries
+      path: /journalEntries
+      description: Journal entry management
+      operations:
+      - name: list-journal-entries
+        method: GET
+        description: List journal entries
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of results
+        - name: period
+          in: query
+          type: string
+          required: false
+          description: Filter by accounting period
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-journal-entry
+        method: POST
+        description: Create a journal entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            period: '{{tools.period}}'
+            lines: '{{tools.lines}}'
+      - name: get-journal-entry
+        method: GET
+        description: Get journal entry details
+        inputParameters:
+        - name: journalEntryId
+          in: path
+          type: string
+          required: true
+          description: Journal entry identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cost-centers
+      path: /costCenters
+      description: Cost center management
+      operations:
+      - name: list-cost-centers
+        method: GET
+        description: List cost centers
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: worktags
+      path: /worktags
+      description: Worktag dimension management
+      operations:
+      - name: list-worktags
+        method: GET
+        description: List worktags
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+          required: false
+          description: Filter by worktag type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: financial-periods
+      path: /financialPeriods
+      description: Financial period management
+      operations:
+      - name: list-financial-periods
+        method: GET
+        description: List financial periods
+        inputParameters:
+        - name: fiscalYear
+          in: query
+          type: string
+          required: false
+          description: Filter by fiscal year
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: procurement
+    baseUri: https://wd2-impl-services1.workday.com/ccx/api/resource-management/v45.2/{tenant}
+    description: Workday procurement and supplier management API
+    authentication:
+      type: bearer
+      token: '{{WORKDAY_FINANCE_ACCESS_TOKEN}}'
+    resources:
+    - name: suppliers
+      path: /suppliers
+      description: Supplier account management
+      operations:
+      - name: list-suppliers
+        method: GET
+        description: List suppliers
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-supplier
+        method: GET
+        description: Get supplier details
+        inputParameters:
+        - name: supplierId
+          in: path
+          type: string
+          required: true
+          description: Supplier identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: purchase-orders
+      path: /purchaseOrders
+      description: Purchase order management
+      operations:
+      - name: list-purchase-orders
+        method: GET
+        description: List purchase orders
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Filter by status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-purchase-order
+        method: POST
+        description: Create a purchase order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            supplier: '{{tools.supplier}}'
+            orderDate: '{{tools.orderDate}}'
+    - name: supplier-invoices
+      path: /supplierInvoices
+      description: Supplier invoice processing
+      operations:
+      - name: list-supplier-invoices
+        method: GET
+        description: List supplier invoices
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Filter by status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-supplier-invoice
+        method: POST
+        description: Create a supplier invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            supplier: '{{tools.supplier}}'
+            invoiceNumber: '{{tools.invoiceNumber}}'
+            totalAmount: '{{tools.totalAmount}}'
+    - name: requisitions
+      path: /requisitions
+      description: Purchase requisition management
+      operations:
+      - name: list-requisitions
+        method: GET
+        description: List purchase requisitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: workday-finance-api
-      description: "Unified REST API for Workday Finance financial operations."
-      resources:
-        - path: /v1/accounts
-          name: accounts
-          description: "General ledger account management"
-          operations:
-            - method: GET
-              name: list-accounts
-              description: "List financial accounts"
-              call: "financial-management.list-accounts"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/journal-entries
-          name: journal-entries
-          description: "Journal entry management"
-          operations:
-            - method: GET
-              name: list-journal-entries
-              description: "List journal entries"
-              call: "financial-management.list-journal-entries"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-journal-entry
-              description: "Create a journal entry"
-              call: "financial-management.create-journal-entry"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/cost-centers
-          name: cost-centers
-          description: "Cost center organization management"
-          operations:
-            - method: GET
-              name: list-cost-centers
-              description: "List cost centers"
-              call: "financial-management.list-cost-centers"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/worktags
-          name: worktags
-          description: "Financial dimension worktag management"
-          operations:
-            - method: GET
-              name: list-worktags
-              description: "List worktags"
-              call: "financial-management.list-worktags"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/financial-periods
-          name: financial-periods
-          description: "Fiscal period management"
-          operations:
-            - method: GET
-              name: list-financial-periods
-              description: "List financial periods"
-              call: "financial-management.list-financial-periods"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/suppliers
-          name: suppliers
-          description: "Supplier account management"
-          operations:
-            - method: GET
-              name: list-suppliers
-              description: "List suppliers"
-              call: "procurement.list-suppliers"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/purchase-orders
-          name: purchase-orders
-          description: "Purchase order management"
-          operations:
-            - method: GET
-              name: list-purchase-orders
-              description: "List purchase orders"
-              call: "procurement.list-purchase-orders"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-purchase-order
-              description: "Create a purchase order"
-              call: "procurement.create-purchase-order"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/supplier-invoices
-          name: supplier-invoices
-          description: "Supplier invoice processing"
-          operations:
-            - method: GET
-              name: list-supplier-invoices
-              description: "List supplier invoices"
-              call: "procurement.list-supplier-invoices"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-supplier-invoice
-              description: "Create a supplier invoice"
-              call: "procurement.create-supplier-invoice"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/requisitions
-          name: requisitions
-          description: "Purchase requisition management"
-          operations:
-            - method: GET
-              name: list-requisitions
-              description: "List purchase requisitions"
-              call: "procurement.list-requisitions"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: workday-finance-mcp
-      transport: http
-      description: "MCP server for AI-assisted Workday Finance operations."
-      tools:
-        - name: list-accounts
-          description: "List general ledger accounts in Workday Finance"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "financial-management.list-accounts"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-journal-entries
-          description: "List journal entries, optionally filtered by period"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "financial-management.list-journal-entries"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-journal-entry
-          description: "Create a new journal entry in the general ledger"
-          hints:
-            readOnly: false
-            destructive: false
-          call: "financial-management.create-journal-entry"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-cost-centers
-          description: "List cost center organizations"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "financial-management.list-cost-centers"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-worktags
-          description: "List financial dimension worktags"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "financial-management.list-worktags"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-financial-periods
-          description: "List fiscal periods and their open/close status"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "financial-management.list-financial-periods"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-suppliers
-          description: "List supplier accounts in the procurement system"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "procurement.list-suppliers"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-purchase-orders
-          description: "List purchase orders, optionally filtered by status"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "procurement.list-purchase-orders"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-purchase-order
-          description: "Create a new purchase order for a supplier"
-          hints:
-            readOnly: false
-            destructive: false
-          call: "procurement.create-purchase-order"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-supplier-invoices
-          description: "List supplier invoices for accounts payable processing"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "procurement.list-supplier-invoices"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-supplier-invoice
-          description: "Create a new supplier invoice for payment processing"
-          hints:
-            readOnly: false
-            destructive: false
-          call: "procurement.create-supplier-invoice"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-requisitions
-          description: "List purchase requisitions"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "procurement.list-requisitions"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: workday-finance-api
+    description: Unified REST API for Workday Finance financial operations.
+    resources:
+    - path: /v1/accounts
+      name: accounts
+      description: General ledger account management
+      operations:
+      - method: GET
+        name: list-accounts
+        description: List financial accounts
+        call: financial-management.list-accounts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/journal-entries
+      name: journal-entries
+      description: Journal entry management
+      operations:
+      - method: GET
+        name: list-journal-entries
+        description: List journal entries
+        call: financial-management.list-journal-entries
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-journal-entry
+        description: Create a journal entry
+        call: financial-management.create-journal-entry
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cost-centers
+      name: cost-centers
+      description: Cost center organization management
+      operations:
+      - method: GET
+        name: list-cost-centers
+        description: List cost centers
+        call: financial-management.list-cost-centers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/worktags
+      name: worktags
+      description: Financial dimension worktag management
+      operations:
+      - method: GET
+        name: list-worktags
+        description: List worktags
+        call: financial-management.list-worktags
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/financial-periods
+      name: financial-periods
+      description: Fiscal period management
+      operations:
+      - method: GET
+        name: list-financial-periods
+        description: List financial periods
+        call: financial-management.list-financial-periods
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/suppliers
+      name: suppliers
+      description: Supplier account management
+      operations:
+      - method: GET
+        name: list-suppliers
+        description: List suppliers
+        call: procurement.list-suppliers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/purchase-orders
+      name: purchase-orders
+      description: Purchase order management
+      operations:
+      - method: GET
+        name: list-purchase-orders
+        description: List purchase orders
+        call: procurement.list-purchase-orders
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-purchase-order
+        description: Create a purchase order
+        call: procurement.create-purchase-order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/supplier-invoices
+      name: supplier-invoices
+      description: Supplier invoice processing
+      operations:
+      - method: GET
+        name: list-supplier-invoices
+        description: List supplier invoices
+        call: procurement.list-supplier-invoices
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-supplier-invoice
+        description: Create a supplier invoice
+        call: procurement.create-supplier-invoice
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/requisitions
+      name: requisitions
+      description: Purchase requisition management
+      operations:
+      - method: GET
+        name: list-requisitions
+        description: List purchase requisitions
+        call: procurement.list-requisitions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: workday-finance-mcp
+    transport: http
+    description: MCP server for AI-assisted Workday Finance operations.
+    tools:
+    - name: list-accounts
+      description: List general ledger accounts in Workday Finance
+      hints:
+        readOnly: true
+        openWorld: true
+      call: financial-management.list-accounts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-journal-entries
+      description: List journal entries, optionally filtered by period
+      hints:
+        readOnly: true
+        openWorld: true
+      call: financial-management.list-journal-entries
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-journal-entry
+      description: Create a new journal entry in the general ledger
+      hints:
+        readOnly: false
+        destructive: false
+      call: financial-management.create-journal-entry
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-cost-centers
+      description: List cost center organizations
+      hints:
+        readOnly: true
+        openWorld: true
+      call: financial-management.list-cost-centers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-worktags
+      description: List financial dimension worktags
+      hints:
+        readOnly: true
+        openWorld: true
+      call: financial-management.list-worktags
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-financial-periods
+      description: List fiscal periods and their open/close status
+      hints:
+        readOnly: true
+        openWorld: true
+      call: financial-management.list-financial-periods
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-suppliers
+      description: List supplier accounts in the procurement system
+      hints:
+        readOnly: true
+        openWorld: true
+      call: procurement.list-suppliers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-purchase-orders
+      description: List purchase orders, optionally filtered by status
+      hints:
+        readOnly: true
+        openWorld: true
+      call: procurement.list-purchase-orders
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-purchase-order
+      description: Create a new purchase order for a supplier
+      hints:
+        readOnly: false
+        destructive: false
+      call: procurement.create-purchase-order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-supplier-invoices
+      description: List supplier invoices for accounts payable processing
+      hints:
+        readOnly: true
+        openWorld: true
+      call: procurement.list-supplier-invoices
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-supplier-invoice
+      description: Create a new supplier invoice for payment processing
+      hints:
+        readOnly: false
+        destructive: false
+      call: procurement.create-supplier-invoice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-requisitions
+      description: List purchase requisitions
+      hints:
+        readOnly: true
+        openWorld: true
+      call: procurement.list-requisitions
+      outputParameters:
+      - type: object
+        mapping: $.
