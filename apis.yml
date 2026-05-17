@@ -227,17 +227,17 @@ common:
     url: https://community.workday.com/api
   - type: Documentation
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
-  - type: Getting Started
+  - type: GettingStarted
     url: https://doc.workday.com/r/Enterprise_Interface_API_Concepts_and_Resources/Getting_Started_with_Workday_Web_Services
   - type: Authentication
     url: https://doc.workday.com/r/Enterprise_Interface_API_Concepts_and_Resources/Authentication
-  - type: Rate Limits
+  - type: RateLimits
     url: https://doc.workday.com/r/Enterprise_Interface_API_Concepts_and_Resources/Rate_Limiting
   - type: Console
     url: https://developer.workday.com/about
   - type: Website
     url: https://www.workday.com/en-us/products/financial-management/overview.html
-  - type: Sign Up
+  - type: SignUp
     url: https://resourcecenter.workday.com/
   - type: Blog
     url: https://blog.workday.com/
@@ -245,17 +245,17 @@ common:
     url: https://www.workday.com/en-us/services/support.html
   - type: Community
     url: https://www.workday.com/en-us/services/community.html
-  - type: Status
+  - type: StatusPage
     url: https://status.workday.com/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.workday.com/en-us/legal.html
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.workday.com/en-us/privacy.html
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/Workday
   - type: Marketplace
     url: https://marketplace.workday.com/en-US/home
-  - type: Change Log
+  - type: ChangeLog
     url: https://community.workday.com/articles/16827
   - type: Reference
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
@@ -263,7 +263,7 @@ common:
     url: rules/workday-finance-rules.yml
   - type: Naftiko Capabilities
     url: capabilities/financial-operations.yaml
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/workday-finance-context.jsonld
   - type: JSONSchema
     url: json-schema/workday-finance-journal-entry-schema.json
