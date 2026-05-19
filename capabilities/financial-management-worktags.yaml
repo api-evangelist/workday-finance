@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Finance Financial Management API — Worktags
+  description: 'Workday Finance Financial Management API — Worktags. 1 operations. Lead operation: List Worktags. Self-contained
+    Naftiko capability covering one Workday Finance business surface.'
+  tags:
+  - Workday Finance
+  - Worktags
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_FINANCE_API_KEY: WORKDAY_FINANCE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: financial-management-worktags
+    baseUri: https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}
+    description: Workday Finance Financial Management API — Worktags business capability. Self-contained, no shared references.
+    resources:
+    - name: worktags
+      path: /worktags
+      operations:
+      - name: listworktags
+        method: GET
+        description: List Worktags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+          description: Filter by worktag type
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_FINANCE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: financial-management-worktags-rest
+    port: 8080
+    description: REST adapter for Workday Finance Financial Management API — Worktags. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/worktags
+      name: worktags
+      description: REST surface for worktags.
+      operations:
+      - method: GET
+        name: listworktags
+        description: List Worktags
+        call: financial-management-worktags.listworktags
+        with:
+          type: rest.type
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: financial-management-worktags-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Finance Financial Management API — Worktags. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-worktags
+      description: List Worktags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: financial-management-worktags.listworktags
+      with:
+        type: tools.type
+      outputParameters:
+      - type: object
+        mapping: $.

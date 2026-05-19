@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Finance Procurement API — Requisitions
+  description: 'Workday Finance Procurement API — Requisitions. 1 operations. Lead operation: List Purchase Requisitions.
+    Self-contained Naftiko capability covering one Workday Finance business surface.'
+  tags:
+  - Workday Finance
+  - Requisitions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_FINANCE_API_KEY: WORKDAY_FINANCE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: procurement-requisitions
+    baseUri: https://wd2-impl-services1.workday.com/ccx/api/resource-management/v45.2/{tenant}
+    description: Workday Finance Procurement API — Requisitions business capability. Self-contained, no shared references.
+    resources:
+    - name: requisitions
+      path: /requisitions
+      operations:
+      - name: listrequisitions
+        method: GET
+        description: List Purchase Requisitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_FINANCE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: procurement-requisitions-rest
+    port: 8080
+    description: REST adapter for Workday Finance Procurement API — Requisitions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/requisitions
+      name: requisitions
+      description: REST surface for requisitions.
+      operations:
+      - method: GET
+        name: listrequisitions
+        description: List Purchase Requisitions
+        call: procurement-requisitions.listrequisitions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: procurement-requisitions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Finance Procurement API — Requisitions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-purchase-requisitions
+      description: List Purchase Requisitions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: procurement-requisitions.listrequisitions
+      outputParameters:
+      - type: object
+        mapping: $.

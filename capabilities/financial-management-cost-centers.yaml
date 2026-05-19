@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Finance Financial Management API — Cost Centers
+  description: 'Workday Finance Financial Management API — Cost Centers. 1 operations. Lead operation: List Cost Centers.
+    Self-contained Naftiko capability covering one Workday Finance business surface.'
+  tags:
+  - Workday Finance
+  - Cost Centers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_FINANCE_API_KEY: WORKDAY_FINANCE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: financial-management-cost-centers
+    baseUri: https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}
+    description: Workday Finance Financial Management API — Cost Centers business capability. Self-contained, no shared references.
+    resources:
+    - name: costCenters
+      path: /costCenters
+      operations:
+      - name: listcostcenters
+        method: GET
+        description: List Cost Centers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_FINANCE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: financial-management-cost-centers-rest
+    port: 8080
+    description: REST adapter for Workday Finance Financial Management API — Cost Centers. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/costcenters
+      name: costcenters
+      description: REST surface for costCenters.
+      operations:
+      - method: GET
+        name: listcostcenters
+        description: List Cost Centers
+        call: financial-management-cost-centers.listcostcenters
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: financial-management-cost-centers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Finance Financial Management API — Cost Centers. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: list-cost-centers
+      description: List Cost Centers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: financial-management-cost-centers.listcostcenters
+      outputParameters:
+      - type: object
+        mapping: $.

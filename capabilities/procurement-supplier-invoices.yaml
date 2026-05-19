@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Finance Procurement API — Supplier Invoices
+  description: 'Workday Finance Procurement API — Supplier Invoices. 2 operations. Lead operation: List Supplier Invoices.
+    Self-contained Naftiko capability covering one Workday Finance business surface.'
+  tags:
+  - Workday Finance
+  - Supplier Invoices
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_FINANCE_API_KEY: WORKDAY_FINANCE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: procurement-supplier-invoices
+    baseUri: https://wd2-impl-services1.workday.com/ccx/api/resource-management/v45.2/{tenant}
+    description: Workday Finance Procurement API — Supplier Invoices business capability. Self-contained, no shared references.
+    resources:
+    - name: supplierInvoices
+      path: /supplierInvoices
+      operations:
+      - name: listsupplierinvoices
+        method: GET
+        description: List Supplier Invoices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by invoice status
+      - name: createsupplierinvoice
+        method: POST
+        description: Create Supplier Invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_FINANCE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: procurement-supplier-invoices-rest
+    port: 8080
+    description: REST adapter for Workday Finance Procurement API — Supplier Invoices. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/supplierinvoices
+      name: supplierinvoices
+      description: REST surface for supplierInvoices.
+      operations:
+      - method: GET
+        name: listsupplierinvoices
+        description: List Supplier Invoices
+        call: procurement-supplier-invoices.listsupplierinvoices
+        with:
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsupplierinvoice
+        description: Create Supplier Invoice
+        call: procurement-supplier-invoices.createsupplierinvoice
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: procurement-supplier-invoices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Finance Procurement API — Supplier Invoices. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-supplier-invoices
+      description: List Supplier Invoices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: procurement-supplier-invoices.listsupplierinvoices
+      with:
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-supplier-invoice
+      description: Create Supplier Invoice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: procurement-supplier-invoices.createsupplierinvoice
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
