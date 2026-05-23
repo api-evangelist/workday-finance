@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SupplierInvoiceCreate",
+  "title": "SupplierInvoiceCreate",
+  "type": "object",
+  "required": [
+    "supplier",
+    "invoiceNumber",
+    "totalAmount"
+  ],
+  "properties": {
+    "supplier": {
+      "type": "string"
+    },
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "invoiceDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "totalAmount": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string"
+    }
+  }
+}

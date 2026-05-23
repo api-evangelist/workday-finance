@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FinancialPeriod",
+  "title": "FinancialPeriod",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "descriptor": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "closed",
+        "locked"
+      ]
+    },
+    "fiscalYear": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

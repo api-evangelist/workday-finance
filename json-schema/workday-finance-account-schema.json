@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Account",
+  "title": "Account",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Account unique identifier"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "Account display name"
+    },
+    "accountNumber": {
+      "type": "string",
+      "description": "General ledger account number"
+    },
+    "accountType": {
+      "type": "string",
+      "enum": [
+        "asset",
+        "liability",
+        "equity",
+        "revenue",
+        "expense"
+      ],
+      "description": "Type of account"
+    },
+    "company": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "balance": {
+      "type": "number",
+      "format": "double",
+      "description": "Current account balance"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Account currency code"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

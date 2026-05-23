@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JournalEntryCreate",
+  "title": "JournalEntryCreate",
+  "type": "object",
+  "required": [
+    "period",
+    "lines"
+  ],
+  "properties": {
+    "period": {
+      "type": "string",
+      "description": "Financial period identifier"
+    },
+    "postingDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "memo": {
+      "type": "string"
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/JournalEntryLine"
+      }
+    }
+  }
+}

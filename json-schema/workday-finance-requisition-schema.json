@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Requisition",
+  "title": "Requisition",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "descriptor": {
+      "type": "string"
+    },
+    "requisitionNumber": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "submitted",
+        "approved",
+        "ordered",
+        "received"
+      ]
+    },
+    "requester": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "submitDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "totalAmount": {
+      "type": "number",
+      "format": "double"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

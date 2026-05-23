@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JournalEntryLine",
+  "title": "JournalEntryLine",
+  "type": "object",
+  "properties": {
+    "lineOrder": {
+      "type": "integer"
+    },
+    "account": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "debitAmount": {
+      "type": "number",
+      "format": "double"
+    },
+    "creditAmount": {
+      "type": "number",
+      "format": "double"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "memo": {
+      "type": "string"
+    },
+    "worktags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ResourceReference"
+      }
+    }
+  }
+}

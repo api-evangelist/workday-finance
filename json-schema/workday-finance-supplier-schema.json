@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Supplier",
+  "title": "Supplier",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Supplier unique identifier"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "Supplier display name"
+    },
+    "name": {
+      "type": "string"
+    },
+    "supplierNumber": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ]
+    },
+    "taxId": {
+      "type": "string"
+    },
+    "paymentTerms": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PurchaseOrderCreate",
+  "title": "PurchaseOrderCreate",
+  "type": "object",
+  "required": [
+    "supplier"
+  ],
+  "properties": {
+    "supplier": {
+      "type": "string",
+      "description": "Supplier identifier"
+    },
+    "orderDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "unitCost": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

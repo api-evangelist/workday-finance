@@ -1,0 +1,141 @@
+{
+  "provider": "Workday Finance",
+  "providerId": "workday-finance",
+  "kind": "json-structure",
+  "description": "Structural overview of the Workday Finance API surface; extracted from openapi/.",
+  "schemaCount": 9,
+  "operationCount": 8,
+  "schemas": [
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ResourceReference",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Account",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "JournalEntry",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "JournalEntryCreate",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "period",
+        "lines"
+      ]
+    },
+    {
+      "name": "JournalEntryLine",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "CostCenter",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Worktag",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "FinancialPeriod",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/accounts",
+      "operationId": "listAccounts",
+      "summary": "List Financial Accounts",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/{accountId}",
+      "operationId": "getAccount",
+      "summary": "Get Financial Account",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/journalEntries",
+      "operationId": "listJournalEntries",
+      "summary": "List Journal Entries",
+      "tags": [
+        "Journal Entries"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/journalEntries",
+      "operationId": "createJournalEntry",
+      "summary": "Create Journal Entry",
+      "tags": [
+        "Journal Entries"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/journalEntries/{journalEntryId}",
+      "operationId": "getJournalEntry",
+      "summary": "Get Journal Entry",
+      "tags": [
+        "Journal Entries"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/costCenters",
+      "operationId": "listCostCenters",
+      "summary": "List Cost Centers",
+      "tags": [
+        "Cost Centers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/worktags",
+      "operationId": "listWorktags",
+      "summary": "List Worktags",
+      "tags": [
+        "Worktags"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/financialPeriods",
+      "operationId": "listFinancialPeriods",
+      "summary": "List Financial Periods",
+      "tags": [
+        "Financial Periods"
+      ]
+    }
+  ]
+}

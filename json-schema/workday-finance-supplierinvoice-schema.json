@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SupplierInvoice",
+  "title": "SupplierInvoice",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "descriptor": {
+      "type": "string"
+    },
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "submitted",
+        "approved",
+        "paid",
+        "cancelled"
+      ]
+    },
+    "supplier": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "invoiceDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "totalAmount": {
+      "type": "number",
+      "format": "double"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "purchaseOrder": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CostCenter",
+  "title": "CostCenter",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "descriptor": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "manager": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "company": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

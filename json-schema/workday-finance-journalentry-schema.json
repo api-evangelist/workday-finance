@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JournalEntry",
+  "title": "JournalEntry",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Journal entry unique identifier"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "Journal entry display name"
+    },
+    "journalEntryNumber": {
+      "type": "string",
+      "description": "Sequential journal entry number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "posted",
+        "reversed"
+      ]
+    },
+    "period": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "postingDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the entry is posted to the ledger"
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/JournalEntryLine"
+      }
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}
