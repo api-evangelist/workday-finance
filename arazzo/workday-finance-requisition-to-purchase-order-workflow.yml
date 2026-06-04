@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Workday Finance Requisition to Purchase Order
+  summary: Find an approved requisition, confirm the supplier, then raise a purchase order.
+  description: >-
+    Advances a purchase requisition into the ordering stage. The workflow lists
+    requisitions, branches on whether any were returned, confirms the supplier
+    is active, and creates a purchase order against that supplier. Each step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: procurementApi
+  url: ../openapi/workday-finance-procurement-openapi.yml
+  type: openapi
+workflows:
+- workflowId: requisition-to-purchase-order
+  summary: Move an approved requisition forward by raising a purchase order.
+  description: >-
+    Lists requisitions, confirms the supplier is active, and creates a purchase
+    order with the supplied order lines against that supplier.
+  inputs:
+    type: object
+    required:
+    - token
+    - supplierId
+    - lines
+    properties:
+      token:
+        type: string
+        description: OAuth 2.0 bearer access token for the Workday tenant.
+      supplierId:
+        type: string
+        description: The supplier identifier to raise the purchase order against.
+      orderDate:
+        type: string
+        description: The order date for the purchase order (YYYY-MM-DD).
+      lines:
+        type: array
+        description: The order lines (item, quantity, unitCost) for the purchase order.
+  steps:
+  - stepId: listRequisitions
+    description: >-
+      List purchase requisitions and branch on whether any requisitions are
+      available to advance.
+    operationId: listRequisitions
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: limit
+      in: query
+      value: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      requisitions: $response.body#/data
+      total: $response.body#/total
+    onSuccess:
+    - name: requisitionsFound
+      type: goto
+      stepId: getSupplier
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+    - name: requisitionsMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.length == 0
+        type: jsonpath
+  - stepId: getSupplier
+    description: >-
+      Confirm the supplier exists and is active before raising a purchase order
+      from the requisition.
+    operationId: getSupplier
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: supplierId
+      in: path
+      value: $inputs.supplierId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      supplierId: $response.body#/id
+      status: $response.body#/status
+  - stepId: createPurchaseOrder
+    description: >-
+      Create a purchase order against the confirmed supplier using the supplied
+      order lines.
+    operationId: createPurchaseOrder
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        supplier: $steps.getSupplier.outputs.supplierId
+        orderDate: $inputs.orderDate
+        lines: $inputs.lines
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      purchaseOrderId: $response.body#/id
+      purchaseOrderNumber: $response.body#/purchaseOrderNumber
+      status: $response.body#/status
+  outputs:
+    requisitionTotal: $steps.listRequisitions.outputs.total
+    purchaseOrderId: $steps.createPurchaseOrder.outputs.purchaseOrderId
+    purchaseOrderStatus: $steps.createPurchaseOrder.outputs.status

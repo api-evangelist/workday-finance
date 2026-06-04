@@ -1,0 +1,112 @@
+arazzo: 1.0.1
+info:
+  title: Workday Finance Record Balanced Journal Entry
+  summary: Confirm the target period is open, post a journal entry, then read it back.
+  description: >-
+    The core general-ledger flow. The workflow lists financial periods to
+    confirm the target accounting period is open, creates a journal entry with
+    its debit and credit lines, and reads the created entry back to confirm its
+    posting status. Each step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: financialManagementApi
+  url: ../openapi/workday-finance-financial-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: record-balanced-journal-entry
+  summary: Validate the period is open then post and verify a journal entry.
+  description: >-
+    Lists financial periods filtered by fiscal year, creates a journal entry
+    against the supplied period with its lines, and reads the entry back to
+    confirm the ledger recorded it.
+  inputs:
+    type: object
+    required:
+    - token
+    - fiscalYear
+    - period
+    - lines
+    properties:
+      token:
+        type: string
+        description: OAuth 2.0 bearer access token for the Workday tenant.
+      fiscalYear:
+        type: string
+        description: The fiscal year used to filter the financial periods list.
+      period:
+        type: string
+        description: The financial period identifier to post the journal entry against.
+      postingDate:
+        type: string
+        description: The date the entry is posted to the ledger (YYYY-MM-DD).
+      memo:
+        type: string
+        description: An optional memo describing the journal entry.
+      lines:
+        type: array
+        description: The debit and credit lines that make up the journal entry.
+  steps:
+  - stepId: listFinancialPeriods
+    description: >-
+      List the financial periods for the supplied fiscal year so the caller can
+      confirm the target period is open before posting.
+    operationId: listFinancialPeriods
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: fiscalYear
+      in: query
+      value: $inputs.fiscalYear
+    - name: limit
+      in: query
+      value: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      periods: $response.body#/data
+      total: $response.body#/total
+  - stepId: createJournalEntry
+    description: >-
+      Create a journal entry against the supplied financial period with its
+      debit and credit lines.
+    operationId: createJournalEntry
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        period: $inputs.period
+        postingDate: $inputs.postingDate
+        memo: $inputs.memo
+        lines: $inputs.lines
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      journalEntryId: $response.body#/id
+      journalEntryNumber: $response.body#/journalEntryNumber
+      status: $response.body#/status
+  - stepId: getJournalEntry
+    description: >-
+      Read the newly created journal entry back to confirm it was recorded and
+      capture its posting status.
+    operationId: getJournalEntry
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: journalEntryId
+      in: path
+      value: $steps.createJournalEntry.outputs.journalEntryId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      journalEntryId: $response.body#/id
+      status: $response.body#/status
+      postingDate: $response.body#/postingDate
+  outputs:
+    journalEntryId: $steps.getJournalEntry.outputs.journalEntryId
+    journalEntryStatus: $steps.getJournalEntry.outputs.status

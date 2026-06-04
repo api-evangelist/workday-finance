@@ -1,0 +1,116 @@
+arazzo: 1.0.1
+info:
+  title: Workday Finance Reconcile Supplier Invoices
+  summary: Confirm a supplier, list its outstanding invoices, then trace one back to its purchase order.
+  description: >-
+    An accounts payable reconciliation flow. The workflow reads a supplier to
+    confirm it is active, lists supplier invoices filtered by status, branches
+    on whether any were returned, and reads the originating purchase order of
+    the first invoice to reconcile the two. Each step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: procurementApi
+  url: ../openapi/workday-finance-procurement-openapi.yml
+  type: openapi
+workflows:
+- workflowId: reconcile-supplier-invoices
+  summary: Confirm a supplier, list its invoices, and trace one to its purchase order.
+  description: >-
+    Reads the supplier, lists supplier invoices by status, and reads the
+    purchase order referenced by the first invoice for reconciliation.
+  inputs:
+    type: object
+    required:
+    - token
+    - supplierId
+    - purchaseOrderId
+    properties:
+      token:
+        type: string
+        description: OAuth 2.0 bearer access token for the Workday tenant.
+      supplierId:
+        type: string
+        description: The supplier whose invoices are being reconciled.
+      purchaseOrderId:
+        type: string
+        description: The purchase order to trace the first outstanding invoice back to.
+      status:
+        type: string
+        description: Optional invoice status filter (e.g. submitted, approved).
+  steps:
+  - stepId: getSupplier
+    description: >-
+      Read the supplier to confirm it exists before listing its outstanding
+      invoices.
+    operationId: getSupplier
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: supplierId
+      in: path
+      value: $inputs.supplierId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      supplierId: $response.body#/id
+      status: $response.body#/status
+  - stepId: listSupplierInvoices
+    description: >-
+      List supplier invoices filtered by status and branch on whether any
+      invoices were returned.
+    operationId: listSupplierInvoices
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: status
+      in: query
+      value: $inputs.status
+    - name: limit
+      in: query
+      value: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      invoices: $response.body#/data
+      firstInvoiceId: $response.body#/data/0/id
+      total: $response.body#/total
+    onSuccess:
+    - name: invoicesFound
+      type: goto
+      stepId: getPurchaseOrder
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+    - name: invoicesMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.length == 0
+        type: jsonpath
+  - stepId: getPurchaseOrder
+    description: >-
+      Read the purchase order the invoices should reconcile against to compare
+      totals and status.
+    operationId: getPurchaseOrder
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: purchaseOrderId
+      in: path
+      value: $inputs.purchaseOrderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      purchaseOrderId: $response.body#/id
+      status: $response.body#/status
+      totalAmount: $response.body#/totalAmount
+  outputs:
+    supplierId: $steps.getSupplier.outputs.supplierId
+    invoiceTotal: $steps.listSupplierInvoices.outputs.total
+    purchaseOrderTotalAmount: $steps.getPurchaseOrder.outputs.totalAmount

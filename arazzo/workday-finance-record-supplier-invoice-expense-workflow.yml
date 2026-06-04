@@ -1,0 +1,124 @@
+arazzo: 1.0.1
+info:
+  title: Workday Finance Record Supplier Invoice Expense
+  summary: Create a supplier invoice in procurement, then post the matching expense journal entry to the general ledger.
+  description: >-
+    A cross-module accounts-payable flow that spans the Procurement and
+    Financial Management APIs. The workflow creates a supplier invoice, confirms
+    the expense account exists in the general ledger, and posts a journal entry
+    recognizing the expense against the supplied period. Because the two
+    operations live in separate specifications, each step references its source
+    description explicitly. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: procurementApi
+  url: ../openapi/workday-finance-procurement-openapi.yml
+  type: openapi
+- name: financialManagementApi
+  url: ../openapi/workday-finance-financial-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: record-supplier-invoice-expense
+  summary: Book a supplier invoice and recognize its expense in the general ledger.
+  description: >-
+    Creates a supplier invoice in Procurement, confirms the expense account in
+    Financial Management, and posts a journal entry recognizing the expense.
+  inputs:
+    type: object
+    required:
+    - token
+    - supplierId
+    - invoiceNumber
+    - totalAmount
+    - accountId
+    - period
+    - lines
+    properties:
+      token:
+        type: string
+        description: OAuth 2.0 bearer access token for the Workday tenant.
+      supplierId:
+        type: string
+        description: The supplier identifier to invoice.
+      invoiceNumber:
+        type: string
+        description: The supplier-provided invoice number.
+      totalAmount:
+        type: number
+        description: The total amount of the supplier invoice.
+      currency:
+        type: string
+        description: The ISO currency code for the invoice.
+      accountId:
+        type: string
+        description: The general ledger expense account to confirm before posting.
+      period:
+        type: string
+        description: The financial period identifier to post the expense journal entry against.
+      lines:
+        type: array
+        description: The debit and credit lines recognizing the expense.
+  steps:
+  - stepId: createSupplierInvoice
+    description: >-
+      Create the supplier invoice in Procurement for the supplied supplier and
+      amount.
+    operationId: $sourceDescriptions.procurementApi.createSupplierInvoice
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        supplier: $inputs.supplierId
+        invoiceNumber: $inputs.invoiceNumber
+        totalAmount: $inputs.totalAmount
+        currency: $inputs.currency
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      invoiceId: $response.body#/id
+      status: $response.body#/status
+  - stepId: getAccount
+    description: >-
+      Confirm the general ledger expense account exists before posting the
+      recognizing journal entry.
+    operationId: $sourceDescriptions.financialManagementApi.getAccount
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: accountId
+      in: path
+      value: $inputs.accountId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accountId: $response.body#/id
+      accountType: $response.body#/accountType
+  - stepId: createJournalEntry
+    description: >-
+      Post a journal entry to the general ledger recognizing the supplier
+      invoice expense against the supplied period.
+    operationId: $sourceDescriptions.financialManagementApi.createJournalEntry
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        period: $inputs.period
+        memo: $inputs.invoiceNumber
+        lines: $inputs.lines
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      journalEntryId: $response.body#/id
+      status: $response.body#/status
+  outputs:
+    invoiceId: $steps.createSupplierInvoice.outputs.invoiceId
+    journalEntryId: $steps.createJournalEntry.outputs.journalEntryId
+    journalEntryStatus: $steps.createJournalEntry.outputs.status

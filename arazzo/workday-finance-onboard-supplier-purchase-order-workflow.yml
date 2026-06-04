@@ -1,0 +1,118 @@
+arazzo: 1.0.1
+info:
+  title: Workday Finance Onboard Supplier and Raise Purchase Order
+  summary: Resolve a supplier, confirm it is active, then raise a purchase order against it.
+  description: >-
+    A procure-to-pay starter flow. The workflow reads a supplier account to
+    confirm it exists and is active, then creates a purchase order that
+    references that supplier with one or more order lines, and finally reads the
+    created purchase order back to confirm its status. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: procurementApi
+  url: ../openapi/workday-finance-procurement-openapi.yml
+  type: openapi
+workflows:
+- workflowId: onboard-supplier-purchase-order
+  summary: Confirm a supplier then raise and verify a purchase order against it.
+  description: >-
+    Looks up the supplier, branches on its active status, creates a purchase
+    order referencing the supplier, and reads the new purchase order back to
+    confirm it was recorded.
+  inputs:
+    type: object
+    required:
+    - token
+    - supplierId
+    - orderDate
+    - lines
+    properties:
+      token:
+        type: string
+        description: OAuth 2.0 bearer access token for the Workday tenant.
+      supplierId:
+        type: string
+        description: The unique identifier of the supplier to order from.
+      orderDate:
+        type: string
+        description: The order date for the purchase order (YYYY-MM-DD).
+      lines:
+        type: array
+        description: The order lines (item, quantity, unitCost) for the purchase order.
+  steps:
+  - stepId: getSupplier
+    description: >-
+      Read the supplier account to confirm it exists before raising an order
+      against it.
+    operationId: getSupplier
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: supplierId
+      in: path
+      value: $inputs.supplierId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      supplierId: $response.body#/id
+      status: $response.body#/status
+    onSuccess:
+    - name: supplierActive
+      type: goto
+      stepId: createPurchaseOrder
+      criteria:
+      - context: $response.body
+        condition: $.status == "active"
+        type: jsonpath
+    - name: supplierInactive
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status != "active"
+        type: jsonpath
+  - stepId: createPurchaseOrder
+    description: >-
+      Create a purchase order that references the confirmed supplier and the
+      supplied order lines.
+    operationId: createPurchaseOrder
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        supplier: $steps.getSupplier.outputs.supplierId
+        orderDate: $inputs.orderDate
+        lines: $inputs.lines
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      purchaseOrderId: $response.body#/id
+      purchaseOrderNumber: $response.body#/purchaseOrderNumber
+      status: $response.body#/status
+  - stepId: confirmPurchaseOrder
+    description: >-
+      Read the newly created purchase order back to confirm it was persisted
+      and capture its current status.
+    operationId: getPurchaseOrder
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: purchaseOrderId
+      in: path
+      value: $steps.createPurchaseOrder.outputs.purchaseOrderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      purchaseOrderId: $response.body#/id
+      status: $response.body#/status
+      totalAmount: $response.body#/totalAmount
+  outputs:
+    supplierId: $steps.getSupplier.outputs.supplierId
+    purchaseOrderId: $steps.confirmPurchaseOrder.outputs.purchaseOrderId
+    purchaseOrderStatus: $steps.confirmPurchaseOrder.outputs.status

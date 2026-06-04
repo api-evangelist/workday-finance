@@ -1,0 +1,125 @@
+arazzo: 1.0.1
+info:
+  title: Workday Finance Tag Journal Entry With Worktags
+  summary: Resolve cost center and worktag dimensions, then post a tagged journal entry.
+  description: >-
+    Builds a fully dimensioned journal entry. The workflow lists cost centers to
+    confirm the costing organization, lists worktags of the requested type to
+    confirm the tagging dimension is available, then creates a journal entry
+    whose lines carry the supplied worktag references. Each step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: financialManagementApi
+  url: ../openapi/workday-finance-financial-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: tag-journal-entry-with-worktags
+  summary: Confirm costing dimensions then post a worktag-tagged journal entry.
+  description: >-
+    Lists cost centers and worktags to confirm the costing dimensions exist,
+    then posts a journal entry whose lines reference the supplied period and
+    worktag-tagged lines.
+  inputs:
+    type: object
+    required:
+    - token
+    - worktagType
+    - period
+    - lines
+    properties:
+      token:
+        type: string
+        description: OAuth 2.0 bearer access token for the Workday tenant.
+      worktagType:
+        type: string
+        description: The worktag type to confirm is available (e.g. costCenter, project).
+      period:
+        type: string
+        description: The financial period identifier to post the journal entry against.
+      postingDate:
+        type: string
+        description: The date the entry is posted to the ledger (YYYY-MM-DD).
+      memo:
+        type: string
+        description: An optional memo describing the journal entry.
+      lines:
+        type: array
+        description: The journal lines, each carrying account, amounts, and worktags.
+  steps:
+  - stepId: listCostCenters
+    description: >-
+      List cost center organizations so the caller can confirm the costing
+      organization before posting.
+    operationId: listCostCenters
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: limit
+      in: query
+      value: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      costCenters: $response.body#/data
+      total: $response.body#/total
+  - stepId: listWorktags
+    description: >-
+      List worktags of the requested type to confirm the tagging dimension is
+      available before posting.
+    operationId: listWorktags
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: type
+      in: query
+      value: $inputs.worktagType
+    - name: limit
+      in: query
+      value: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      worktags: $response.body#/data
+      total: $response.body#/total
+    onSuccess:
+    - name: worktagsFound
+      type: goto
+      stepId: createJournalEntry
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+    - name: worktagsMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.length == 0
+        type: jsonpath
+  - stepId: createJournalEntry
+    description: >-
+      Create a journal entry whose lines carry the confirmed worktag references
+      against the supplied period.
+    operationId: createJournalEntry
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        period: $inputs.period
+        postingDate: $inputs.postingDate
+        memo: $inputs.memo
+        lines: $inputs.lines
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      journalEntryId: $response.body#/id
+      status: $response.body#/status
+  outputs:
+    journalEntryId: $steps.createJournalEntry.outputs.journalEntryId
+    journalEntryStatus: $steps.createJournalEntry.outputs.status

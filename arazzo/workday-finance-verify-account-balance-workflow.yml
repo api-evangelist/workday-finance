@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: Workday Finance Verify Account Balance
+  summary: Find a general ledger account by type, then read its full detail and balance.
+  description: >-
+    A reporting helper that resolves an account from the accounts collection and
+    reads its full detail. The workflow lists accounts filtered by type, takes
+    the first match, and reads that account back to capture its balance and
+    currency. Each step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: financialManagementApi
+  url: ../openapi/workday-finance-financial-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: verify-account-balance
+  summary: Resolve a ledger account by type and read its current balance.
+  description: >-
+    Lists accounts filtered by type, branches on whether a match was found, and
+    reads the matched account's detail to capture its balance and currency.
+  inputs:
+    type: object
+    required:
+    - token
+    - accountType
+    properties:
+      token:
+        type: string
+        description: OAuth 2.0 bearer access token for the Workday tenant.
+      accountType:
+        type: string
+        description: The account type to filter by (asset, liability, equity, revenue, expense).
+  steps:
+  - stepId: listAccounts
+    description: >-
+      List general ledger accounts filtered by the supplied account type and
+      take the first match.
+    operationId: listAccounts
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: type
+      in: query
+      value: $inputs.accountType
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedAccountId: $response.body#/data/0/id
+      total: $response.body#/total
+    onSuccess:
+    - name: accountFound
+      type: goto
+      stepId: getAccount
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+    - name: accountMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.length == 0
+        type: jsonpath
+  - stepId: getAccount
+    description: >-
+      Read the matched account back to capture its current balance, currency,
+      and account number.
+    operationId: getAccount
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: accountId
+      in: path
+      value: $steps.listAccounts.outputs.matchedAccountId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accountId: $response.body#/id
+      accountNumber: $response.body#/accountNumber
+      balance: $response.body#/balance
+      currency: $response.body#/currency
+  outputs:
+    accountId: $steps.getAccount.outputs.accountId
+    balance: $steps.getAccount.outputs.balance
+    currency: $steps.getAccount.outputs.currency

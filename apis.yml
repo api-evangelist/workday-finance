@@ -216,6 +216,39 @@ apis:
   - type: X-wsdl
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Professional_Services_Automation/v45.2/Professional_Services_Automation.wsdl
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/workday-finance-audit-open-period-journals-workflow.yml
+    name: Workday Finance Audit Open Period Journals
+    summary: Find an open financial period, then list and inspect its journal entries.
+  - url: arazzo/workday-finance-onboard-supplier-purchase-order-workflow.yml
+    name: Workday Finance Onboard Supplier and Raise Purchase Order
+    summary: Resolve a supplier, confirm it is active, then raise a purchase order against it.
+  - url: arazzo/workday-finance-reconcile-supplier-invoices-workflow.yml
+    name: Workday Finance Reconcile Supplier Invoices
+    summary: Confirm a supplier, list its outstanding invoices, then trace one back to its purchase order.
+  - url: arazzo/workday-finance-record-balanced-journal-entry-workflow.yml
+    name: Workday Finance Record Balanced Journal Entry
+    summary: Confirm the target period is open, post a journal entry, then read it back.
+  - url: arazzo/workday-finance-record-supplier-invoice-expense-workflow.yml
+    name: Workday Finance Record Supplier Invoice Expense
+    summary: Create a supplier invoice in procurement, then post the matching expense journal entry to the general ledger.
+  - url: arazzo/workday-finance-requisition-to-purchase-order-workflow.yml
+    name: Workday Finance Requisition to Purchase Order
+    summary: Find an approved requisition, confirm the supplier, then raise a purchase order.
+  - url: arazzo/workday-finance-supplier-invoice-from-purchase-order-workflow.yml
+    name: Workday Finance Supplier Invoice From Purchase Order
+    summary: Read a purchase order, confirm its supplier, then create a matching supplier invoice.
+  - url: arazzo/workday-finance-supplier-spend-overview-workflow.yml
+    name: Workday Finance Supplier Spend Overview
+    summary: Resolve a supplier from the directory, then list its purchase orders and invoices.
+  - url: arazzo/workday-finance-tag-journal-entry-with-worktags-workflow.yml
+    name: Workday Finance Tag Journal Entry With Worktags
+    summary: Resolve cost center and worktag dimensions, then post a tagged journal entry.
+  - url: arazzo/workday-finance-verify-account-balance-workflow.yml
+    name: Workday Finance Verify Account Balance
+    summary: Find a general ledger account by type, then read its full detail and balance.
 - type: Portal
   url: https://community.workday.com/api
 - type: Documentation

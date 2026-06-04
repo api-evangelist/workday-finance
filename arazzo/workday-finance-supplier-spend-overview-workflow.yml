@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: Workday Finance Supplier Spend Overview
+  summary: Resolve a supplier from the directory, then list its purchase orders and invoices.
+  description: >-
+    A spend-visibility flow for a single supplier. The workflow lists suppliers
+    and takes the first match, branches on whether any supplier was found, lists
+    purchase orders, and lists supplier invoices to give a combined view of
+    committed and billed spend. Each step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: procurementApi
+  url: ../openapi/workday-finance-procurement-openapi.yml
+  type: openapi
+workflows:
+- workflowId: supplier-spend-overview
+  summary: Build a combined purchase-order and invoice view for a supplier.
+  description: >-
+    Lists suppliers and takes the first match, then lists purchase orders and
+    supplier invoices filtered by status to summarize committed and billed
+    spend.
+  inputs:
+    type: object
+    required:
+    - token
+    properties:
+      token:
+        type: string
+        description: OAuth 2.0 bearer access token for the Workday tenant.
+      purchaseOrderStatus:
+        type: string
+        description: Optional purchase order status filter (e.g. approved, received).
+      invoiceStatus:
+        type: string
+        description: Optional supplier invoice status filter (e.g. approved, paid).
+  steps:
+  - stepId: listSuppliers
+    description: >-
+      List suppliers, take the first match, and branch on whether any supplier
+      was returned.
+    operationId: listSuppliers
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstSupplierId: $response.body#/data/0/id
+      total: $response.body#/total
+    onSuccess:
+    - name: supplierFound
+      type: goto
+      stepId: listPurchaseOrders
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+    - name: supplierMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.length == 0
+        type: jsonpath
+  - stepId: listPurchaseOrders
+    description: >-
+      List purchase orders filtered by status to summarize committed spend.
+    operationId: listPurchaseOrders
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: status
+      in: query
+      value: $inputs.purchaseOrderStatus
+    - name: limit
+      in: query
+      value: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      purchaseOrders: $response.body#/data
+      purchaseOrderTotal: $response.body#/total
+  - stepId: listSupplierInvoices
+    description: >-
+      List supplier invoices filtered by status to summarize billed spend.
+    operationId: listSupplierInvoices
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: status
+      in: query
+      value: $inputs.invoiceStatus
+    - name: limit
+      in: query
+      value: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      invoices: $response.body#/data
+      invoiceTotal: $response.body#/total
+  outputs:
+    supplierId: $steps.listSuppliers.outputs.firstSupplierId
+    purchaseOrderTotal: $steps.listPurchaseOrders.outputs.purchaseOrderTotal
+    invoiceTotal: $steps.listSupplierInvoices.outputs.invoiceTotal

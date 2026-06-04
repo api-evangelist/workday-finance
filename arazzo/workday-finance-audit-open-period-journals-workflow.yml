@@ -1,0 +1,115 @@
+arazzo: 1.0.1
+info:
+  title: Workday Finance Audit Open Period Journals
+  summary: Find an open financial period, then list and inspect its journal entries.
+  description: >-
+    A period-close review helper. The workflow lists financial periods for a
+    fiscal year, branches on whether any were returned, lists the journal
+    entries posted to the chosen period, and reads the first entry back for
+    inspection. Each step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: financialManagementApi
+  url: ../openapi/workday-finance-financial-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: audit-open-period-journals
+  summary: Resolve a period then list and inspect the journal entries posted to it.
+  description: >-
+    Lists financial periods for the fiscal year, lists journal entries for the
+    supplied period, and reads the first journal entry back for review.
+  inputs:
+    type: object
+    required:
+    - token
+    - fiscalYear
+    - period
+    properties:
+      token:
+        type: string
+        description: OAuth 2.0 bearer access token for the Workday tenant.
+      fiscalYear:
+        type: string
+        description: The fiscal year used to filter the financial periods list.
+      period:
+        type: string
+        description: The accounting period to list journal entries for.
+  steps:
+  - stepId: listFinancialPeriods
+    description: >-
+      List the financial periods for the fiscal year and branch on whether any
+      periods were returned.
+    operationId: listFinancialPeriods
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: fiscalYear
+      in: query
+      value: $inputs.fiscalYear
+    - name: limit
+      in: query
+      value: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      periods: $response.body#/data
+      total: $response.body#/total
+    onSuccess:
+    - name: periodsFound
+      type: goto
+      stepId: listJournalEntries
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+    - name: periodsMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.length == 0
+        type: jsonpath
+  - stepId: listJournalEntries
+    description: >-
+      List the journal entries posted to the supplied period and take the first
+      entry for inspection.
+    operationId: listJournalEntries
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: period
+      in: query
+      value: $inputs.period
+    - name: limit
+      in: query
+      value: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      entries: $response.body#/data
+      firstEntryId: $response.body#/data/0/id
+      total: $response.body#/total
+  - stepId: getJournalEntry
+    description: >-
+      Read the first journal entry back so the auditor can inspect its lines and
+      posting status.
+    operationId: getJournalEntry
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: journalEntryId
+      in: path
+      value: $steps.listJournalEntries.outputs.firstEntryId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      journalEntryId: $response.body#/id
+      status: $response.body#/status
+      lines: $response.body#/lines
+  outputs:
+    periodTotal: $steps.listFinancialPeriods.outputs.total
+    journalTotal: $steps.listJournalEntries.outputs.total
+    inspectedEntryId: $steps.getJournalEntry.outputs.journalEntryId

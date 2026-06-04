@@ -1,0 +1,128 @@
+arazzo: 1.0.1
+info:
+  title: Workday Finance Supplier Invoice From Purchase Order
+  summary: Read a purchase order, confirm its supplier, then create a matching supplier invoice.
+  description: >-
+    The accounts payable side of procure-to-pay. The workflow reads an existing
+    purchase order to recover its supplier and total amount, reads the supplier
+    to confirm it is active, and then creates a supplier invoice that references
+    the same supplier. Each step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: procurementApi
+  url: ../openapi/workday-finance-procurement-openapi.yml
+  type: openapi
+workflows:
+- workflowId: supplier-invoice-from-purchase-order
+  summary: Turn a purchase order into a supplier invoice for the same supplier.
+  description: >-
+    Reads the purchase order, confirms the referenced supplier, and creates a
+    supplier invoice carrying the invoice number and total amount supplied by
+    the caller.
+  inputs:
+    type: object
+    required:
+    - token
+    - purchaseOrderId
+    - invoiceNumber
+    - totalAmount
+    properties:
+      token:
+        type: string
+        description: OAuth 2.0 bearer access token for the Workday tenant.
+      purchaseOrderId:
+        type: string
+        description: The unique identifier of the purchase order to invoice.
+      invoiceNumber:
+        type: string
+        description: The supplier-provided invoice number.
+      totalAmount:
+        type: number
+        description: The total amount of the supplier invoice.
+      invoiceDate:
+        type: string
+        description: The invoice date (YYYY-MM-DD).
+      dueDate:
+        type: string
+        description: The payment due date (YYYY-MM-DD).
+      currency:
+        type: string
+        description: The ISO currency code for the invoice.
+  steps:
+  - stepId: getPurchaseOrder
+    description: >-
+      Read the purchase order to recover the supplier reference and total
+      amount before invoicing.
+    operationId: getPurchaseOrder
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: purchaseOrderId
+      in: path
+      value: $inputs.purchaseOrderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      supplierId: $response.body#/supplier/id
+      totalAmount: $response.body#/totalAmount
+  - stepId: getSupplier
+    description: >-
+      Confirm the supplier referenced by the purchase order exists and is
+      active before raising an invoice.
+    operationId: getSupplier
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    - name: supplierId
+      in: path
+      value: $steps.getPurchaseOrder.outputs.supplierId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      supplierId: $response.body#/id
+      status: $response.body#/status
+    onSuccess:
+    - name: supplierActive
+      type: goto
+      stepId: createSupplierInvoice
+      criteria:
+      - context: $response.body
+        condition: $.status == "active"
+        type: jsonpath
+    - name: supplierInactive
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status != "active"
+        type: jsonpath
+  - stepId: createSupplierInvoice
+    description: >-
+      Create a supplier invoice referencing the confirmed supplier with the
+      supplied invoice number and total amount.
+    operationId: createSupplierInvoice
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        supplier: $steps.getSupplier.outputs.supplierId
+        invoiceNumber: $inputs.invoiceNumber
+        invoiceDate: $inputs.invoiceDate
+        dueDate: $inputs.dueDate
+        totalAmount: $inputs.totalAmount
+        currency: $inputs.currency
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      invoiceId: $response.body#/id
+      invoiceNumber: $response.body#/invoiceNumber
+      status: $response.body#/status
+  outputs:
+    supplierId: $steps.getSupplier.outputs.supplierId
+    invoiceId: $steps.createSupplierInvoice.outputs.invoiceId
+    invoiceStatus: $steps.createSupplierInvoice.outputs.status
