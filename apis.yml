@@ -1,8 +1,9 @@
 aid: workday-finance
 specificationVersion: '0.19'
 name: Workday Finance
-description: APIs for Workday's cloud-based financial management system, enabling enterprise resource planning, accounting,
-  financial analytics, procurement, grants management, inventory, and settlement services.
+description: APIs for Workday's cloud-based financial management system, enabling
+  enterprise resource planning, accounting, financial analytics, procurement, grants
+  management, inventory, and settlement services.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/workday-finance/refs/heads/main/apis.yml
 created: '2024-01-01'
@@ -16,8 +17,9 @@ tags:
 - Financial Management
 apis:
 - name: Workday Financial Management API
-  description: Core SOAP API for financial management operations including general ledger, accounts payable, accounts receivable,
-    financial reporting, tax, financial organizations, and worktag management. Exposes data relative to accounts, accounting,
+  description: Core SOAP API for financial management operations including general
+    ledger, accounts payable, accounts receivable, financial reporting, tax, financial
+    organizations, and worktag management. Exposes data relative to accounts, accounting,
     business plans, and related financial structures.
   image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
   humanURL: https://www.workday.com/en-us/products/financial-management/overview.html
@@ -36,23 +38,16 @@ apis:
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Financial_Management/v41.2/Financial_Management.wsdl
   - type: OpenAPI
     url: openapi/workday-finance-financial-management-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/financial-management-accounts.yaml
-  - type: NaftikoCapability
-    url: capabilities/financial-management-cost-centers.yaml
-  - type: NaftikoCapability
-    url: capabilities/financial-management-financial-periods.yaml
-  - type: NaftikoCapability
-    url: capabilities/financial-management-journal-entries.yaml
-  - type: NaftikoCapability
-    url: capabilities/financial-management-worktags.yaml
+  - url: graphql/workday-finance-graphql.md
+    type: GraphQL
   contact:
   - FN: Workday API Support
     email: api-support@workday.com
     X-twitter: workday
 - name: Workday Revenue Management API
-  description: SOAP API for managing revenue recognition, contracts, and billing processes. Supports revenue accounting workflows
-    and contract analysis within Workday Financial Management.
+  description: SOAP API for managing revenue recognition, contracts, and billing processes.
+    Supports revenue accounting workflows and contract analysis within Workday Financial
+    Management.
   image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
   humanURL: https://www.workday.com/en-us/products/financial-management/revenue-management.html
   baseURL: https://wd2-impl-services1.workday.com/ccx/service
@@ -68,8 +63,9 @@ apis:
   - type: X-wsdl
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Revenue_Management/v41.2/Revenue_Management.wsdl
 - name: Workday Expenses API
-  description: SOAP API for expense management, including expense reports, approval workflows, and reimbursements. Part of
-    Workday Spend Management for tracking and controlling employee and organizational expenses.
+  description: SOAP API for expense management, including expense reports, approval
+    workflows, and reimbursements. Part of Workday Spend Management for tracking and
+    controlling employee and organizational expenses.
   image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
   humanURL: https://www.workday.com/en-us/products/spend-management/expenses.html
   baseURL: https://wd2-impl-services1.workday.com/ccx/service
@@ -83,8 +79,9 @@ apis:
   - type: X-wsdl
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Expenses/v41.2/Expenses.wsdl
 - name: Workday Cash Management API
-  description: SOAP API for managing cash positions, bank transactions, and treasury operations. Supports cash flow forecasting,
-    bank account management, and financial reconciliation processes.
+  description: SOAP API for managing cash positions, bank transactions, and treasury
+    operations. Supports cash flow forecasting, bank account management, and financial
+    reconciliation processes.
   image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
   humanURL: https://www.workday.com/en-us/products/financial-management/cash-management.html
   baseURL: https://wd2-impl-services1.workday.com/ccx/service
@@ -100,8 +97,9 @@ apis:
   - type: X-wsdl
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Cash_Management/v41.2/Cash_Management.wsdl
 - name: Workday Budgets API
-  description: SOAP API for budget planning, tracking, and analysis. Enables programmatic management of budgets, budget amendments,
-    and budget structure data within Workday Financial Management.
+  description: SOAP API for budget planning, tracking, and analysis. Enables programmatic
+    management of budgets, budget amendments, and budget structure data within Workday
+    Financial Management.
   image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
   humanURL: https://www.workday.com/en-us/products/financial-management/budget-management.html
   baseURL: https://wd2-impl-services1.workday.com/ccx/service
@@ -115,8 +113,9 @@ apis:
   - type: X-wsdl
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Budgets/v41.2/Budgets.wsdl
 - name: Workday Projects API
-  description: SOAP API for project management, tracking project costs, billing, and resource allocation. Supports project-based
-    accounting, cost capture, and resource planning workflows.
+  description: SOAP API for project management, tracking project costs, billing, and
+    resource allocation. Supports project-based accounting, cost capture, and resource
+    planning workflows.
   image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
   humanURL: https://www.workday.com/en-us/products/financial-management/projects.html
   baseURL: https://wd2-impl-services1.workday.com/ccx/service
@@ -130,9 +129,10 @@ apis:
   - type: X-wsdl
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Projects/v41.2/Projects.wsdl
 - name: Workday Resource Management API
-  description: SOAP API exposing Workday Financials Resource Management data, including suppliers, supplier accounts, procurement,
-    purchase orders, invoicing, business assets, asset depreciation, and travel and entertainment operations. Supports the
-    full procure-to-pay lifecycle and asset management workflows.
+  description: SOAP API exposing Workday Financials Resource Management data, including
+    suppliers, supplier accounts, procurement, purchase orders, invoicing, business
+    assets, asset depreciation, and travel and entertainment operations. Supports
+    the full procure-to-pay lifecycle and asset management workflows.
   image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
   humanURL: https://www.workday.com/en-us/products/spend-management/procure-to-pay.html
   baseURL: https://wd2-impl-services1.workday.com/ccx/service
@@ -151,18 +151,11 @@ apis:
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Resource_Management/v45.2/Resource_Management.wsdl
   - type: OpenAPI
     url: openapi/workday-finance-procurement-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/procurement-purchase-orders.yaml
-  - type: NaftikoCapability
-    url: capabilities/procurement-requisitions.yaml
-  - type: NaftikoCapability
-    url: capabilities/procurement-supplier-invoices.yaml
-  - type: NaftikoCapability
-    url: capabilities/procurement-suppliers.yaml
 - name: Workday Settlement Services API
-  description: SOAP API for settlement management and payment services. Supports payment processing, bank routing, settlement
-    runs, direct debit mandates, payment acknowledgements, cash balance checks, and escheatment management across supplier
-    payments, employee reimbursements, and customer payments.
+  description: SOAP API for settlement management and payment services. Supports payment
+    processing, bank routing, settlement runs, direct debit mandates, payment acknowledgements,
+    cash balance checks, and escheatment management across supplier payments, employee
+    reimbursements, and customer payments.
   image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
   humanURL: https://www.workday.com/en-us/products/financial-management/accounting-finance.html
   baseURL: https://wd2-impl-services1.workday.com/ccx/service
@@ -179,9 +172,10 @@ apis:
   - type: X-wsdl
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Settlement_Services/v45.2/Settlement_Services.wsdl
 - name: Workday Inventory API
-  description: SOAP API exposing Workday Financials Inventory data. Supports goods delivery, stock tracking, inventory adjustments,
-    cycle counting, par management, directed picks, put-away operations, recalls, and replenishment across storage locations
-    and distribution networks.
+  description: SOAP API exposing Workday Financials Inventory data. Supports goods
+    delivery, stock tracking, inventory adjustments, cycle counting, par management,
+    directed picks, put-away operations, recalls, and replenishment across storage
+    locations and distribution networks.
   image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
   humanURL: https://www.workday.com/en-us/products/spend-management/inventory.html
   baseURL: https://wd2-impl-services1.workday.com/ccx/service
@@ -198,8 +192,9 @@ apis:
   - type: X-wsdl
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Inventory/v45.2/Inventory.wsdl
 - name: Workday Professional Services Automation API
-  description: SOAP API for Professional Services Automation integrations. Exposes Workday Financials data for managing client-facing
-    projects, services billing, resource staffing, and expense reporting within professional services organizations.
+  description: SOAP API for Professional Services Automation integrations. Exposes
+    Workday Financials data for managing client-facing projects, services billing,
+    resource staffing, and expense reporting within professional services organizations.
   image: https://www.workday.com/content/dam/web/images/logo/workday-logo.svg
   humanURL: https://www.workday.com/en-us/products/professional-services-automation/overview.html
   baseURL: https://wd2-impl-services1.workday.com/ccx/service
@@ -216,6 +211,8 @@ apis:
   - type: X-wsdl
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Professional_Services_Automation/v45.2/Professional_Services_Automation.wsdl
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/workday-finance/overview
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:
@@ -224,31 +221,40 @@ common:
     summary: Find an open financial period, then list and inspect its journal entries.
   - url: arazzo/workday-finance-onboard-supplier-purchase-order-workflow.yml
     name: Workday Finance Onboard Supplier and Raise Purchase Order
-    summary: Resolve a supplier, confirm it is active, then raise a purchase order against it.
+    summary: Resolve a supplier, confirm it is active, then raise a purchase order
+      against it.
   - url: arazzo/workday-finance-reconcile-supplier-invoices-workflow.yml
     name: Workday Finance Reconcile Supplier Invoices
-    summary: Confirm a supplier, list its outstanding invoices, then trace one back to its purchase order.
+    summary: Confirm a supplier, list its outstanding invoices, then trace one back
+      to its purchase order.
   - url: arazzo/workday-finance-record-balanced-journal-entry-workflow.yml
     name: Workday Finance Record Balanced Journal Entry
-    summary: Confirm the target period is open, post a journal entry, then read it back.
+    summary: Confirm the target period is open, post a journal entry, then read it
+      back.
   - url: arazzo/workday-finance-record-supplier-invoice-expense-workflow.yml
     name: Workday Finance Record Supplier Invoice Expense
-    summary: Create a supplier invoice in procurement, then post the matching expense journal entry to the general ledger.
+    summary: Create a supplier invoice in procurement, then post the matching expense
+      journal entry to the general ledger.
   - url: arazzo/workday-finance-requisition-to-purchase-order-workflow.yml
     name: Workday Finance Requisition to Purchase Order
-    summary: Find an approved requisition, confirm the supplier, then raise a purchase order.
+    summary: Find an approved requisition, confirm the supplier, then raise a purchase
+      order.
   - url: arazzo/workday-finance-supplier-invoice-from-purchase-order-workflow.yml
     name: Workday Finance Supplier Invoice From Purchase Order
-    summary: Read a purchase order, confirm its supplier, then create a matching supplier invoice.
+    summary: Read a purchase order, confirm its supplier, then create a matching supplier
+      invoice.
   - url: arazzo/workday-finance-supplier-spend-overview-workflow.yml
     name: Workday Finance Supplier Spend Overview
-    summary: Resolve a supplier from the directory, then list its purchase orders and invoices.
+    summary: Resolve a supplier from the directory, then list its purchase orders
+      and invoices.
   - url: arazzo/workday-finance-tag-journal-entry-with-worktags-workflow.yml
     name: Workday Finance Tag Journal Entry With Worktags
-    summary: Resolve cost center and worktag dimensions, then post a tagged journal entry.
+    summary: Resolve cost center and worktag dimensions, then post a tagged journal
+      entry.
   - url: arazzo/workday-finance-verify-account-balance-workflow.yml
     name: Workday Finance Verify Account Balance
-    summary: Find a general ledger account by type, then read its full detail and balance.
+    summary: Find a general ledger account by type, then read its full detail and
+      balance.
 - type: Portal
   url: https://community.workday.com/api
 - type: Documentation
@@ -287,8 +293,6 @@ common:
   url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
 - type: Spectral Rules
   url: rules/workday-finance-rules.yml
-- type: Naftiko Capabilities
-  url: capabilities/financial-operations.yaml
 - type: JSONLD
   url: json-ld/workday-finance-context.jsonld
 - type: JSONSchema

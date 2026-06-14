@@ -1,0 +1,1677 @@
+# Workday Financial Management GraphQL Schema
+# Source: Workday Financial Management ERP APIs
+# Docs: https://community.workday.com/api
+# Version: v41.2 / v45.2
+
+# ─────────────────────────────────────────────
+# Scalars
+# ─────────────────────────────────────────────
+
+scalar Date
+scalar DateTime
+scalar Decimal
+scalar JSON
+
+# ─────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────
+
+enum AccountType {
+  ASSET
+  LIABILITY
+  EQUITY
+  REVENUE
+  EXPENSE
+  GAIN
+  LOSS
+}
+
+enum JournalStatus {
+  DRAFT
+  IN_PROGRESS
+  APPROVED
+  POSTED
+  CANCELED
+  ERROR
+}
+
+enum BudgetStatus {
+  DRAFT
+  SUBMITTED
+  APPROVED
+  CLOSED
+}
+
+enum PurchaseOrderStatus {
+  DRAFT
+  SUBMITTED
+  APPROVED
+  IN_PROGRESS
+  CLOSED
+  CANCELED
+}
+
+enum RequisitionStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  SOURCING
+  ORDERED
+  CANCELED
+}
+
+enum VendorInvoiceStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  MATCHED
+  PAID
+  CANCELED
+}
+
+enum CustomerInvoiceStatus {
+  DRAFT
+  SUBMITTED
+  APPROVED
+  SENT
+  PARTIALLY_PAID
+  PAID
+  VOID
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  VOID
+}
+
+enum ContractStatus {
+  DRAFT
+  IN_REVIEW
+  ACTIVE
+  AMENDED
+  EXPIRED
+  TERMINATED
+}
+
+enum WorktagType {
+  COST_CENTER
+  FUND
+  PROGRAM
+  REGION
+  PROJECT
+  SPEND_CATEGORY
+  CUSTOM
+}
+
+enum ReconciliationStatus {
+  OPEN
+  IN_PROGRESS
+  RECONCILED
+  EXCEPTION
+}
+
+enum ProjectStatus {
+  PLANNING
+  ACTIVE
+  ON_HOLD
+  COMPLETED
+  CANCELED
+}
+
+enum WebhookEventType {
+  JOURNAL_POSTED
+  INVOICE_APPROVED
+  PAYMENT_COMPLETED
+  PO_APPROVED
+  BUDGET_EXCEEDED
+  RECONCILIATION_COMPLETED
+}
+
+# ─────────────────────────────────────────────
+# Pagination
+# ─────────────────────────────────────────────
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+  totalCount: Int!
+}
+
+# ─────────────────────────────────────────────
+# 1. Account
+# ─────────────────────────────────────────────
+
+type Account {
+  id: ID!
+  code: String!
+  name: String!
+  type: AccountType!
+  accountSet: AccountSet
+  accountCode: AccountCode
+  company: Company
+  isActive: Boolean!
+  balance: Decimal
+  currency: String
+  description: String
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type AccountEdge {
+  cursor: String!
+  node: Account!
+}
+
+type AccountConnection {
+  edges: [AccountEdge!]!
+  pageInfo: PageInfo!
+}
+
+input AccountFilter {
+  type: AccountType
+  companyId: ID
+  isActive: Boolean
+  search: String
+}
+
+# ─────────────────────────────────────────────
+# 2. AccountCode
+# ─────────────────────────────────────────────
+
+type AccountCode {
+  id: ID!
+  code: String!
+  name: String!
+  description: String
+  accountSet: AccountSet
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# 3. AccountSet
+# ─────────────────────────────────────────────
+
+type AccountSet {
+  id: ID!
+  name: String!
+  description: String
+  company: Company
+  accounts: [Account!]!
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# 4. Journal
+# ─────────────────────────────────────────────
+
+type Journal {
+  id: ID!
+  journalNumber: String!
+  description: String
+  status: JournalStatus!
+  effectiveDate: Date!
+  period: FiscalPeriod
+  company: Company!
+  currency: String!
+  totalDebit: Decimal!
+  totalCredit: Decimal!
+  isBalanced: Boolean!
+  lines: [JournalLine!]!
+  worktags: [Worktag!]!
+  memo: String
+  source: String
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  postedAt: DateTime
+  postedBy: String
+}
+
+type JournalEdge {
+  cursor: String!
+  node: Journal!
+}
+
+type JournalConnection {
+  edges: [JournalEdge!]!
+  pageInfo: PageInfo!
+}
+
+input JournalFilter {
+  status: JournalStatus
+  companyId: ID
+  periodId: ID
+  fiscalYearId: ID
+  effectiveDateFrom: Date
+  effectiveDateTo: Date
+}
+
+input CreateJournalInput {
+  description: String!
+  effectiveDate: Date!
+  companyId: ID!
+  currency: String!
+  lines: [CreateJournalLineInput!]!
+  worktags: [ID!]
+  memo: String
+}
+
+# ─────────────────────────────────────────────
+# 5. JournalLine
+# ─────────────────────────────────────────────
+
+type JournalLine {
+  id: ID!
+  lineNumber: Int!
+  journal: Journal!
+  account: Account!
+  debit: Decimal
+  credit: Decimal
+  currency: String!
+  worktags: [Worktag!]!
+  costCenter: CostCenter
+  memo: String
+  posting: Posting
+}
+
+input CreateJournalLineInput {
+  accountId: ID!
+  debit: Decimal
+  credit: Decimal
+  worktags: [ID!]
+  memo: String
+}
+
+# ─────────────────────────────────────────────
+# 6. Posting
+# ─────────────────────────────────────────────
+
+type Posting {
+  id: ID!
+  journalLine: JournalLine!
+  account: Account!
+  amount: Decimal!
+  currency: String!
+  debitCredit: String!
+  period: FiscalPeriod!
+  postedAt: DateTime!
+  ledgerBalance: Decimal
+}
+
+# ─────────────────────────────────────────────
+# 7. Period
+# ─────────────────────────────────────────────
+
+type Period {
+  id: ID!
+  name: String!
+  startDate: Date!
+  endDate: Date!
+  isOpen: Boolean!
+  fiscalYear: FiscalYear
+}
+
+# ─────────────────────────────────────────────
+# 8. FiscalYear
+# ─────────────────────────────────────────────
+
+type FiscalYear {
+  id: ID!
+  name: String!
+  startDate: Date!
+  endDate: Date!
+  company: Company!
+  isClosed: Boolean!
+  periods: [FiscalPeriod!]!
+  createdAt: DateTime!
+}
+
+type FiscalYearEdge {
+  cursor: String!
+  node: FiscalYear!
+}
+
+type FiscalYearConnection {
+  edges: [FiscalYearEdge!]!
+  pageInfo: PageInfo!
+}
+
+# ─────────────────────────────────────────────
+# 9. FiscalPeriod
+# ─────────────────────────────────────────────
+
+type FiscalPeriod {
+  id: ID!
+  name: String!
+  periodNumber: Int!
+  startDate: Date!
+  endDate: Date!
+  isOpen: Boolean!
+  fiscalYear: FiscalYear!
+  journals: [Journal!]!
+}
+
+# ─────────────────────────────────────────────
+# 10. Budget
+# ─────────────────────────────────────────────
+
+type Budget {
+  id: ID!
+  name: String!
+  description: String
+  status: BudgetStatus!
+  fiscalYear: FiscalYear!
+  company: Company!
+  totalAmount: Decimal!
+  currency: String!
+  budgetAmounts: [BudgetAmount!]!
+  budgetCategories: [BudgetCategory!]!
+  worktags: [Worktag!]!
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type BudgetEdge {
+  cursor: String!
+  node: Budget!
+}
+
+type BudgetConnection {
+  edges: [BudgetEdge!]!
+  pageInfo: PageInfo!
+}
+
+input BudgetFilter {
+  status: BudgetStatus
+  fiscalYearId: ID
+  companyId: ID
+}
+
+input CreateBudgetInput {
+  name: String!
+  fiscalYearId: ID!
+  companyId: ID!
+  currency: String!
+  budgetAmounts: [CreateBudgetAmountInput!]!
+}
+
+input AmendBudgetInput {
+  reason: String!
+  adjustments: [CreateBudgetAmountInput!]!
+}
+
+# ─────────────────────────────────────────────
+# 11. BudgetAmount
+# ─────────────────────────────────────────────
+
+type BudgetAmount {
+  id: ID!
+  budget: Budget!
+  period: FiscalPeriod
+  account: Account
+  costCenter: CostCenter
+  amount: Decimal!
+  currency: String!
+  spentAmount: Decimal
+  remainingAmount: Decimal
+  worktags: [Worktag!]!
+}
+
+input CreateBudgetAmountInput {
+  periodId: ID
+  accountId: ID
+  costCenterId: ID
+  amount: Decimal!
+  worktags: [ID!]
+}
+
+# ─────────────────────────────────────────────
+# 12. BudgetCategory
+# ─────────────────────────────────────────────
+
+type BudgetCategory {
+  id: ID!
+  name: String!
+  description: String
+  spendCategory: SpendCategory
+  accounts: [Account!]!
+}
+
+# ─────────────────────────────────────────────
+# 13. OrganizationHierarchy
+# ─────────────────────────────────────────────
+
+type OrganizationHierarchy {
+  id: ID!
+  name: String!
+  description: String
+  topLevelCompany: Company
+  levels: [OrganizationLevel!]!
+}
+
+type OrganizationLevel {
+  id: ID!
+  name: String!
+  level: Int!
+  parent: OrganizationLevel
+  children: [OrganizationLevel!]!
+}
+
+# ─────────────────────────────────────────────
+# 14. Company
+# ─────────────────────────────────────────────
+
+type Company {
+  id: ID!
+  name: String!
+  code: String!
+  currency: String!
+  country: String
+  taxId: String
+  fiscalYears: [FiscalYear!]!
+  costCenters: [CostCenter!]!
+  funds: [Fund!]!
+  programs: [Program!]!
+  createdAt: DateTime!
+}
+
+type CompanyEdge {
+  cursor: String!
+  node: Company!
+}
+
+type CompanyConnection {
+  edges: [CompanyEdge!]!
+  pageInfo: PageInfo!
+}
+
+# ─────────────────────────────────────────────
+# 15. CostCenter
+# ─────────────────────────────────────────────
+
+type CostCenter {
+  id: ID!
+  name: String!
+  code: String!
+  company: Company!
+  manager: String
+  isActive: Boolean!
+  worktag: Worktag
+  createdAt: DateTime!
+}
+
+type CostCenterEdge {
+  cursor: String!
+  node: CostCenter!
+}
+
+type CostCenterConnection {
+  edges: [CostCenterEdge!]!
+  pageInfo: PageInfo!
+}
+
+# ─────────────────────────────────────────────
+# 16. Fund
+# ─────────────────────────────────────────────
+
+type Fund {
+  id: ID!
+  name: String!
+  code: String!
+  company: Company!
+  description: String
+  isActive: Boolean!
+  worktag: Worktag
+}
+
+# ─────────────────────────────────────────────
+# 17. Program
+# ─────────────────────────────────────────────
+
+type Program {
+  id: ID!
+  name: String!
+  code: String!
+  company: Company!
+  description: String
+  isActive: Boolean!
+  worktag: Worktag
+}
+
+# ─────────────────────────────────────────────
+# 18. Region
+# ─────────────────────────────────────────────
+
+type Region {
+  id: ID!
+  name: String!
+  code: String!
+  country: String
+  description: String
+  isActive: Boolean!
+  worktag: Worktag
+}
+
+# ─────────────────────────────────────────────
+# 19. Worktag
+# ─────────────────────────────────────────────
+
+type Worktag {
+  id: ID!
+  name: String!
+  code: String
+  type: WorktagType!
+  description: String
+  isActive: Boolean!
+  referenceId: String
+}
+
+type WorktagEdge {
+  cursor: String!
+  node: Worktag!
+}
+
+type WorktagConnection {
+  edges: [WorktagEdge!]!
+  pageInfo: PageInfo!
+}
+
+# ─────────────────────────────────────────────
+# 20. Revenue
+# ─────────────────────────────────────────────
+
+type Revenue {
+  id: ID!
+  revenueNumber: String!
+  account: Account!
+  amount: Decimal!
+  currency: String!
+  period: FiscalPeriod!
+  contract: Contract
+  customerInvoice: CustomerInvoice
+  recognitionRule: RevenueRecognitionRule
+  recognizedAt: DateTime
+  worktags: [Worktag!]!
+}
+
+# ─────────────────────────────────────────────
+# 21. RevenueRecognitionRule
+# ─────────────────────────────────────────────
+
+type RevenueRecognitionRule {
+  id: ID!
+  name: String!
+  description: String
+  method: String!
+  startEvent: String
+  endEvent: String
+}
+
+# ─────────────────────────────────────────────
+# 22. Expense
+# ─────────────────────────────────────────────
+
+type Expense {
+  id: ID!
+  expenseNumber: String!
+  description: String!
+  amount: Decimal!
+  currency: String!
+  spendCategory: SpendCategory
+  account: Account
+  period: FiscalPeriod
+  costCenter: CostCenter
+  worktags: [Worktag!]!
+  submittedBy: String
+  approvedBy: String
+  status: String!
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# 23. AccountsPayable
+# ─────────────────────────────────────────────
+
+type AccountsPayable {
+  id: ID!
+  vendorInvoice: VendorInvoice!
+  account: Account!
+  amount: Decimal!
+  currency: String!
+  dueDate: Date
+  isPaid: Boolean!
+  lines: [AccountsPayableLine!]!
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# 24. AccountsPayableLine
+# ─────────────────────────────────────────────
+
+type AccountsPayableLine {
+  id: ID!
+  accountsPayable: AccountsPayable!
+  account: Account!
+  amount: Decimal!
+  description: String
+  worktags: [Worktag!]!
+}
+
+# ─────────────────────────────────────────────
+# 25. VendorInvoice
+# ─────────────────────────────────────────────
+
+type VendorInvoice {
+  id: ID!
+  invoiceNumber: String!
+  vendorName: String!
+  vendorId: String
+  status: VendorInvoiceStatus!
+  invoiceDate: Date!
+  dueDate: Date
+  totalAmount: Decimal!
+  currency: String!
+  purchaseOrder: PurchaseOrder
+  lines: [VendorInvoiceLine!]!
+  worktags: [Worktag!]!
+  company: Company!
+  taxAmount: Decimal
+  memo: String
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type VendorInvoiceEdge {
+  cursor: String!
+  node: VendorInvoice!
+}
+
+type VendorInvoiceConnection {
+  edges: [VendorInvoiceEdge!]!
+  pageInfo: PageInfo!
+}
+
+input VendorInvoiceFilter {
+  status: VendorInvoiceStatus
+  vendorId: String
+  companyId: ID
+  invoiceDateFrom: Date
+  invoiceDateTo: Date
+}
+
+input CreateVendorInvoiceInput {
+  invoiceNumber: String!
+  vendorId: String!
+  invoiceDate: Date!
+  dueDate: Date
+  currency: String!
+  companyId: ID!
+  purchaseOrderId: ID
+  lines: [CreateVendorInvoiceLineInput!]!
+  memo: String
+}
+
+# ─────────────────────────────────────────────
+# 26. VendorInvoiceLine
+# ─────────────────────────────────────────────
+
+type VendorInvoiceLine {
+  id: ID!
+  lineNumber: Int!
+  vendorInvoice: VendorInvoice!
+  description: String!
+  quantity: Decimal
+  unitPrice: Decimal
+  totalAmount: Decimal!
+  account: Account
+  spendCategory: SpendCategory
+  worktags: [Worktag!]!
+  taxCode: TaxCode
+}
+
+input CreateVendorInvoiceLineInput {
+  description: String!
+  quantity: Decimal
+  unitPrice: Decimal
+  totalAmount: Decimal!
+  accountId: ID
+  spendCategoryId: ID
+  worktags: [ID!]
+  taxCodeId: ID
+}
+
+# ─────────────────────────────────────────────
+# 27. VendorPayment
+# ─────────────────────────────────────────────
+
+type VendorPayment {
+  id: ID!
+  paymentNumber: String!
+  vendorId: String!
+  vendorName: String!
+  amount: Decimal!
+  currency: String!
+  paymentDate: Date!
+  status: PaymentStatus!
+  paymentRun: PaymentRun
+  vendorInvoices: [VendorInvoice!]!
+  bankAccount: String
+  method: String
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# 28. PaymentRun
+# ─────────────────────────────────────────────
+
+type PaymentRun {
+  id: ID!
+  runNumber: String!
+  runDate: Date!
+  status: PaymentStatus!
+  totalAmount: Decimal!
+  currency: String!
+  company: Company!
+  payments: [VendorPayment!]!
+  memo: String
+  createdAt: DateTime!
+}
+
+type PaymentRunEdge {
+  cursor: String!
+  node: PaymentRun!
+}
+
+input CreatePaymentRunInput {
+  runDate: Date!
+  companyId: ID!
+  currency: String!
+  vendorInvoiceIds: [ID!]!
+  memo: String
+}
+
+# ─────────────────────────────────────────────
+# 29. BankTransfer
+# ─────────────────────────────────────────────
+
+type BankTransfer {
+  id: ID!
+  transferNumber: String!
+  fromBankAccount: String!
+  toBankAccount: String!
+  amount: Decimal!
+  currency: String!
+  transferDate: Date!
+  status: PaymentStatus!
+  reference: String
+  company: Company!
+  createdAt: DateTime!
+}
+
+input CreateBankTransferInput {
+  fromBankAccount: String!
+  toBankAccount: String!
+  amount: Decimal!
+  currency: String!
+  transferDate: Date!
+  companyId: ID!
+  reference: String
+}
+
+# ─────────────────────────────────────────────
+# 30. Procurement
+# ─────────────────────────────────────────────
+
+type Procurement {
+  id: ID!
+  procurementNumber: String!
+  company: Company!
+  requisitions: [Requisition!]!
+  purchaseOrders: [PurchaseOrder!]!
+  totalValue: Decimal!
+  currency: String!
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# 31. Requisition
+# ─────────────────────────────────────────────
+
+type Requisition {
+  id: ID!
+  requisitionNumber: String!
+  status: RequisitionStatus!
+  requestedBy: String!
+  requestDate: Date!
+  neededByDate: Date
+  company: Company!
+  totalAmount: Decimal!
+  currency: String!
+  lines: [RequisitionLine!]!
+  worktags: [Worktag!]!
+  purchaseOrder: PurchaseOrder
+  memo: String
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type RequisitionEdge {
+  cursor: String!
+  node: Requisition!
+}
+
+type RequisitionConnection {
+  edges: [RequisitionEdge!]!
+  pageInfo: PageInfo!
+}
+
+input RequisitionFilter {
+  status: RequisitionStatus
+  companyId: ID
+  requestedBy: String
+  requestDateFrom: Date
+  requestDateTo: Date
+}
+
+input CreateRequisitionInput {
+  requestedBy: String!
+  requestDate: Date!
+  neededByDate: Date
+  companyId: ID!
+  currency: String!
+  lines: [CreateRequisitionLineInput!]!
+  memo: String
+}
+
+# ─────────────────────────────────────────────
+# 32. RequisitionLine
+# ─────────────────────────────────────────────
+
+type RequisitionLine {
+  id: ID!
+  lineNumber: Int!
+  requisition: Requisition!
+  description: String!
+  quantity: Decimal!
+  unitPrice: Decimal
+  totalAmount: Decimal!
+  spendCategory: SpendCategory
+  worktags: [Worktag!]!
+  supplierSuggested: String
+}
+
+input CreateRequisitionLineInput {
+  description: String!
+  quantity: Decimal!
+  unitPrice: Decimal
+  spendCategoryId: ID
+  worktags: [ID!]
+  supplierSuggested: String
+}
+
+# ─────────────────────────────────────────────
+# 33. PurchaseOrder
+# ─────────────────────────────────────────────
+
+type PurchaseOrder {
+  id: ID!
+  poNumber: String!
+  status: PurchaseOrderStatus!
+  vendorId: String!
+  vendorName: String!
+  orderDate: Date!
+  deliveryDate: Date
+  company: Company!
+  totalAmount: Decimal!
+  currency: String!
+  lines: [PurchaseOrderLine!]!
+  requisition: Requisition
+  goodsReceipts: [GoodsReceipt!]!
+  vendorInvoices: [VendorInvoice!]!
+  worktags: [Worktag!]!
+  memo: String
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type PurchaseOrderEdge {
+  cursor: String!
+  node: PurchaseOrder!
+}
+
+type PurchaseOrderConnection {
+  edges: [PurchaseOrderEdge!]!
+  pageInfo: PageInfo!
+}
+
+input PurchaseOrderFilter {
+  status: PurchaseOrderStatus
+  vendorId: String
+  companyId: ID
+  orderDateFrom: Date
+  orderDateTo: Date
+}
+
+input CreatePurchaseOrderInput {
+  vendorId: String!
+  orderDate: Date!
+  deliveryDate: Date
+  companyId: ID!
+  currency: String!
+  requisitionId: ID
+  lines: [CreatePurchaseOrderLineInput!]!
+  memo: String
+}
+
+# ─────────────────────────────────────────────
+# 34. PurchaseOrderLine
+# ─────────────────────────────────────────────
+
+type PurchaseOrderLine {
+  id: ID!
+  lineNumber: Int!
+  purchaseOrder: PurchaseOrder!
+  description: String!
+  quantity: Decimal!
+  unitPrice: Decimal!
+  totalAmount: Decimal!
+  receivedQuantity: Decimal
+  invoicedQuantity: Decimal
+  spendCategory: SpendCategory
+  account: Account
+  worktags: [Worktag!]!
+  taxCode: TaxCode
+}
+
+input CreatePurchaseOrderLineInput {
+  description: String!
+  quantity: Decimal!
+  unitPrice: Decimal!
+  spendCategoryId: ID
+  accountId: ID
+  worktags: [ID!]
+  taxCodeId: ID
+}
+
+# ─────────────────────────────────────────────
+# 35. GoodsReceipt
+# ─────────────────────────────────────────────
+
+type GoodsReceipt {
+  id: ID!
+  receiptNumber: String!
+  purchaseOrder: PurchaseOrder!
+  receiptDate: Date!
+  receivedBy: String
+  lines: [GoodsReceiptLine!]!
+  status: String!
+  memo: String
+  createdAt: DateTime!
+}
+
+input ReceiveGoodsInput {
+  purchaseOrderId: ID!
+  receiptDate: Date!
+  receivedBy: String
+  lines: [ReceiveGoodsLineInput!]!
+  memo: String
+}
+
+input ReceiveGoodsLineInput {
+  purchaseOrderLineId: ID!
+  receivedQuantity: Decimal!
+}
+
+# ─────────────────────────────────────────────
+# 36. GoodsReceiptLine
+# ─────────────────────────────────────────────
+
+type GoodsReceiptLine {
+  id: ID!
+  lineNumber: Int!
+  goodsReceipt: GoodsReceipt!
+  purchaseOrderLine: PurchaseOrderLine!
+  receivedQuantity: Decimal!
+  unitPrice: Decimal
+  totalAmount: Decimal
+}
+
+# ─────────────────────────────────────────────
+# 37. Contract
+# ─────────────────────────────────────────────
+
+type Contract {
+  id: ID!
+  contractNumber: String!
+  name: String!
+  status: ContractStatus!
+  customerId: String
+  customerName: String
+  startDate: Date!
+  endDate: Date
+  totalValue: Decimal!
+  currency: String!
+  company: Company!
+  amendments: [ContractAmendment!]!
+  customerInvoices: [CustomerInvoice!]!
+  worktags: [Worktag!]!
+  memo: String
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# 38. ContractAmendment
+# ─────────────────────────────────────────────
+
+type ContractAmendment {
+  id: ID!
+  amendmentNumber: String!
+  contract: Contract!
+  effectiveDate: Date!
+  description: String!
+  valueChange: Decimal
+  endDateChange: Date
+  createdAt: DateTime!
+  approvedBy: String
+}
+
+# ─────────────────────────────────────────────
+# 39. Billing
+# ─────────────────────────────────────────────
+
+type Billing {
+  id: ID!
+  billingNumber: String!
+  contract: Contract
+  customerId: String!
+  customerName: String!
+  billingDate: Date!
+  totalAmount: Decimal!
+  currency: String!
+  company: Company!
+  customerInvoices: [CustomerInvoice!]!
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# 40. CustomerInvoice
+# ─────────────────────────────────────────────
+
+type CustomerInvoice {
+  id: ID!
+  invoiceNumber: String!
+  customerId: String!
+  customerName: String!
+  status: CustomerInvoiceStatus!
+  invoiceDate: Date!
+  dueDate: Date
+  totalAmount: Decimal!
+  paidAmount: Decimal
+  currency: String!
+  contract: Contract
+  lines: [CustomerInvoiceLine!]!
+  worktags: [Worktag!]!
+  company: Company!
+  taxAmount: Decimal
+  memo: String
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type CustomerInvoiceEdge {
+  cursor: String!
+  node: CustomerInvoice!
+}
+
+type CustomerInvoiceConnection {
+  edges: [CustomerInvoiceEdge!]!
+  pageInfo: PageInfo!
+}
+
+input CustomerInvoiceFilter {
+  status: CustomerInvoiceStatus
+  customerId: String
+  companyId: ID
+  invoiceDateFrom: Date
+  invoiceDateTo: Date
+}
+
+input CreateCustomerInvoiceInput {
+  customerId: String!
+  invoiceDate: Date!
+  dueDate: Date
+  currency: String!
+  companyId: ID!
+  contractId: ID
+  lines: [CreateCustomerInvoiceLineInput!]!
+  memo: String
+}
+
+# ─────────────────────────────────────────────
+# 41. CustomerInvoiceLine
+# ─────────────────────────────────────────────
+
+type CustomerInvoiceLine {
+  id: ID!
+  lineNumber: Int!
+  customerInvoice: CustomerInvoice!
+  description: String!
+  quantity: Decimal
+  unitPrice: Decimal
+  totalAmount: Decimal!
+  revenueAccount: Account
+  taxCode: TaxCode
+  worktags: [Worktag!]!
+}
+
+input CreateCustomerInvoiceLineInput {
+  description: String!
+  quantity: Decimal
+  unitPrice: Decimal
+  totalAmount: Decimal!
+  revenueAccountId: ID
+  taxCodeId: ID
+  worktags: [ID!]
+}
+
+# ─────────────────────────────────────────────
+# 42. Payment
+# ─────────────────────────────────────────────
+
+type Payment {
+  id: ID!
+  paymentNumber: String!
+  customerId: String
+  vendorId: String
+  amount: Decimal!
+  currency: String!
+  paymentDate: Date!
+  status: PaymentStatus!
+  method: String
+  customerInvoice: CustomerInvoice
+  vendorInvoice: VendorInvoice
+  bankAccount: String
+  reference: String
+  company: Company!
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# 43. Cash
+# ─────────────────────────────────────────────
+
+type Cash {
+  id: ID!
+  bankAccount: String!
+  bankName: String
+  currency: String!
+  balance: Decimal!
+  balanceDate: Date!
+  company: Company!
+  transactions: [BankStatement!]!
+}
+
+# ─────────────────────────────────────────────
+# 44. BankStatement
+# ─────────────────────────────────────────────
+
+type BankStatement {
+  id: ID!
+  statementNumber: String!
+  bankAccount: String!
+  bankName: String
+  statementDate: Date!
+  openingBalance: Decimal!
+  closingBalance: Decimal!
+  currency: String!
+  company: Company!
+  transactions: [BankStatementTransaction!]!
+  reconciliation: Reconciliation
+  createdAt: DateTime!
+}
+
+type BankStatementEdge {
+  cursor: String!
+  node: BankStatement!
+}
+
+type BankStatementConnection {
+  edges: [BankStatementEdge!]!
+  pageInfo: PageInfo!
+}
+
+input BankStatementFilter {
+  bankAccount: String
+  companyId: ID
+  statementDateFrom: Date
+  statementDateTo: Date
+}
+
+type BankStatementTransaction {
+  id: ID!
+  bankStatement: BankStatement!
+  transactionDate: Date!
+  description: String!
+  amount: Decimal!
+  currency: String!
+  isDebit: Boolean!
+  reference: String
+}
+
+# ─────────────────────────────────────────────
+# 45. Reconciliation
+# ─────────────────────────────────────────────
+
+type Reconciliation {
+  id: ID!
+  reconciliationNumber: String!
+  bankStatement: BankStatement!
+  status: ReconciliationStatus!
+  reconciledAt: DateTime
+  reconciledBy: String
+  openingBalance: Decimal!
+  closingBalance: Decimal!
+  difference: Decimal!
+  company: Company!
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# 46. IntercompanyTransaction
+# ─────────────────────────────────────────────
+
+type IntercompanyTransaction {
+  id: ID!
+  transactionNumber: String!
+  fromCompany: Company!
+  toCompany: Company!
+  amount: Decimal!
+  currency: String!
+  transactionDate: Date!
+  journal: Journal
+  description: String
+  status: String!
+  worktags: [Worktag!]!
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# 47. Allocation
+# ─────────────────────────────────────────────
+
+type Allocation {
+  id: ID!
+  allocationNumber: String!
+  description: String!
+  sourceAccount: Account!
+  amount: Decimal!
+  currency: String!
+  period: FiscalPeriod!
+  rules: [AllocationRule!]!
+  journal: Journal
+  company: Company!
+  createdAt: DateTime!
+}
+
+type AllocationRule {
+  id: ID!
+  allocation: Allocation!
+  targetAccount: Account!
+  targetCostCenter: CostCenter
+  percentage: Decimal!
+  worktags: [Worktag!]!
+}
+
+# ─────────────────────────────────────────────
+# 48. Project
+# ─────────────────────────────────────────────
+
+type Project {
+  id: ID!
+  projectNumber: String!
+  name: String!
+  description: String
+  status: ProjectStatus!
+  startDate: Date!
+  endDate: Date
+  company: Company!
+  manager: String
+  totalBudget: Decimal
+  currency: String!
+  projectBudget: ProjectBudget
+  expenses: [ProjectExpense!]!
+  taskCodes: [TaskCode!]!
+  worktags: [Worktag!]!
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type ProjectEdge {
+  cursor: String!
+  node: Project!
+}
+
+type ProjectConnection {
+  edges: [ProjectEdge!]!
+  pageInfo: PageInfo!
+}
+
+input ProjectFilter {
+  status: ProjectStatus
+  companyId: ID
+  manager: String
+}
+
+input CreateProjectInput {
+  name: String!
+  description: String
+  startDate: Date!
+  endDate: Date
+  companyId: ID!
+  manager: String
+  currency: String!
+  totalBudget: Decimal
+}
+
+# ─────────────────────────────────────────────
+# 49. ProjectBudget
+# ─────────────────────────────────────────────
+
+type ProjectBudget {
+  id: ID!
+  project: Project!
+  totalAmount: Decimal!
+  currency: String!
+  spentAmount: Decimal
+  remainingAmount: Decimal
+  budgetAmounts: [BudgetAmount!]!
+  approvedAt: DateTime
+  approvedBy: String
+}
+
+# ─────────────────────────────────────────────
+# 50. ProjectExpense
+# ─────────────────────────────────────────────
+
+type ProjectExpense {
+  id: ID!
+  project: Project!
+  expense: Expense
+  description: String!
+  amount: Decimal!
+  currency: String!
+  expenseDate: Date!
+  taskCode: TaskCode
+  spendCategory: SpendCategory
+  worktags: [Worktag!]!
+  account: Account
+}
+
+# ─────────────────────────────────────────────
+# 51. TaskCode
+# ─────────────────────────────────────────────
+
+type TaskCode {
+  id: ID!
+  code: String!
+  name: String!
+  description: String
+  project: Project
+  isActive: Boolean!
+  billable: Boolean!
+}
+
+# ─────────────────────────────────────────────
+# 52. SpendCategory
+# ─────────────────────────────────────────────
+
+type SpendCategory {
+  id: ID!
+  name: String!
+  code: String
+  description: String
+  account: Account
+  taxCode: TaxCode
+  isActive: Boolean!
+}
+
+# ─────────────────────────────────────────────
+# 53. Tax
+# ─────────────────────────────────────────────
+
+type Tax {
+  id: ID!
+  taxCode: TaxCode!
+  taxableAmount: Decimal!
+  taxAmount: Decimal!
+  currency: String!
+  period: FiscalPeriod
+  jurisdiction: String
+  company: Company!
+}
+
+# ─────────────────────────────────────────────
+# 54. TaxCode
+# ─────────────────────────────────────────────
+
+type TaxCode {
+  id: ID!
+  code: String!
+  name: String!
+  description: String
+  country: String
+  jurisdiction: String
+  rates: [TaxRate!]!
+  isActive: Boolean!
+}
+
+type TaxCodeEdge {
+  cursor: String!
+  node: TaxCode!
+}
+
+type TaxCodeConnection {
+  edges: [TaxCodeEdge!]!
+  pageInfo: PageInfo!
+}
+
+# ─────────────────────────────────────────────
+# 55. TaxRate
+# ─────────────────────────────────────────────
+
+type TaxRate {
+  id: ID!
+  taxCode: TaxCode!
+  rate: Decimal!
+  effectiveDate: Date!
+  endDate: Date
+  description: String
+}
+
+# ─────────────────────────────────────────────
+# 56. EffectiveDate
+# ─────────────────────────────────────────────
+
+type EffectiveDate {
+  id: ID!
+  objectType: String!
+  objectId: ID!
+  effectiveDate: Date!
+  endDate: Date
+  isActive: Boolean!
+}
+
+# ─────────────────────────────────────────────
+# 57. FinancialReport
+# ─────────────────────────────────────────────
+
+type FinancialReport {
+  id: ID!
+  reportName: String!
+  reportType: String!
+  company: Company!
+  fiscalYear: FiscalYear
+  period: FiscalPeriod
+  generatedAt: DateTime!
+  generatedBy: String
+  parameters: JSON
+  data: JSON
+  format: String
+}
+
+type FinancialReportEdge {
+  cursor: String!
+  node: FinancialReport!
+}
+
+type FinancialReportConnection {
+  edges: [FinancialReportEdge!]!
+  pageInfo: PageInfo!
+}
+
+input FinancialReportFilter {
+  reportType: String
+  companyId: ID
+  fiscalYearId: ID
+  periodId: ID
+}
+
+# ─────────────────────────────────────────────
+# 58. APIKey
+# ─────────────────────────────────────────────
+
+type APIKey {
+  id: ID!
+  name: String!
+  keyPrefix: String!
+  createdAt: DateTime!
+  expiresAt: DateTime
+  isActive: Boolean!
+  scopes: [String!]!
+  createdBy: String!
+}
+
+# ─────────────────────────────────────────────
+# 59. Webhook
+# ─────────────────────────────────────────────
+
+type Webhook {
+  id: ID!
+  url: String!
+  eventTypes: [WebhookEventType!]!
+  isActive: Boolean!
+  secret: String
+  company: Company
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  lastDeliveredAt: DateTime
+  failureCount: Int!
+}
+
+input RegisterWebhookInput {
+  url: String!
+  eventTypes: [WebhookEventType!]!
+  companyId: ID
+  secret: String
+}
+
+# ─────────────────────────────────────────────
+# Root Types
+# ─────────────────────────────────────────────
+
+type Query {
+  # Accounts
+  account(id: ID!): Account
+  accounts(filter: AccountFilter, page: Int, pageSize: Int): AccountConnection
+
+  # Journals
+  journal(id: ID!): Journal
+  journals(filter: JournalFilter, page: Int, pageSize: Int): JournalConnection
+
+  # Fiscal structure
+  fiscalYear(id: ID!): FiscalYear
+  fiscalYears(companyId: ID, page: Int, pageSize: Int): FiscalYearConnection
+  fiscalPeriod(id: ID!): FiscalPeriod
+
+  # Budgets
+  budget(id: ID!): Budget
+  budgets(filter: BudgetFilter, page: Int, pageSize: Int): BudgetConnection
+
+  # Organizations
+  company(id: ID!): Company
+  companies(page: Int, pageSize: Int): CompanyConnection
+  costCenter(id: ID!): CostCenter
+  costCenters(companyId: ID, page: Int, pageSize: Int): CostCenterConnection
+  worktag(id: ID!): Worktag
+  worktags(type: WorktagType, page: Int, pageSize: Int): WorktagConnection
+
+  # Procurement
+  purchaseOrder(id: ID!): PurchaseOrder
+  purchaseOrders(filter: PurchaseOrderFilter, page: Int, pageSize: Int): PurchaseOrderConnection
+  requisition(id: ID!): Requisition
+  requisitions(filter: RequisitionFilter, page: Int, pageSize: Int): RequisitionConnection
+
+  # Vendor invoices & payables
+  vendorInvoice(id: ID!): VendorInvoice
+  vendorInvoices(filter: VendorInvoiceFilter, page: Int, pageSize: Int): VendorInvoiceConnection
+
+  # Customer invoices
+  customerInvoice(id: ID!): CustomerInvoice
+  customerInvoices(filter: CustomerInvoiceFilter, page: Int, pageSize: Int): CustomerInvoiceConnection
+
+  # Cash & bank
+  bankStatement(id: ID!): BankStatement
+  bankStatements(filter: BankStatementFilter, page: Int, pageSize: Int): BankStatementConnection
+
+  # Projects
+  project(id: ID!): Project
+  projects(filter: ProjectFilter, page: Int, pageSize: Int): ProjectConnection
+
+  # Reports
+  financialReport(id: ID!): FinancialReport
+  financialReports(filter: FinancialReportFilter, page: Int, pageSize: Int): FinancialReportConnection
+
+  # Tax
+  taxCode(id: ID!): TaxCode
+  taxCodes(page: Int, pageSize: Int): TaxCodeConnection
+}
+
+type Mutation {
+  # Journals
+  createJournal(input: CreateJournalInput!): Journal
+  submitJournal(id: ID!): Journal
+  reverseJournal(id: ID!, effectiveDate: String!): Journal
+
+  # Budgets
+  createBudget(input: CreateBudgetInput!): Budget
+  amendBudget(id: ID!, input: AmendBudgetInput!): Budget
+
+  # Procurement
+  createRequisition(input: CreateRequisitionInput!): Requisition
+  approveRequisition(id: ID!): Requisition
+  createPurchaseOrder(input: CreatePurchaseOrderInput!): PurchaseOrder
+  receivePurchaseOrder(input: ReceiveGoodsInput!): GoodsReceipt
+
+  # Vendor invoices
+  createVendorInvoice(input: CreateVendorInvoiceInput!): VendorInvoice
+  approveVendorInvoice(id: ID!): VendorInvoice
+
+  # Payments
+  createPaymentRun(input: CreatePaymentRunInput!): PaymentRun
+  createBankTransfer(input: CreateBankTransferInput!): BankTransfer
+
+  # Customer invoices
+  createCustomerInvoice(input: CreateCustomerInvoiceInput!): CustomerInvoice
+
+  # Projects
+  createProject(input: CreateProjectInput!): Project
+
+  # Platform
+  registerWebhook(input: RegisterWebhookInput!): Webhook
+  deleteWebhook(id: ID!): Boolean
+}
