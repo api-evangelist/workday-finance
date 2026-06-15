@@ -1,0 +1,1477 @@
+{
+  "item": [
+    {
+      "id": "874fbbc6-5740-4c95-a44f-f13511babe02",
+      "name": "Suppliers",
+      "description": {
+        "content": "Supplier account management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "57f11e00-b48c-4f61-8353-e972475f6410",
+          "name": "List Suppliers",
+          "request": {
+            "name": "List Suppliers",
+            "description": {
+              "content": "Returns a collection of supplier accounts in the tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "suppliers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bec7657f-d74e-4627-a1da-69b52479903c",
+              "name": "Collection of suppliers returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "suppliers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 8864,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"name\": \"string\",\n      \"supplierNumber\": \"string\",\n      \"status\": \"inactive\",\n      \"taxId\": \"string\",\n      \"paymentTerms\": \"string\",\n      \"href\": \"https://pLKlJTDGlsOOowTmkeHFbmfcnlnab.jkFnXT,OOhARfrlgTta9rBK1rrFWl.L,W45JlwGl3-J1vzUtr5xaq25l6fu2\"\n    },\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"name\": \"string\",\n      \"supplierNumber\": \"string\",\n      \"status\": \"inactive\",\n      \"taxId\": \"string\",\n      \"paymentTerms\": \"string\",\n      \"href\": \"https://vuySGAAVbxfeehHguIHgmvLXEMLjgnLTs.pgbLwl+,z,CvrgUsj3wsxvqadl0fawvNnOqD,9qfIqVKQsnI3TfYtYsI+qBb4PDo1KP\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ea45309-7922-4f0a-84ed-6cb60afc3095",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "suppliers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f4c33ac-40b7-4186-8a3c-1e96ff4fb8f6",
+          "name": "Get Supplier",
+          "request": {
+            "name": "Get Supplier",
+            "description": {
+              "content": "Returns details of a specific supplier account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "suppliers",
+                ":supplierId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "supplierId",
+                  "description": "(Required) The unique identifier of the supplier"
+                },
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7200700-380a-46f6-9c27-f45b9ad47668",
+              "name": "Supplier details returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "suppliers",
+                    ":supplierId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierId",
+                      "description": "(Required) The unique identifier of the supplier"
+                    },
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"descriptor\": \"string\",\n  \"name\": \"string\",\n  \"supplierNumber\": \"string\",\n  \"status\": \"inactive\",\n  \"taxId\": \"string\",\n  \"paymentTerms\": \"string\",\n  \"href\": \"https://HSGVUOl.qlob,SePw51m0Mn1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd48d5d0-30a8-4678-b929-f1427868c290",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "suppliers",
+                    ":supplierId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierId",
+                      "description": "(Required) The unique identifier of the supplier"
+                    },
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f574b47b-5df1-47ac-834c-eb95b386a213",
+      "name": "Purchase Orders",
+      "description": {
+        "content": "Purchase order creation and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69f6ad1c-ecf2-4153-b8c1-baea7caeb1f7",
+          "name": "List Purchase Orders",
+          "request": {
+            "name": "List Purchase Orders",
+            "description": {
+              "content": "Returns a collection of purchase orders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchaseOrders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by purchase order status"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9a775bc-bd65-44fc-b42a-40205396d091",
+              "name": "Collection of purchase orders returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchaseOrders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 9586,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"purchaseOrderNumber\": \"string\",\n      \"status\": \"approved\",\n      \"supplier\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://KCLUxvOoCEEXGIkAuzpfuEGrcgZhRGxd.awmq-6SYYUlNWjP3sz8kYTZjJlRoiE-Zo4JthKEAXqgbVOMasjTBM.OKnseu6zAZYRoTLh\"\n      },\n      \"totalAmount\": 2198.8877479008206,\n      \"currency\": \"string\",\n      \"orderDate\": \"2025-05-12\",\n      \"lines\": [\n        {\n          \"lineNumber\": 989,\n          \"item\": \"string\",\n          \"quantity\": 6740.495041507295,\n          \"unitCost\": 5729.243041229494,\n          \"totalCost\": 9721.727010626219\n        },\n        {\n          \"lineNumber\": 2927,\n          \"item\": \"string\",\n          \"quantity\": 1117.607413469448,\n          \"unitCost\": 1518.9776505654283,\n          \"totalCost\": 6739.305126438677\n        }\n      ],\n      \"href\": \"https://pJgSs.chtSRA\"\n    },\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"purchaseOrderNumber\": \"string\",\n      \"status\": \"received\",\n      \"supplier\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://wqaLNJCjtzKFzMzAhVPmcD.rbymi.,mFTJgonAzAHgmu5YUmo4j,9YXG7QFgLSlZ3\"\n      },\n      \"totalAmount\": 9183.87241764356,\n      \"currency\": \"string\",\n      \"orderDate\": \"1985-09-08\",\n      \"lines\": [\n        {\n          \"lineNumber\": 9934,\n          \"item\": \"string\",\n          \"quantity\": 9041.962877124612,\n          \"unitCost\": 1522.3742604031754,\n          \"totalCost\": 2818.393284962154\n        },\n        {\n          \"lineNumber\": 6890,\n          \"item\": \"string\",\n          \"quantity\": 8956.256859231766,\n          \"unitCost\": 1805.274157895197,\n          \"totalCost\": 2121.616375379125\n        }\n      ],\n      \"href\": \"https://PsoOZAocyHBFcwwrxONgEKFrV.lbvMo61lxKNOk6C117Drs8HVuNAN10ZQR+pCBaj43Q5Qmre7HNIh7KQc\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8ac5158-7c48-4159-a465-9aa73d6531dc",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchaseOrders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3936ddc3-3b3c-486d-9e15-2f9495573734",
+          "name": "Create Purchase Order",
+          "request": {
+            "name": "Create Purchase Order",
+            "description": {
+              "content": "Creates a new purchase order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchaseOrders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"supplier\": \"<string>\",\n  \"orderDate\": \"<date>\",\n  \"lines\": [\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    },\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "920fdf22-cc66-4c2f-ac2c-d76ff427718f",
+              "name": "Purchase order created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchaseOrders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": \"<string>\",\n  \"orderDate\": \"<date>\",\n  \"lines\": [\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    },\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"descriptor\": \"string\",\n  \"purchaseOrderNumber\": \"string\",\n  \"status\": \"closed\",\n  \"supplier\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://sWhAsRBdQWbCUVOzwEuQiBKZWRArV.sqILS+VrkYG8NQyY6RjNrvEyJT+4g9a3BqdhTTVGbs4VymZDAF\"\n  },\n  \"totalAmount\": 7383.590682987806,\n  \"currency\": \"string\",\n  \"orderDate\": \"1976-12-12\",\n  \"lines\": [\n    {\n      \"lineNumber\": 3638,\n      \"item\": \"string\",\n      \"quantity\": 4805.983719259323,\n      \"unitCost\": 7760.604448947951,\n      \"totalCost\": 258.5591314143687\n    },\n    {\n      \"lineNumber\": 849,\n      \"item\": \"string\",\n      \"quantity\": 1514.3764429367602,\n      \"unitCost\": 4681.232036553373,\n      \"totalCost\": 1082.6496663541363\n    }\n  ],\n  \"href\": \"http://V.npPzMEavCM3hs\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cacf523-5266-4ad6-9ce8-6bb6ca98660e",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchaseOrders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": \"<string>\",\n  \"orderDate\": \"<date>\",\n  \"lines\": [\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    },\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88a31608-f7f2-4e9b-8448-1805629c2308",
+          "name": "Get Purchase Order",
+          "request": {
+            "name": "Get Purchase Order",
+            "description": {
+              "content": "Returns details of a specific purchase order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchaseOrders",
+                ":purchaseOrderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "purchaseOrderId",
+                  "description": "(Required) The unique identifier of the purchase order"
+                },
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ae90f37-53e8-4ade-b019-f7266855c8c7",
+              "name": "Purchase order details returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchaseOrders",
+                    ":purchaseOrderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "purchaseOrderId",
+                      "description": "(Required) The unique identifier of the purchase order"
+                    },
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"descriptor\": \"string\",\n  \"purchaseOrderNumber\": \"string\",\n  \"status\": \"closed\",\n  \"supplier\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://sWhAsRBdQWbCUVOzwEuQiBKZWRArV.sqILS+VrkYG8NQyY6RjNrvEyJT+4g9a3BqdhTTVGbs4VymZDAF\"\n  },\n  \"totalAmount\": 7383.590682987806,\n  \"currency\": \"string\",\n  \"orderDate\": \"1976-12-12\",\n  \"lines\": [\n    {\n      \"lineNumber\": 3638,\n      \"item\": \"string\",\n      \"quantity\": 4805.983719259323,\n      \"unitCost\": 7760.604448947951,\n      \"totalCost\": 258.5591314143687\n    },\n    {\n      \"lineNumber\": 849,\n      \"item\": \"string\",\n      \"quantity\": 1514.3764429367602,\n      \"unitCost\": 4681.232036553373,\n      \"totalCost\": 1082.6496663541363\n    }\n  ],\n  \"href\": \"http://V.npPzMEavCM3hs\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcb5b5f0-bc7b-4bb5-ae6c-76233bd1adcb",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchaseOrders",
+                    ":purchaseOrderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "purchaseOrderId",
+                      "description": "(Required) The unique identifier of the purchase order"
+                    },
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "284c7c91-fc7a-4e07-9348-09b78f508844",
+      "name": "Supplier Invoices",
+      "description": {
+        "content": "Supplier invoice processing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "95a33674-14bc-43f4-afe2-3387f5c922ea",
+          "name": "List Supplier Invoices",
+          "request": {
+            "name": "List Supplier Invoices",
+            "description": {
+              "content": "Returns a collection of supplier invoices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supplierInvoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by invoice status"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c3dc3f1-5650-4677-b250-3d15a492788f",
+              "name": "Collection of supplier invoices returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supplierInvoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 2923,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"invoiceNumber\": \"string\",\n      \"status\": \"draft\",\n      \"supplier\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://EKLzKtVdxcIvtKiuHr.fhwxgn.D4TkiKxCzxye7Ago+9WigkkeHpZYmdcE2wYezLcUC\"\n      },\n      \"invoiceDate\": \"1994-12-28\",\n      \"dueDate\": \"1967-02-02\",\n      \"totalAmount\": 9456.777431485056,\n      \"currency\": \"string\",\n      \"purchaseOrder\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://KGAzmj.hnvkYhYSwkbbcljnYEQLt\"\n      },\n      \"href\": \"https://rjtsBfTbsqBicyMYpLb.lyqlK6gM6,T0ULFa,gl\"\n    },\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"invoiceNumber\": \"string\",\n      \"status\": \"paid\",\n      \"supplier\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://LZOcjGYUkyxSeFSkjFpxgQV.cjsiOy-0AszMFqJLXR9CXMzob-APfQN0bD-bHJJyqEkAASymqncYq1ZyjvP\"\n      },\n      \"invoiceDate\": \"2011-09-01\",\n      \"dueDate\": \"2023-09-05\",\n      \"totalAmount\": 7386.102939325499,\n      \"currency\": \"string\",\n      \"purchaseOrder\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://GeZgXOFw.tafwHp+msY7bope,7JNQaVL2+Y0U,pNcF\"\n      },\n      \"href\": \"http://wXS.epccOVXPz4FXAq2kCdDWB1UN1Cgc,Xyy4mcv4v.1RmEC\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25134438-0aa0-4034-b504-79bb09aa972c",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supplierInvoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f221f00-24ae-4143-bef8-1b8ddf2dabc9",
+          "name": "Create Supplier Invoice",
+          "request": {
+            "name": "Create Supplier Invoice",
+            "description": {
+              "content": "Creates a new supplier invoice for processing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supplierInvoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"supplier\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"totalAmount\": \"<number>\",\n  \"invoiceDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5fb2e50-1233-4de9-8be3-6364ae640e4f",
+              "name": "Supplier invoice created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supplierInvoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"totalAmount\": \"<number>\",\n  \"invoiceDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"descriptor\": \"string\",\n  \"invoiceNumber\": \"string\",\n  \"status\": \"paid\",\n  \"supplier\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"http://AlFJJmqUXmv.pyuRvG0vq6dSH8GsUWAqTcwF-eFDU\"\n  },\n  \"invoiceDate\": \"1965-10-14\",\n  \"dueDate\": \"2022-03-06\",\n  \"totalAmount\": 8853.705973184638,\n  \"currency\": \"string\",\n  \"purchaseOrder\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"http://UVjIbByoBiUqjsMyYCsXULG.cxtZFEJT,530R6z.0sTha+3AMvrPCTC7qsVd.sxDobwdnrL1\"\n  },\n  \"href\": \"https://dpAhEwcsAphvUqBj.qdwPKKadtQMxaKuGa5scwWbWsKfpOsHpgosOvzU1FAp62qFs-YYt\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9973ac0-6ad6-4b00-be17-54d313b3dbcb",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supplierInvoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"totalAmount\": \"<number>\",\n  \"invoiceDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "efb5bd79-80e1-4e91-a075-2b35b3478b27",
+      "name": "Requisitions",
+      "description": {
+        "content": "Purchase requisition management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0870065-ff63-4c0a-90ae-d24000579d3e",
+          "name": "List Purchase Requisitions",
+          "request": {
+            "name": "List Purchase Requisitions",
+            "description": {
+              "content": "Returns a collection of purchase requisitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "requisitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a2a9b29-a2dd-4648-826d-7e62e2f904d2",
+              "name": "Collection of requisitions returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "requisitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 3234,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"requisitionNumber\": \"string\",\n      \"status\": \"approved\",\n      \"requester\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://qosTgkUFxlojwNfNDHs.smeaIAxTLiXo0BXcU8JlRwOSU.fSyePt5nAjoyLXSwWlD2r5Emh1NcgV\"\n      },\n      \"submitDate\": \"2021-10-09\",\n      \"totalAmount\": 5205.2138516762725,\n      \"currency\": \"string\",\n      \"href\": \"http://YDKYYIDhYltGUxRgxSEeJLtSIFPCZx.netudOeiBhnPlj,e18ba9-JGxtCiG04IcwBvlIhnsb6os\"\n    },\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"requisitionNumber\": \"string\",\n      \"status\": \"received\",\n      \"requester\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://WFKHCNnBWKSZkGwWPMpKs.wdzhvkTP,vpUZIM64c.gU4s-M0EWN+Z47WoyhX9bhdcBNtRDiIdkemiVwL,FOUrFhQt9tiU9Z5U2UCYKgR\"\n      },\n      \"submitDate\": \"1955-05-30\",\n      \"totalAmount\": 4188.410627654395,\n      \"currency\": \"string\",\n      \"href\": \"https://PvvFCGmWzVYScrnnchMuJm.edofWogchhxJ1c5,Xt\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b998ac8-ddb0-4ee6-bcd5-0bc2e83ecfb6",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "requisitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Workday tenant name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mycompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://wd2-impl-services1.workday.com/ccx/api/resource-management/v45.2/{{tenant}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "581be11a-1cf1-4f40-9946-5bae9a4df40c",
+    "name": "Workday Finance Procurement API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for procurement operations including purchase requisitions, purchase orders, supplier management, supplier invoices, business assets, and the procure-to-pay lifecycle within Workday Financial Management.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+      "type": "text/plain"
+    }
+  }
+}

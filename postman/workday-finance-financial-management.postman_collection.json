@@ -1,0 +1,1356 @@
+{
+  "info": {
+    "_postman_id": "5f3cbd5c-9c3b-4828-8544-e63c30379a48",
+    "name": "Workday Finance Financial Management API",
+    "description": "Core API for financial management operations including general ledger, accounts payable, accounts receivable, financial reporting, tax management, financial organizations, and worktag management. Exposes data relative to accounts, accounting, business plans, and related financial structures.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:21:34.000Z",
+    "updatedAt": "2026-06-05T15:21:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5f3cbd5c-9c3b-4828-8544-e63c30379a48"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "Get Financial Account",
+              "id": "466e93d6-c875-420e-a1a8-d74bc8f375b7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/:accountId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    ":accountId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7f0aadba-9c46-4168-92e1-ebda442622b9",
+                      "key": "accountId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the account"
+                    }
+                  ]
+                },
+                "description": "Returns details of a specific general ledger account."
+              },
+              "response": [
+                {
+                  "id": "d4f63da7-ff19-4c7c-907b-be1f4e382b97",
+                  "name": "Account details returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"accountType\": \"expense\",\n  \"company\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"balance\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"href\": \"<uri>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-d4f63da7-ff19-4c7c-907b-be1f4e382b97"
+                },
+                {
+                  "id": "a18fcba3-a1a2-4b9d-b7c5-38b31eb1c6cd",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-a18fcba3-a1a2-4b9d-b7c5-38b31eb1c6cd"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-466e93d6-c875-420e-a1a8-d74bc8f375b7"
+            }
+          ],
+          "id": "732a2c24-e5f0-408b-adf2-591b3621e1eb",
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-732a2c24-e5f0-408b-adf2-591b3621e1eb"
+        },
+        {
+          "name": "List Financial Accounts",
+          "id": "8f8df9ed-289b-4494-bd01-3e391180e166",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/accounts?limit=20&offset=0&type=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Filter by account type",
+                  "key": "type",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a collection of general ledger accounts in the tenant."
+          },
+          "response": [
+            {
+              "id": "00bb7ba6-b047-4cb6-99df-6836e2ccc3f4",
+              "name": "Collection of accounts returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts?limit=20&offset=0&type=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by account type",
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"accountType\": \"revenue\",\n      \"company\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"balance\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"accountType\": \"revenue\",\n      \"company\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"balance\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-00bb7ba6-b047-4cb6-99df-6836e2ccc3f4"
+            },
+            {
+              "id": "e959b29a-103f-475c-a37c-2408f2828316",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts?limit=20&offset=0&type=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by account type",
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-e959b29a-103f-475c-a37c-2408f2828316"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-8f8df9ed-289b-4494-bd01-3e391180e166"
+        }
+      ],
+      "id": "8476ab92-2434-4a1c-b3ac-3c42a6015e1d",
+      "createdAt": "2026-06-05T15:21:35.000Z",
+      "updatedAt": "2026-06-05T15:21:35.000Z",
+      "uid": "35240-8476ab92-2434-4a1c-b3ac-3c42a6015e1d"
+    },
+    {
+      "name": "journalEntries",
+      "item": [
+        {
+          "name": "{journalEntryId}",
+          "item": [
+            {
+              "name": "Get Journal Entry",
+              "id": "ef3e1b98-5c05-46cb-9b67-22750aba7689",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/journalEntries/:journalEntryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "journalEntries",
+                    ":journalEntryId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5a683009-5261-4a5b-9275-0bb3282256af",
+                      "key": "journalEntryId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the journal entry"
+                    }
+                  ]
+                },
+                "description": "Returns details of a specific journal entry."
+              },
+              "response": [
+                {
+                  "id": "6849d482-4247-4a54-b72e-4171dab1e1ad",
+                  "name": "Journal entry details returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/journalEntries/:journalEntryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "journalEntries",
+                        ":journalEntryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "journalEntryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"journalEntryNumber\": \"<string>\",\n  \"status\": \"reversed\",\n  \"period\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"postingDate\": \"<date>\",\n  \"lines\": [\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    }\n  ],\n  \"createdOn\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-6849d482-4247-4a54-b72e-4171dab1e1ad"
+                },
+                {
+                  "id": "64826fd1-7da8-46b3-909f-800f34c1ef9e",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/journalEntries/:journalEntryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "journalEntries",
+                        ":journalEntryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "journalEntryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-64826fd1-7da8-46b3-909f-800f34c1ef9e"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-ef3e1b98-5c05-46cb-9b67-22750aba7689"
+            }
+          ],
+          "id": "449e4f06-83af-4037-95c7-14f35f1dd495",
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-449e4f06-83af-4037-95c7-14f35f1dd495"
+        },
+        {
+          "name": "List Journal Entries",
+          "id": "b08f0b60-da65-4f23-8e7b-c0561ad5ddc8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/journalEntries?limit=20&offset=0&period=<string>&account=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "journalEntries"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Filter by accounting period",
+                  "key": "period",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by account ID",
+                  "key": "account",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a collection of journal entries filtered by date, period, or account."
+          },
+          "response": [
+            {
+              "id": "ea597b04-4978-42b1-bc7b-0932d70934fc",
+              "name": "Collection of journal entries returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/journalEntries?limit=20&offset=0&period=<string>&account=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "journalEntries"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by accounting period",
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by account ID",
+                      "key": "account",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"journalEntryNumber\": \"<string>\",\n      \"status\": \"posted\",\n      \"period\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"postingDate\": \"<date>\",\n      \"lines\": [\n        {\n          \"lineOrder\": \"<integer>\",\n          \"account\": {\n            \"id\": \"<string>\",\n            \"descriptor\": \"<string>\",\n            \"href\": \"<uri>\"\n          },\n          \"debitAmount\": \"<double>\",\n          \"creditAmount\": \"<double>\",\n          \"currency\": \"<string>\",\n          \"memo\": \"<string>\",\n          \"worktags\": [\n            {\n              \"id\": \"<string>\",\n              \"descriptor\": \"<string>\",\n              \"href\": \"<uri>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"descriptor\": \"<string>\",\n              \"href\": \"<uri>\"\n            }\n          ]\n        },\n        {\n          \"lineOrder\": \"<integer>\",\n          \"account\": {\n            \"id\": \"<string>\",\n            \"descriptor\": \"<string>\",\n            \"href\": \"<uri>\"\n          },\n          \"debitAmount\": \"<double>\",\n          \"creditAmount\": \"<double>\",\n          \"currency\": \"<string>\",\n          \"memo\": \"<string>\",\n          \"worktags\": [\n            {\n              \"id\": \"<string>\",\n              \"descriptor\": \"<string>\",\n              \"href\": \"<uri>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"descriptor\": \"<string>\",\n              \"href\": \"<uri>\"\n            }\n          ]\n        }\n      ],\n      \"createdOn\": \"<dateTime>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"journalEntryNumber\": \"<string>\",\n      \"status\": \"reversed\",\n      \"period\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"postingDate\": \"<date>\",\n      \"lines\": [\n        {\n          \"lineOrder\": \"<integer>\",\n          \"account\": {\n            \"id\": \"<string>\",\n            \"descriptor\": \"<string>\",\n            \"href\": \"<uri>\"\n          },\n          \"debitAmount\": \"<double>\",\n          \"creditAmount\": \"<double>\",\n          \"currency\": \"<string>\",\n          \"memo\": \"<string>\",\n          \"worktags\": [\n            {\n              \"id\": \"<string>\",\n              \"descriptor\": \"<string>\",\n              \"href\": \"<uri>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"descriptor\": \"<string>\",\n              \"href\": \"<uri>\"\n            }\n          ]\n        },\n        {\n          \"lineOrder\": \"<integer>\",\n          \"account\": {\n            \"id\": \"<string>\",\n            \"descriptor\": \"<string>\",\n            \"href\": \"<uri>\"\n          },\n          \"debitAmount\": \"<double>\",\n          \"creditAmount\": \"<double>\",\n          \"currency\": \"<string>\",\n          \"memo\": \"<string>\",\n          \"worktags\": [\n            {\n              \"id\": \"<string>\",\n              \"descriptor\": \"<string>\",\n              \"href\": \"<uri>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"descriptor\": \"<string>\",\n              \"href\": \"<uri>\"\n            }\n          ]\n        }\n      ],\n      \"createdOn\": \"<dateTime>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-ea597b04-4978-42b1-bc7b-0932d70934fc"
+            },
+            {
+              "id": "33639952-4e39-41f7-b82b-2d6e003a9a9d",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/journalEntries?limit=20&offset=0&period=<string>&account=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "journalEntries"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by accounting period",
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by account ID",
+                      "key": "account",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-33639952-4e39-41f7-b82b-2d6e003a9a9d"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-b08f0b60-da65-4f23-8e7b-c0561ad5ddc8"
+        },
+        {
+          "name": "Create Journal Entry",
+          "id": "81c98c8b-0d1a-439f-829b-00dfbf759600",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"period\": \"<string>\",\n  \"lines\": [\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    }\n  ],\n  \"postingDate\": \"<date>\",\n  \"memo\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/journalEntries",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "journalEntries"
+              ]
+            },
+            "description": "Creates a new journal entry in the general ledger."
+          },
+          "response": [
+            {
+              "id": "00dae1fd-41da-45be-89e8-db855e17873a",
+              "name": "Journal entry created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"period\": \"<string>\",\n  \"lines\": [\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    }\n  ],\n  \"postingDate\": \"<date>\",\n  \"memo\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/journalEntries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "journalEntries"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"journalEntryNumber\": \"<string>\",\n  \"status\": \"reversed\",\n  \"period\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"postingDate\": \"<date>\",\n  \"lines\": [\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    }\n  ],\n  \"createdOn\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-00dae1fd-41da-45be-89e8-db855e17873a"
+            },
+            {
+              "id": "5ed8c33d-fd0d-4500-80e4-bbe1c7e243f4",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"period\": \"<string>\",\n  \"lines\": [\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    }\n  ],\n  \"postingDate\": \"<date>\",\n  \"memo\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/journalEntries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "journalEntries"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-5ed8c33d-fd0d-4500-80e4-bbe1c7e243f4"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-81c98c8b-0d1a-439f-829b-00dfbf759600"
+        }
+      ],
+      "id": "d8d617cc-1785-4f57-8f82-10c46ac06688",
+      "createdAt": "2026-06-05T15:21:35.000Z",
+      "updatedAt": "2026-06-05T15:21:35.000Z",
+      "uid": "35240-d8d617cc-1785-4f57-8f82-10c46ac06688"
+    },
+    {
+      "name": "costCenters",
+      "item": [
+        {
+          "name": "List Cost Centers",
+          "id": "8718fc3c-e15a-42c3-8769-03a3abee6ba1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/costCenters?limit=20&offset=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "costCenters"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Returns a collection of cost center organizations in the tenant."
+          },
+          "response": [
+            {
+              "id": "5be109ce-e96b-44ff-9246-6b6ebfacc809",
+              "name": "Collection of cost centers returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/costCenters?limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "costCenters"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"manager\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"company\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"manager\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"company\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-5be109ce-e96b-44ff-9246-6b6ebfacc809"
+            },
+            {
+              "id": "e3c612f3-8ef4-44e4-9359-9f9e7b582f5f",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/costCenters?limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "costCenters"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-e3c612f3-8ef4-44e4-9359-9f9e7b582f5f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-8718fc3c-e15a-42c3-8769-03a3abee6ba1"
+        }
+      ],
+      "id": "282b1037-4034-4456-9d61-6e4c74f82367",
+      "createdAt": "2026-06-05T15:21:35.000Z",
+      "updatedAt": "2026-06-05T15:21:35.000Z",
+      "uid": "35240-282b1037-4034-4456-9d61-6e4c74f82367"
+    },
+    {
+      "name": "worktags",
+      "item": [
+        {
+          "name": "List Worktags",
+          "id": "ea0032e6-a0a7-4738-bd95-a62381d78285",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/worktags?limit=20&offset=0&type=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "worktags"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Filter by worktag type",
+                  "key": "type",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a collection of worktag dimension values used for financial tagging."
+          },
+          "response": [
+            {
+              "id": "c15652e0-ccbd-4ba8-8603-cfa47e38410b",
+              "name": "Collection of worktags returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/worktags?limit=20&offset=0&type=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "worktags"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by worktag type",
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"code\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"code\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-c15652e0-ccbd-4ba8-8603-cfa47e38410b"
+            },
+            {
+              "id": "3636c17d-0631-4eb4-a5cb-4248d5192895",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/worktags?limit=20&offset=0&type=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "worktags"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by worktag type",
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-3636c17d-0631-4eb4-a5cb-4248d5192895"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-ea0032e6-a0a7-4738-bd95-a62381d78285"
+        }
+      ],
+      "id": "094f352c-dc9d-4793-8801-dbf98771080c",
+      "createdAt": "2026-06-05T15:21:35.000Z",
+      "updatedAt": "2026-06-05T15:21:35.000Z",
+      "uid": "35240-094f352c-dc9d-4793-8801-dbf98771080c"
+    },
+    {
+      "name": "financialPeriods",
+      "item": [
+        {
+          "name": "List Financial Periods",
+          "id": "648ff8c4-d798-4d1a-9d75-8482eef173f2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/financialPeriods?limit=20&offset=0&fiscalYear=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "financialPeriods"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Filter by fiscal year",
+                  "key": "fiscalYear",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a collection of fiscal periods and their open/close status."
+          },
+          "response": [
+            {
+              "id": "381a5907-837a-445b-8d7e-3bd3e5184190",
+              "name": "Collection of financial periods returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/financialPeriods?limit=20&offset=0&fiscalYear=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "financialPeriods"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by fiscal year",
+                      "key": "fiscalYear",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"status\": \"closed\",\n      \"fiscalYear\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"status\": \"locked\",\n      \"fiscalYear\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-381a5907-837a-445b-8d7e-3bd3e5184190"
+            },
+            {
+              "id": "ea917212-f6f7-4b23-b555-c3c0edc73072",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/financialPeriods?limit=20&offset=0&fiscalYear=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "financialPeriods"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by fiscal year",
+                      "key": "fiscalYear",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-ea917212-f6f7-4b23-b555-c3c0edc73072"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-648ff8c4-d798-4d1a-9d75-8482eef173f2"
+        }
+      ],
+      "id": "1f7d89cd-f0e1-4ef9-8173-c14ea18c8fe3",
+      "createdAt": "2026-06-05T15:21:35.000Z",
+      "updatedAt": "2026-06-05T15:21:35.000Z",
+      "uid": "35240-1f7d89cd-f0e1-4ef9-8173-c14ea18c8fe3"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "tenant",
+      "value": "mycompany"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{{tenant}}"
+    }
+  ]
+}

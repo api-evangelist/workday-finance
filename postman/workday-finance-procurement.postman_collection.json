@@ -1,0 +1,1308 @@
+{
+  "info": {
+    "_postman_id": "1d0fb7dd-bf67-4a9f-8e84-31a190251ac3",
+    "name": "Workday Finance Procurement API",
+    "description": "API for procurement operations including purchase requisitions, purchase orders, supplier management, supplier invoices, business assets, and the procure-to-pay lifecycle within Workday Financial Management.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:21:35.000Z",
+    "updatedAt": "2026-06-05T15:21:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1d0fb7dd-bf67-4a9f-8e84-31a190251ac3"
+  },
+  "item": [
+    {
+      "name": "suppliers",
+      "item": [
+        {
+          "name": "{supplierId}",
+          "item": [
+            {
+              "name": "Get Supplier",
+              "id": "385e73dc-cb8d-4019-a8df-bb0b0f033f29",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/suppliers/:supplierId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "suppliers",
+                    ":supplierId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0cffc995-adf0-459e-ad40-5bb28a4f6139",
+                      "key": "supplierId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the supplier"
+                    }
+                  ]
+                },
+                "description": "Returns details of a specific supplier account."
+              },
+              "response": [
+                {
+                  "id": "4f760da6-b9f2-4e4c-a1c9-365516b320fc",
+                  "name": "Supplier details returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/suppliers/:supplierId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "suppliers",
+                        ":supplierId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "supplierId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"supplierNumber\": \"<string>\",\n  \"status\": \"inactive\",\n  \"taxId\": \"<string>\",\n  \"paymentTerms\": \"<string>\",\n  \"href\": \"<uri>\"\n}",
+                  "createdAt": "2026-06-05T15:21:36.000Z",
+                  "updatedAt": "2026-06-05T15:21:36.000Z",
+                  "uid": "35240-4f760da6-b9f2-4e4c-a1c9-365516b320fc"
+                },
+                {
+                  "id": "04db554a-885f-4890-9b29-aa9db435e734",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/suppliers/:supplierId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "suppliers",
+                        ":supplierId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "supplierId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:36.000Z",
+                  "updatedAt": "2026-06-05T15:21:36.000Z",
+                  "uid": "35240-04db554a-885f-4890-9b29-aa9db435e734"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-385e73dc-cb8d-4019-a8df-bb0b0f033f29"
+            }
+          ],
+          "id": "5a71d91c-27e2-470e-991c-92f22a4699e9",
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-5a71d91c-27e2-470e-991c-92f22a4699e9"
+        },
+        {
+          "name": "List Suppliers",
+          "id": "f7cc5914-c607-47d8-91ef-3a88a33cf40f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/suppliers?limit=20&offset=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "suppliers"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Returns a collection of supplier accounts in the tenant."
+          },
+          "response": [
+            {
+              "id": "d4002948-edde-4fab-b95c-e2c479fa4b5c",
+              "name": "Collection of suppliers returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/suppliers?limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "suppliers"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"supplierNumber\": \"<string>\",\n      \"status\": \"active\",\n      \"taxId\": \"<string>\",\n      \"paymentTerms\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"supplierNumber\": \"<string>\",\n      \"status\": \"inactive\",\n      \"taxId\": \"<string>\",\n      \"paymentTerms\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-d4002948-edde-4fab-b95c-e2c479fa4b5c"
+            },
+            {
+              "id": "60fa00a3-133e-4c58-b58d-4e993ec30383",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/suppliers?limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "suppliers"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-60fa00a3-133e-4c58-b58d-4e993ec30383"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-f7cc5914-c607-47d8-91ef-3a88a33cf40f"
+        }
+      ],
+      "id": "a13331c7-119e-4482-aa4c-93eb7ce937f2",
+      "createdAt": "2026-06-05T15:21:36.000Z",
+      "updatedAt": "2026-06-05T15:21:36.000Z",
+      "uid": "35240-a13331c7-119e-4482-aa4c-93eb7ce937f2"
+    },
+    {
+      "name": "purchaseOrders",
+      "item": [
+        {
+          "name": "{purchaseOrderId}",
+          "item": [
+            {
+              "name": "Get Purchase Order",
+              "id": "05466edc-1cc6-41fc-8ae5-5373fe95ddb6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/purchaseOrders/:purchaseOrderId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchaseOrders",
+                    ":purchaseOrderId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8a2088a2-ff4b-457a-a5ff-9181f84a521c",
+                      "key": "purchaseOrderId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the purchase order"
+                    }
+                  ]
+                },
+                "description": "Returns details of a specific purchase order."
+              },
+              "response": [
+                {
+                  "id": "e647a8fe-cd2a-4cd2-a699-8ccf47bbde1d",
+                  "name": "Purchase order details returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/purchaseOrders/:purchaseOrderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchaseOrders",
+                        ":purchaseOrderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "purchaseOrderId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"purchaseOrderNumber\": \"<string>\",\n  \"status\": \"draft\",\n  \"supplier\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"totalAmount\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"orderDate\": \"<date>\",\n  \"lines\": [\n    {\n      \"lineNumber\": \"<integer>\",\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\",\n      \"totalCost\": \"<number>\"\n    },\n    {\n      \"lineNumber\": \"<integer>\",\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\",\n      \"totalCost\": \"<number>\"\n    }\n  ],\n  \"href\": \"<uri>\"\n}",
+                  "createdAt": "2026-06-05T15:21:36.000Z",
+                  "updatedAt": "2026-06-05T15:21:36.000Z",
+                  "uid": "35240-e647a8fe-cd2a-4cd2-a699-8ccf47bbde1d"
+                },
+                {
+                  "id": "c1d5cbe9-d6fd-4a24-962f-bf47d6901e1d",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/purchaseOrders/:purchaseOrderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchaseOrders",
+                        ":purchaseOrderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "purchaseOrderId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:36.000Z",
+                  "updatedAt": "2026-06-05T15:21:36.000Z",
+                  "uid": "35240-c1d5cbe9-d6fd-4a24-962f-bf47d6901e1d"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-05466edc-1cc6-41fc-8ae5-5373fe95ddb6"
+            }
+          ],
+          "id": "3e9615dd-7424-49c7-93ff-703770b8de55",
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-3e9615dd-7424-49c7-93ff-703770b8de55"
+        },
+        {
+          "name": "List Purchase Orders",
+          "id": "1e0ad8bb-ae56-42b2-9ce5-d973a22c54c4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/purchaseOrders?limit=20&offset=0&status=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "purchaseOrders"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Filter by purchase order status",
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a collection of purchase orders."
+          },
+          "response": [
+            {
+              "id": "88f40d64-e078-4b61-9098-ba8650dbdc95",
+              "name": "Collection of purchase orders returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/purchaseOrders?limit=20&offset=0&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchaseOrders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by purchase order status",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"purchaseOrderNumber\": \"<string>\",\n      \"status\": \"draft\",\n      \"supplier\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"totalAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"orderDate\": \"<date>\",\n      \"lines\": [\n        {\n          \"lineNumber\": \"<integer>\",\n          \"item\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"unitCost\": \"<number>\",\n          \"totalCost\": \"<number>\"\n        },\n        {\n          \"lineNumber\": \"<integer>\",\n          \"item\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"unitCost\": \"<number>\",\n          \"totalCost\": \"<number>\"\n        }\n      ],\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"purchaseOrderNumber\": \"<string>\",\n      \"status\": \"received\",\n      \"supplier\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"totalAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"orderDate\": \"<date>\",\n      \"lines\": [\n        {\n          \"lineNumber\": \"<integer>\",\n          \"item\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"unitCost\": \"<number>\",\n          \"totalCost\": \"<number>\"\n        },\n        {\n          \"lineNumber\": \"<integer>\",\n          \"item\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"unitCost\": \"<number>\",\n          \"totalCost\": \"<number>\"\n        }\n      ],\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-88f40d64-e078-4b61-9098-ba8650dbdc95"
+            },
+            {
+              "id": "143ddccb-c838-439e-acbf-1f749d326b0c",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/purchaseOrders?limit=20&offset=0&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchaseOrders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by purchase order status",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-143ddccb-c838-439e-acbf-1f749d326b0c"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-1e0ad8bb-ae56-42b2-9ce5-d973a22c54c4"
+        },
+        {
+          "name": "Create Purchase Order",
+          "id": "9d33bc2e-608d-4a3f-a580-86b4337fad08",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"supplier\": \"<string>\",\n  \"orderDate\": \"<date>\",\n  \"lines\": [\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    },\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/purchaseOrders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "purchaseOrders"
+              ]
+            },
+            "description": "Creates a new purchase order."
+          },
+          "response": [
+            {
+              "id": "6ea7d53f-fb18-45a0-9d53-c2796c3f41ee",
+              "name": "Purchase order created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": \"<string>\",\n  \"orderDate\": \"<date>\",\n  \"lines\": [\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    },\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchaseOrders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchaseOrders"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"purchaseOrderNumber\": \"<string>\",\n  \"status\": \"draft\",\n  \"supplier\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"totalAmount\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"orderDate\": \"<date>\",\n  \"lines\": [\n    {\n      \"lineNumber\": \"<integer>\",\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\",\n      \"totalCost\": \"<number>\"\n    },\n    {\n      \"lineNumber\": \"<integer>\",\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\",\n      \"totalCost\": \"<number>\"\n    }\n  ],\n  \"href\": \"<uri>\"\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-6ea7d53f-fb18-45a0-9d53-c2796c3f41ee"
+            },
+            {
+              "id": "8264df13-d7f0-4556-bf05-c0d0133b738f",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": \"<string>\",\n  \"orderDate\": \"<date>\",\n  \"lines\": [\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    },\n    {\n      \"item\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unitCost\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchaseOrders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchaseOrders"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-8264df13-d7f0-4556-bf05-c0d0133b738f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-9d33bc2e-608d-4a3f-a580-86b4337fad08"
+        }
+      ],
+      "id": "e0f301fb-7a11-4649-9706-858421d5f174",
+      "createdAt": "2026-06-05T15:21:36.000Z",
+      "updatedAt": "2026-06-05T15:21:36.000Z",
+      "uid": "35240-e0f301fb-7a11-4649-9706-858421d5f174"
+    },
+    {
+      "name": "supplierInvoices",
+      "item": [
+        {
+          "name": "List Supplier Invoices",
+          "id": "8243f6b7-f2c3-4ba4-a163-4a3dbc892b04",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/supplierInvoices?limit=20&offset=0&status=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supplierInvoices"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Filter by invoice status",
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a collection of supplier invoices."
+          },
+          "response": [
+            {
+              "id": "37e7ee60-ebc3-4797-9431-262f086118c6",
+              "name": "Collection of supplier invoices returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/supplierInvoices?limit=20&offset=0&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "supplierInvoices"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by invoice status",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"invoiceNumber\": \"<string>\",\n      \"status\": \"approved\",\n      \"supplier\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"invoiceDate\": \"<date>\",\n      \"dueDate\": \"<date>\",\n      \"totalAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"purchaseOrder\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"invoiceNumber\": \"<string>\",\n      \"status\": \"cancelled\",\n      \"supplier\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"invoiceDate\": \"<date>\",\n      \"dueDate\": \"<date>\",\n      \"totalAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"purchaseOrder\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-37e7ee60-ebc3-4797-9431-262f086118c6"
+            },
+            {
+              "id": "5eafdc1d-110a-46f3-b733-c40408fc135f",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/supplierInvoices?limit=20&offset=0&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "supplierInvoices"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by invoice status",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-5eafdc1d-110a-46f3-b733-c40408fc135f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-8243f6b7-f2c3-4ba4-a163-4a3dbc892b04"
+        },
+        {
+          "name": "Create Supplier Invoice",
+          "id": "f4ab63bb-c602-429f-b902-4bcf6373706f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"supplier\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"totalAmount\": \"<number>\",\n  \"invoiceDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/supplierInvoices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supplierInvoices"
+              ]
+            },
+            "description": "Creates a new supplier invoice for processing."
+          },
+          "response": [
+            {
+              "id": "7e6aea7e-92a4-42d3-a4f4-c2941283bb8b",
+              "name": "Supplier invoice created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"totalAmount\": \"<number>\",\n  \"invoiceDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/supplierInvoices",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "supplierInvoices"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"status\": \"approved\",\n  \"supplier\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"invoiceDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"totalAmount\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"purchaseOrder\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"href\": \"<uri>\"\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-7e6aea7e-92a4-42d3-a4f4-c2941283bb8b"
+            },
+            {
+              "id": "bcac7284-566a-4c3a-a109-53926827a67e",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"totalAmount\": \"<number>\",\n  \"invoiceDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/supplierInvoices",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "supplierInvoices"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-bcac7284-566a-4c3a-a109-53926827a67e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-f4ab63bb-c602-429f-b902-4bcf6373706f"
+        }
+      ],
+      "id": "79da1da9-8f0f-42a2-8e4d-2016beedc4be",
+      "createdAt": "2026-06-05T15:21:36.000Z",
+      "updatedAt": "2026-06-05T15:21:36.000Z",
+      "uid": "35240-79da1da9-8f0f-42a2-8e4d-2016beedc4be"
+    },
+    {
+      "name": "requisitions",
+      "item": [
+        {
+          "name": "List Purchase Requisitions",
+          "id": "3a6d790f-5f11-499c-a45a-a800937a77be",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/requisitions?limit=20&offset=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "requisitions"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Returns a collection of purchase requisitions."
+          },
+          "response": [
+            {
+              "id": "030496b6-b470-4a23-b0da-d740b0ed72c7",
+              "name": "Collection of requisitions returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/requisitions?limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "requisitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"requisitionNumber\": \"<string>\",\n      \"status\": \"approved\",\n      \"requester\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"submitDate\": \"<date>\",\n      \"totalAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"requisitionNumber\": \"<string>\",\n      \"status\": \"draft\",\n      \"requester\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"submitDate\": \"<date>\",\n      \"totalAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-030496b6-b470-4a23-b0da-d740b0ed72c7"
+            },
+            {
+              "id": "7c22b5ca-c5be-417e-bbc5-1c6505dc270f",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/requisitions?limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "requisitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-7c22b5ca-c5be-417e-bbc5-1c6505dc270f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-3a6d790f-5f11-499c-a45a-a800937a77be"
+        }
+      ],
+      "id": "96d083b3-e622-48c2-adf4-98725de0631e",
+      "createdAt": "2026-06-05T15:21:36.000Z",
+      "updatedAt": "2026-06-05T15:21:36.000Z",
+      "uid": "35240-96d083b3-e622-48c2-adf4-98725de0631e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "tenant",
+      "value": "mycompany"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://wd2-impl-services1.workday.com/ccx/api/resource-management/v45.2/{{tenant}}"
+    }
+  ]
+}

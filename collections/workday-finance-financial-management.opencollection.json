@@ -1,0 +1,264 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Finance Financial Management API",
+    "version": "v41.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Financial Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}/accounts",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by account type"
+              }
+            ]
+          },
+          "docs": "Returns a collection of general ledger accounts in the tenant."
+        },
+        {
+          "info": {
+            "name": "Get Financial Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}/accounts/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the account"
+              }
+            ]
+          },
+          "docs": "Returns details of a specific general ledger account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Journal Entries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Journal Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}/journalEntries",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Filter by accounting period"
+              },
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Filter by account ID"
+              }
+            ]
+          },
+          "docs": "Returns a collection of journal entries filtered by date, period, or account."
+        },
+        {
+          "info": {
+            "name": "Create Journal Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}/journalEntries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new journal entry in the general ledger."
+        },
+        {
+          "info": {
+            "name": "Get Journal Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}/journalEntries/:journalEntryId",
+            "params": [
+              {
+                "name": "journalEntryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the journal entry"
+              }
+            ]
+          },
+          "docs": "Returns details of a specific journal entry."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cost Centers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Cost Centers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}/costCenters",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a collection of cost center organizations in the tenant."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Worktags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Worktags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}/worktags",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by worktag type"
+              }
+            ]
+          },
+          "docs": "Returns a collection of worktag dimension values used for financial tagging."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Financial Periods",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Financial Periods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}/financialPeriods",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              },
+              {
+                "name": "fiscalYear",
+                "value": "",
+                "type": "query",
+                "description": "Filter by fiscal year"
+              }
+            ]
+          },
+          "docs": "Returns a collection of fiscal periods and their open/close status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
