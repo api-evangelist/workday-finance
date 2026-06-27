@@ -3,19 +3,12 @@
   "feeds": [
     {
       "source": "https://blog.workday.com/",
-      "feed_url": "https://blog.workday.com/",
-      "title": "",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
-    },
-    {
-      "source": "https://resourcecenter.workday.com/",
-      "feed_url": "https://resourcecenter.workday.com/",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
-  "post_count": 5,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 12,
+  "fetched": "2026-06-27T13:21:34Z",
+  "agent_pulled": "2026-06-27"
 }
