@@ -211,6 +211,12 @@ apis:
   - type: X-wsdl
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Professional_Services_Automation/v45.2/Professional_Services_Automation.wsdl
 common:
+- type: TrustCenter
+  url: security/workday-finance-trust-center.yml
+- type: DomainSecurity
+  url: security/workday-finance-domain-security.yml
+- type: Authentication
+  url: authentication/workday-finance-authentication.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/workday-finance/overview
 - type: Arazzo
