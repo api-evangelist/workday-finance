@@ -211,6 +211,8 @@ apis:
   - type: X-wsdl
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Professional_Services_Automation/v45.2/Professional_Services_Automation.wsdl
 common:
+- type: AgenticAccess
+  url: agentic-access/workday-finance-agentic-access.yml
 - type: TrustCenter
   url: security/workday-finance-trust-center.yml
 - type: DomainSecurity
