@@ -1,0 +1,128 @@
+openapi: 3.1.0
+info:
+  title: Workday Finance Financial Management Accounts Requisitions API
+  description: Core API for financial management operations including general ledger, accounts payable, accounts receivable, financial reporting, tax management, financial organizations, and worktag management. Exposes data relative to accounts, accounting, business plans, and related financial structures.
+  version: v41.2
+  contact:
+    name: Workday API Support
+    email: api-support@workday.com
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}
+  description: Workday Financial Management API Server
+  variables:
+    tenant:
+      default: mycompany
+      description: Workday tenant name
+security:
+- bearerAuth: []
+tags:
+- name: Requisitions
+  description: Purchase requisition management
+paths:
+  /requisitions:
+    get:
+      operationId: listRequisitions
+      summary: List Purchase Requisitions
+      description: Returns a collection of purchase requisitions.
+      tags:
+      - Requisitions
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: Collection of requisitions returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Requisition'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of results to skip for pagination
+      schema:
+        type: integer
+        default: 0
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+  schemas:
+    Requisition:
+      type: object
+      properties:
+        id:
+          type: string
+        descriptor:
+          type: string
+        requisitionNumber:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - submitted
+          - approved
+          - ordered
+          - received
+        requester:
+          $ref: '#/components/schemas/ResourceReference'
+        submitDate:
+          type: string
+          format: date
+        totalAmount:
+          type: number
+          format: double
+        currency:
+          type: string
+        href:
+          type: string
+          format: uri
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+        descriptor:
+          type: string
+        href:
+          type: string
+          format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Workday Financial Management API Documentation
+  url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Financial_Management/v41.2/index.html

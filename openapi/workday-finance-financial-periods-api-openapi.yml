@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: Workday Finance Financial Management Accounts Financial Periods API
+  description: Core API for financial management operations including general ledger, accounts payable, accounts receivable, financial reporting, tax management, financial organizations, and worktag management. Exposes data relative to accounts, accounting, business plans, and related financial structures.
+  version: v41.2
+  contact:
+    name: Workday API Support
+    email: api-support@workday.com
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{tenant}
+  description: Workday Financial Management API Server
+  variables:
+    tenant:
+      default: mycompany
+      description: Workday tenant name
+security:
+- bearerAuth: []
+tags:
+- name: Financial Periods
+  description: Fiscal period and year management
+paths:
+  /financialPeriods:
+    get:
+      operationId: listFinancialPeriods
+      summary: List Financial Periods
+      description: Returns a collection of fiscal periods and their open/close status.
+      tags:
+      - Financial Periods
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - name: fiscalYear
+        in: query
+        description: Filter by fiscal year
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Collection of financial periods returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FinancialPeriod'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of results to skip for pagination
+      schema:
+        type: integer
+        default: 0
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+  schemas:
+    FinancialPeriod:
+      type: object
+      properties:
+        id:
+          type: string
+        descriptor:
+          type: string
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+          - locked
+        fiscalYear:
+          $ref: '#/components/schemas/ResourceReference'
+        href:
+          type: string
+          format: uri
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+        descriptor:
+          type: string
+        href:
+          type: string
+          format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Workday Financial Management API Documentation
+  url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Financial_Management/v41.2/index.html
