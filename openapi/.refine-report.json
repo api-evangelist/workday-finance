@@ -1,0 +1,30 @@
+{
+  "provider": "workday-finance",
+  "sources": [
+    "workday-finance-accounts-api-openapi.yml",
+    "workday-finance-cost-centers-api-openapi.yml",
+    "workday-finance-financial-periods-api-openapi.yml",
+    "workday-finance-journal-entries-api-openapi.yml",
+    "workday-finance-purchase-orders-api-openapi.yml",
+    "workday-finance-requisitions-api-openapi.yml",
+    "workday-finance-supplier-invoices-api-openapi.yml",
+    "workday-finance-suppliers-api-openapi.yml",
+    "workday-finance-worktags-api-openapi.yml"
+  ],
+  "outputs": [
+    "workday-finance-accounts-api-openapi.yml",
+    "workday-finance-cost-centers-api-openapi.yml",
+    "workday-finance-financial-periods-api-openapi.yml",
+    "workday-finance-journal-entries-api-openapi.yml",
+    "workday-finance-purchase-orders-api-openapi.yml",
+    "workday-finance-requisitions-api-openapi.yml",
+    "workday-finance-supplier-invoices-api-openapi.yml",
+    "workday-finance-suppliers-api-openapi.yml",
+    "workday-finance-worktags-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
