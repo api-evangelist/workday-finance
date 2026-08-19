@@ -1,0 +1,223 @@
+{
+  "item": [
+    {
+      "id": "c14be94b-44ae-45d8-9f01-182eb2520fd7",
+      "name": "Cost Centers",
+      "description": {
+        "content": "Cost center management and reporting",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a8dc035-d290-4a35-8e3e-23be14ea1c4e",
+          "name": "List Cost Centers",
+          "request": {
+            "name": "List Cost Centers",
+            "description": {
+              "content": "Returns a collection of cost center organizations in the tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "costCenters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29a7bb16-ca22-47e6-b029-ce46786ccac2",
+              "name": "Collection of cost centers returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "costCenters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 4975,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"manager\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://ogLAHIoFHQJZmVkahbebeiayoJVnj.weTySbbtw2psLJfBjmkCQ2e6DarJHLDrAo2gkYrYZb1mmjVes+rpMDk9wQrI0.y\"\n      },\n      \"company\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://UzRhdvNXDfh.gxdPwLRttBDnCwR+4cMOMDcM5JMzguhpWQpi5z4UVKmEyJD\"\n      },\n      \"href\": \"https://fprhvnBLUhTKjVNuUBc.upBTfPW7elLNEIvUNQhXZmCJHGjan6R3I0uGVa\"\n    },\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"manager\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://fWrrx.pyyjG.yjdEtgrw9M7LLt3m5CQReRTIpWeX9ZdojvxWNXvpBWtbWOviBvM.e8FFH.-tgJzIR\"\n      },\n      \"company\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://pDSmONeb.mkyY+LCNO3d,kuDP2KD9W4sZGfdEfBfO,Wx9SAv3CN0t.Z1DWID528AY-Y\"\n      },\n      \"href\": \"http://DREdkZiJzatibH.ohx0KYInoYFPJSYC8WaGCuZF,me49SNWTUsaOSEpnxS3emCdNAjSYKBxoWm4b0dTX,JwswG\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b127861f-87b6-47b6-ad3e-fed16183fdd9",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "costCenters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Workday tenant name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mycompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{{tenant}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "df1faa5a-0563-4688-9d79-5dd033450283",
+    "name": "Workday Finance Financial Management Accounts Cost Centers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Core API for financial management operations including general ledger, accounts payable, accounts receivable, financial reporting, tax management, financial organizations, and worktag management. Exposes data relative to accounts, accounting, business plans, and related financial structures.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+      "type": "text/plain"
+    }
+  }
+}

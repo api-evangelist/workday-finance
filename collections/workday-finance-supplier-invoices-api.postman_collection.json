@@ -1,0 +1,408 @@
+{
+  "item": [
+    {
+      "id": "77b56067-94c3-4fc6-a72f-0995fef856a9",
+      "name": "Supplier Invoices",
+      "description": {
+        "content": "Supplier invoice processing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a764d7cd-238e-4a91-bdb2-efcb4a98a304",
+          "name": "List Supplier Invoices",
+          "request": {
+            "name": "List Supplier Invoices",
+            "description": {
+              "content": "Returns a collection of supplier invoices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supplierInvoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by invoice status"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "206fb1a3-8843-4c7c-8914-16b6cf2a6e40",
+              "name": "Collection of supplier invoices returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supplierInvoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 8728,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"invoiceNumber\": \"string\",\n      \"status\": \"cancelled\",\n      \"supplier\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://WfFKzBSNLSKkYeSDxmCEbmRqe.xrtdssCDquiCPaRE5Ufjlt,VzgRXjCFHCYSCCvpL.gyJ4qQ2Fpoer0jtkJj\"\n      },\n      \"invoiceDate\": \"1997-11-15\",\n      \"dueDate\": \"1956-11-09\",\n      \"totalAmount\": 5203.74226645727,\n      \"currency\": \"string\",\n      \"purchaseOrder\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://ipBUeRWSXVYZU.jecwAelpOaqp\"\n      },\n      \"href\": \"https://FlXwnXHZueENY.kfzcWJkwU4DzQARPObPm1..tiDBPSFY3Wfnu64Ug\"\n    },\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"invoiceNumber\": \"string\",\n      \"status\": \"approved\",\n      \"supplier\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://fLwyPzhnZaPnESvOIZWxYakYPAMI.yecpOT7.sfaZMUOEQQTy3uJxafbhyzVYS90NAXE6PHXw3sqVmcG5AzG\"\n      },\n      \"invoiceDate\": \"1962-05-31\",\n      \"dueDate\": \"2022-06-08\",\n      \"totalAmount\": 8982.147940564282,\n      \"currency\": \"string\",\n      \"purchaseOrder\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://ydqLUODPYvTnPtJrPFOESLZ.oyVgHLkSTh-rBS680Xola48ihGlL5OMllyt9klhROVNGufTQf\"\n      },\n      \"href\": \"http://zZNItJvMsFsppFTkKTim.yaCDZASXDs8YdL1E+6koZwIEPOwM0n\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9277067c-a67d-4e68-a39f-0673cc5a550c",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supplierInvoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f28503f-e034-4463-9e1f-e53814b767ac",
+          "name": "Create Supplier Invoice",
+          "request": {
+            "name": "Create Supplier Invoice",
+            "description": {
+              "content": "Creates a new supplier invoice for processing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supplierInvoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"supplier\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"totalAmount\": \"<number>\",\n  \"invoiceDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "983d8be3-4d73-48d7-b4d4-0b019cc06c98",
+              "name": "Supplier invoice created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supplierInvoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"totalAmount\": \"<number>\",\n  \"invoiceDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"descriptor\": \"string\",\n  \"invoiceNumber\": \"string\",\n  \"status\": \"paid\",\n  \"supplier\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"http://ubXFKQff.vhutte8ljxScUVUL5M,Bnk\"\n  },\n  \"invoiceDate\": \"1992-07-03\",\n  \"dueDate\": \"1978-03-18\",\n  \"totalAmount\": 5939.90503068802,\n  \"currency\": \"string\",\n  \"purchaseOrder\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://YYLKolbzuXxGeVdPOtgXSShTlBVINXe.elxjKT6YE.ag\"\n  },\n  \"href\": \"http://oqROJdP.jho\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e613a95-eb68-41ec-866d-c64d42c80f6c",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supplierInvoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"totalAmount\": \"<number>\",\n  \"invoiceDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Workday tenant name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mycompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{{tenant}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ebb1fd28-dc7b-48b7-a5e2-f3d59198a5ef",
+    "name": "Workday Finance Financial Management Accounts Supplier Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Core API for financial management operations including general ledger, accounts payable, accounts receivable, financial reporting, tax management, financial organizations, and worktag management. Exposes data relative to accounts, accounting, business plans, and related financial structures.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,588 @@
+{
+  "item": [
+    {
+      "id": "4dc9aced-34b3-4533-ac5f-46139e57309e",
+      "name": "Journal Entries",
+      "description": {
+        "content": "Journal entry creation and retrieval",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc320241-557e-41f1-8518-98e33bc951b6",
+          "name": "List Journal Entries",
+          "request": {
+            "name": "List Journal Entries",
+            "description": {
+              "content": "Returns a collection of journal entries filtered by date, period, or account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "journalEntries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>",
+                  "description": "Filter by accounting period"
+                },
+                {
+                  "disabled": false,
+                  "key": "account",
+                  "value": "<string>",
+                  "description": "Filter by account ID"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0069b82-c9f4-4afb-bf9a-54dfdc56283e",
+              "name": "Collection of journal entries returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "journalEntries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 8397,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"journalEntryNumber\": \"string\",\n      \"status\": \"reversed\",\n      \"period\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://mBTKujlgGuaCkaAHux.ylLjYwIJ+EiqPzeDOAcrB8xYmMjxFl.G8zweYY0TcLEfm.sB.K8R1KZ\"\n      },\n      \"postingDate\": \"1980-12-22\",\n      \"lines\": [\n        {\n          \"lineOrder\": 2114,\n          \"account\": {\n            \"id\": \"string\",\n            \"descriptor\": \"string\",\n            \"href\": \"https://qZNprYHQjlouhuSDdfYyNjYzKq.thoH1UPu5.j+EDKZWg9AQ8P-dWZnYF\"\n          },\n          \"debitAmount\": 6405.752504356168,\n          \"creditAmount\": 8707.964534011446,\n          \"currency\": \"string\",\n          \"memo\": \"string\",\n          \"worktags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"descriptor\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"descriptor\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"lineOrder\": 7377,\n          \"account\": {\n            \"id\": \"string\",\n            \"descriptor\": \"string\",\n            \"href\": \"http://IJlAEsppXfKDDVOvEbhKmYYlTIVPpdMP.emyaMi1P9YAVctW1e0b1EFD-pwa49yAbO0tD7szvd09bDen26\"\n          },\n          \"debitAmount\": 9625.269971677973,\n          \"creditAmount\": 6436.344616982279,\n          \"currency\": \"string\",\n          \"memo\": \"string\",\n          \"worktags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"descriptor\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"descriptor\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"createdOn\": \"1993-10-17T10:37:46.563Z\",\n      \"href\": \"https://S.nlcpeweKrDXPjd6RarEuoty\"\n    },\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"journalEntryNumber\": \"string\",\n      \"status\": \"posted\",\n      \"period\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://RySJyUlzGrEl.bvbkzue3e1j7yhnKCtJVgowd2.Y\"\n      },\n      \"postingDate\": \"1998-02-02\",\n      \"lines\": [\n        {\n          \"lineOrder\": 3681,\n          \"account\": {\n            \"id\": \"string\",\n            \"descriptor\": \"string\",\n            \"href\": \"https://ATMYdyLRw.myuemHIQ4qsb\"\n          },\n          \"debitAmount\": 4885.055675910919,\n          \"creditAmount\": 5250.73699917394,\n          \"currency\": \"string\",\n          \"memo\": \"string\",\n          \"worktags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"descriptor\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"descriptor\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"lineOrder\": 8138,\n          \"account\": {\n            \"id\": \"string\",\n            \"descriptor\": \"string\",\n            \"href\": \"http://zfgQAV.nebUMhR.4XMsxxCpdCPfIueWMYv-6uFoFdOyBOfU09Kt4VFn+m5tF7vJo8Ut\"\n          },\n          \"debitAmount\": 9217.262387984407,\n          \"creditAmount\": 7084.465910251994,\n          \"currency\": \"string\",\n          \"memo\": \"string\",\n          \"worktags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"descriptor\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"descriptor\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"createdOn\": \"1971-02-08T23:18:01.864Z\",\n      \"href\": \"https://iFbXfjEJJuRa.hnetY5FVFSsa2fn9bb5i.STYb30xAZ3uVq1kkqkB+BcQ5PwuwyjojvZbsHp9pkHMrg+,yrWaS\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60d822e1-e6dc-48de-81e3-ec5e44e929a3",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "journalEntries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83f9e7fd-7260-417d-966d-240e3d6c35f4",
+          "name": "Create Journal Entry",
+          "request": {
+            "name": "Create Journal Entry",
+            "description": {
+              "content": "Creates a new journal entry in the general ledger.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "journalEntries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"period\": \"<string>\",\n  \"lines\": [\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"lineOrder\": \"<integer>\",\n      \"account\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"debitAmount\": \"<double>\",\n      \"creditAmount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"worktags\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    }\n  ],\n  \"postingDate\": \"<date>\",\n  \"memo\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f6fb9f3-f02e-4304-b53c-f332abb261d0",
+              "name": "Journal entry created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "journalEntries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"period\": \"<string>\",\n  \"lines\": [\n    {\n      \"lineOrder\": 321,\n      \"account\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://eeJWRGmvLTuNKIRvwKG.pgnxcgnP3T4vJZ\"\n      },\n      \"debitAmount\": 1303.0411617018144,\n      \"creditAmount\": 5022.170094861665,\n      \"currency\": \"string\",\n      \"memo\": \"string\",\n      \"worktags\": [\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"https://rXmkhDf.nlLKrDYAY8j\"\n        },\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"http://EyuohkkCaAQapHAk.vvdxQ7joaHkjQ1ywmR0zTyUstFa83E\"\n        }\n      ]\n    },\n    {\n      \"lineOrder\": 8459,\n      \"account\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://FoFIMwBxArFefIdUXUSCXEzDXzCTGCsv.epp1L-N2s9fQj,pn8mh1AzNsJbLseqWSUKspKMH7bkQTWMLp+\"\n      },\n      \"debitAmount\": 4188.287024928526,\n      \"creditAmount\": 4528.59927869185,\n      \"currency\": \"string\",\n      \"memo\": \"string\",\n      \"worktags\": [\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"http://UyXsNxqclgbuDekqEohXcT.mmyjBOiLsmQmGbtMfphaY-.fzVeUskdj-lz-Uooq3-pdmR+rzGt8tP\"\n        },\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"https://gwHWVPspwyTiYospAaiRFT.zqstW7W\"\n        }\n      ]\n    }\n  ],\n  \"postingDate\": \"<date>\",\n  \"memo\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"descriptor\": \"string\",\n  \"journalEntryNumber\": \"string\",\n  \"status\": \"posted\",\n  \"period\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://UlEvLEmMqPPRHTIK.iprfyHld7-PCqKOoXbsfwkj.GS4UCz6xbmWCkiBbkIL2VSIt3nYmcFKljzxKRu.br7Ub\"\n  },\n  \"postingDate\": \"1978-12-21\",\n  \"lines\": [\n    {\n      \"lineOrder\": 5276,\n      \"account\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://zPcnWDTVkovoigyHh.dxfvoZNOvukXYrRq\"\n      },\n      \"debitAmount\": 3529.775480863839,\n      \"creditAmount\": 5315.722655511341,\n      \"currency\": \"string\",\n      \"memo\": \"string\",\n      \"worktags\": [\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"https://QUDPxwboPdkmeKioPrCuDmdKTI.kfaHZ4tSMZX5zV25Ijrk\"\n        },\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"http://kgatH.ijDRi+.DwPJ7K\"\n        }\n      ]\n    },\n    {\n      \"lineOrder\": 7557,\n      \"account\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://ziApBsdqoTdLDz.qxmwwJJKA85,PyebjdHu-WAB.AB7mnpYx4ZpfHIcFPS\"\n      },\n      \"debitAmount\": 2652.848628150323,\n      \"creditAmount\": 2171.6026359360585,\n      \"currency\": \"string\",\n      \"memo\": \"string\",\n      \"worktags\": [\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"http://lPipwAUQiH.slbuygNbINkVdIJcrJS,uuoSrHSzhcUVwUaDZwDWFH-DBcN4hwD6yy16QcC4h\"\n        },\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"https://KwHGxy.ocbJuwsiC8MFLQutG0kakjNkX6n6D+lujb-E-xT1jaVY6Q+WZsbCqKfgm\"\n        }\n      ]\n    }\n  ],\n  \"createdOn\": \"1993-08-07T01:58:27.049Z\",\n  \"href\": \"http://MaAgjyHvYpBIouPUlIRCTCxysWJtpOTOq.rzz3PL4ifJ+leBdKy2CBFvWsFrfkXQ.yPI-XOGgEWwDilf-qRJKhrWhqCIbF\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5bf1258-fbcc-4014-8061-e844421971d7",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "journalEntries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"period\": \"<string>\",\n  \"lines\": [\n    {\n      \"lineOrder\": 321,\n      \"account\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://eeJWRGmvLTuNKIRvwKG.pgnxcgnP3T4vJZ\"\n      },\n      \"debitAmount\": 1303.0411617018144,\n      \"creditAmount\": 5022.170094861665,\n      \"currency\": \"string\",\n      \"memo\": \"string\",\n      \"worktags\": [\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"https://rXmkhDf.nlLKrDYAY8j\"\n        },\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"http://EyuohkkCaAQapHAk.vvdxQ7joaHkjQ1ywmR0zTyUstFa83E\"\n        }\n      ]\n    },\n    {\n      \"lineOrder\": 8459,\n      \"account\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://FoFIMwBxArFefIdUXUSCXEzDXzCTGCsv.epp1L-N2s9fQj,pn8mh1AzNsJbLseqWSUKspKMH7bkQTWMLp+\"\n      },\n      \"debitAmount\": 4188.287024928526,\n      \"creditAmount\": 4528.59927869185,\n      \"currency\": \"string\",\n      \"memo\": \"string\",\n      \"worktags\": [\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"http://UyXsNxqclgbuDekqEohXcT.mmyjBOiLsmQmGbtMfphaY-.fzVeUskdj-lz-Uooq3-pdmR+rzGt8tP\"\n        },\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"https://gwHWVPspwyTiYospAaiRFT.zqstW7W\"\n        }\n      ]\n    }\n  ],\n  \"postingDate\": \"<date>\",\n  \"memo\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f3a3293-7846-44be-a3c8-14e0ccf07e02",
+          "name": "Get Journal Entry",
+          "request": {
+            "name": "Get Journal Entry",
+            "description": {
+              "content": "Returns details of a specific journal entry.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "journalEntries",
+                ":journalEntryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "journalEntryId",
+                  "description": "(Required) The unique identifier of the journal entry"
+                },
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a20b4da-ee3a-4647-b968-59b1587aa604",
+              "name": "Journal entry details returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "journalEntries",
+                    ":journalEntryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journalEntryId",
+                      "description": "(Required) The unique identifier of the journal entry"
+                    },
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"descriptor\": \"string\",\n  \"journalEntryNumber\": \"string\",\n  \"status\": \"posted\",\n  \"period\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://UlEvLEmMqPPRHTIK.iprfyHld7-PCqKOoXbsfwkj.GS4UCz6xbmWCkiBbkIL2VSIt3nYmcFKljzxKRu.br7Ub\"\n  },\n  \"postingDate\": \"1978-12-21\",\n  \"lines\": [\n    {\n      \"lineOrder\": 5276,\n      \"account\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://zPcnWDTVkovoigyHh.dxfvoZNOvukXYrRq\"\n      },\n      \"debitAmount\": 3529.775480863839,\n      \"creditAmount\": 5315.722655511341,\n      \"currency\": \"string\",\n      \"memo\": \"string\",\n      \"worktags\": [\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"https://QUDPxwboPdkmeKioPrCuDmdKTI.kfaHZ4tSMZX5zV25Ijrk\"\n        },\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"http://kgatH.ijDRi+.DwPJ7K\"\n        }\n      ]\n    },\n    {\n      \"lineOrder\": 7557,\n      \"account\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://ziApBsdqoTdLDz.qxmwwJJKA85,PyebjdHu-WAB.AB7mnpYx4ZpfHIcFPS\"\n      },\n      \"debitAmount\": 2652.848628150323,\n      \"creditAmount\": 2171.6026359360585,\n      \"currency\": \"string\",\n      \"memo\": \"string\",\n      \"worktags\": [\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"http://lPipwAUQiH.slbuygNbINkVdIJcrJS,uuoSrHSzhcUVwUaDZwDWFH-DBcN4hwD6yy16QcC4h\"\n        },\n        {\n          \"id\": \"string\",\n          \"descriptor\": \"string\",\n          \"href\": \"https://KwHGxy.ocbJuwsiC8MFLQutG0kakjNkX6n6D+lujb-E-xT1jaVY6Q+WZsbCqKfgm\"\n        }\n      ]\n    }\n  ],\n  \"createdOn\": \"1993-08-07T01:58:27.049Z\",\n  \"href\": \"http://MaAgjyHvYpBIouPUlIRCTCxysWJtpOTOq.rzz3PL4ifJ+leBdKy2CBFvWsFrfkXQ.yPI-XOGgEWwDilf-qRJKhrWhqCIbF\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3a0d493-57ee-484e-9836-9cfe1bf0ede6",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "journalEntries",
+                    ":journalEntryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journalEntryId",
+                      "description": "(Required) The unique identifier of the journal entry"
+                    },
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Workday tenant name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mycompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{{tenant}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c0fc3667-6628-4ac4-95cd-6820e471aaf6",
+    "name": "Workday Finance Financial Management Accounts Journal Entries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Core API for financial management operations including general ledger, accounts payable, accounts receivable, financial reporting, tax management, financial organizations, and worktag management. Exposes data relative to accounts, accounting, business plans, and related financial structures.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+      "type": "text/plain"
+    }
+  }
+}

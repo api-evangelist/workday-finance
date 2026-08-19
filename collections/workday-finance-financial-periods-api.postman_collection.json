@@ -1,0 +1,237 @@
+{
+  "item": [
+    {
+      "id": "3c371a83-802b-4e62-8bbb-61e1274f653c",
+      "name": "Financial Periods",
+      "description": {
+        "content": "Fiscal period and year management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78ac30f8-a967-4400-8885-e211d9f870f9",
+          "name": "List Financial Periods",
+          "request": {
+            "name": "List Financial Periods",
+            "description": {
+              "content": "Returns a collection of fiscal periods and their open/close status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "financialPeriods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "fiscalYear",
+                  "value": "<string>",
+                  "description": "Filter by fiscal year"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "735ea31a-cacc-489f-a1b9-8c4d5426ea40",
+              "name": "Collection of financial periods returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "financialPeriods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "fiscalYear",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 7237,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"name\": \"string\",\n      \"startDate\": \"1959-12-01\",\n      \"endDate\": \"1956-01-06\",\n      \"status\": \"open\",\n      \"fiscalYear\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://mQPXTujWuYSPjtVwVvAYhCjgLCnMY.lbjnPmmZ3YZRXoJJV5gudh7dQApppDQ1LLCD2WU6kS0.SOv+oS9.Mfvbq.Hsb9MB+F,4y\"\n      },\n      \"href\": \"https://qIfWBCSNADlcrWpTOAbRs.eulZ9MNTti.MqmeDex99xAmbKa9r3V,MtW0deH9sxK+3BE6GRxJAb6IfT\"\n    },\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"name\": \"string\",\n      \"startDate\": \"1965-05-16\",\n      \"endDate\": \"1959-01-16\",\n      \"status\": \"open\",\n      \"fiscalYear\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://HgAo.nnycTSr.gaBH36yYV,oMv4OG+fNtHFAnaxqTfEh7yHzUk,lG+GxAZmhVyhiqrCavNzIW8\"\n      },\n      \"href\": \"https://UYYkBmJhvUQmerA.mceSjXKHFPGbJzLGvUZ\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7859c06e-5c30-4d39-a59d-4a157acd05d4",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "financialPeriods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "fiscalYear",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Workday tenant name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mycompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{{tenant}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "744ad84c-00e3-47c8-8147-efd7427b7751",
+    "name": "Workday Finance Financial Management Accounts Financial Periods API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Core API for financial management operations including general ledger, accounts payable, accounts receivable, financial reporting, tax management, financial organizations, and worktag management. Exposes data relative to accounts, accounting, business plans, and related financial structures.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+      "type": "text/plain"
+    }
+  }
+}

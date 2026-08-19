@@ -1,0 +1,223 @@
+{
+  "item": [
+    {
+      "id": "2956ee0a-1d91-41a1-b16e-cab87126b3a2",
+      "name": "Requisitions",
+      "description": {
+        "content": "Purchase requisition management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a856398e-44c7-48a6-b6da-1c0931e502c7",
+          "name": "List Purchase Requisitions",
+          "request": {
+            "name": "List Purchase Requisitions",
+            "description": {
+              "content": "Returns a collection of purchase requisitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "requisitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff2e4459-4d5e-4a14-84ec-2a8906f951af",
+              "name": "Collection of requisitions returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "requisitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 4044,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"requisitionNumber\": \"string\",\n      \"status\": \"received\",\n      \"requester\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://NoIJLpFXLx.onbp2Qz8rzAfUzgFeet1s5T6eWsJuEUETOTfnVu\"\n      },\n      \"submitDate\": \"1957-03-13\",\n      \"totalAmount\": 6886.174569051769,\n      \"currency\": \"string\",\n      \"href\": \"http://VqiRGdXfsnrmnKpU.uyjAtea0oYJmtNmLoVu31YkAthdyMnHUiC.lhUjQ1tZkRIzBF.hhQsFomD+xdR14Fbx\"\n    },\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"requisitionNumber\": \"string\",\n      \"status\": \"approved\",\n      \"requester\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://WDELIECOOzaMYU.qcthVVuB+cpV7iiuGRoWIJ0WN3f7DJQZjVqzxmGh+P6wqBwKy7sd\"\n      },\n      \"submitDate\": \"1973-08-22\",\n      \"totalAmount\": 2759.20794537747,\n      \"currency\": \"string\",\n      \"href\": \"https://rG.xibV6xkc4HjX+JsET+WvH,rjJZuO3e+jsjixm9F+4OUM0l+i9RhnEp1LCGzPlCJlcmT+cX\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "955b92f6-5190-419d-8f2c-3b852f6820fb",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "requisitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Workday tenant name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mycompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://wd2-impl-services1.workday.com/ccx/api/financial-management/v41.2/{{tenant}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cafd514f-c6c4-4d5f-94b0-67d542bce9f6",
+    "name": "Workday Finance Financial Management Accounts Requisitions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Core API for financial management operations including general ledger, accounts payable, accounts receivable, financial reporting, tax management, financial organizations, and worktag management. Exposes data relative to accounts, accounting, business plans, and related financial structures.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+      "type": "text/plain"
+    }
+  }
+}
