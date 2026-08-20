@@ -117,6 +117,10 @@ apis:
   tags:
   - Cost Tracking
   - Project Management
+  - Project
+  tags_raw:
+  - Cost Tracking
+  - Project Management
   - Projects
   properties:
   - type: Documentation
@@ -134,6 +138,11 @@ apis:
   humanURL: https://www.workday.com/en-us/products/financial-management/accounting-finance.html
   baseURL: https://wd2-impl-services1.workday.com/ccx/service
   tags:
+  - Banking
+  - Direct Debit
+  - Payments
+  - Settlement
+  tags_raw:
   - Banking
   - Direct Debit
   - Payments
@@ -200,6 +209,8 @@ apis:
   humanURL: https://www.workday.com/en-us/products/financial-management/overview.html
   baseURL: https://wd2-impl-services1.workday.com/ccx/service
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
