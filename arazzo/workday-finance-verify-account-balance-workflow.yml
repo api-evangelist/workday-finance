@@ -10,8 +10,8 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: financialManagementApi
-  url: ../openapi/workday-finance-financial-management-openapi.yml
+- name: accountsApi
+  url: ../openapi/workday-finance-accounts-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: verify-account-balance

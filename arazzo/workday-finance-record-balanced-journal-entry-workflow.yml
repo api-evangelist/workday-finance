@@ -10,8 +10,11 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: financialManagementApi
-  url: ../openapi/workday-finance-financial-management-openapi.yml
+- name: financialPeriodsApi
+  url: ../openapi/workday-finance-financial-periods-api-openapi.yml
+  type: openapi
+- name: journalEntriesApi
+  url: ../openapi/workday-finance-journal-entries-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: record-balanced-journal-entry

@@ -11,8 +11,14 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: financialManagementApi
-  url: ../openapi/workday-finance-financial-management-openapi.yml
+- name: costCentersApi
+  url: ../openapi/workday-finance-cost-centers-api-openapi.yml
+  type: openapi
+- name: journalEntriesApi
+  url: ../openapi/workday-finance-journal-entries-api-openapi.yml
+  type: openapi
+- name: worktagsApi
+  url: ../openapi/workday-finance-worktags-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: tag-journal-entry-with-worktags

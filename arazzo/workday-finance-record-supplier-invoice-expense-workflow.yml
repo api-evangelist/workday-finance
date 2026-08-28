@@ -12,11 +12,14 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: procurementApi
-  url: ../openapi/workday-finance-procurement-openapi.yml
+- name: accountsApi
+  url: ../openapi/workday-finance-accounts-api-openapi.yml
   type: openapi
-- name: financialManagementApi
-  url: ../openapi/workday-finance-financial-management-openapi.yml
+- name: journalEntriesApi
+  url: ../openapi/workday-finance-journal-entries-api-openapi.yml
+  type: openapi
+- name: supplierInvoicesApi
+  url: ../openapi/workday-finance-supplier-invoices-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: record-supplier-invoice-expense
@@ -64,7 +67,7 @@ workflows:
     description: >-
       Create the supplier invoice in Procurement for the supplied supplier and
       amount.
-    operationId: $sourceDescriptions.procurementApi.createSupplierInvoice
+    operationId: $sourceDescriptions.supplierInvoicesApi.createSupplierInvoice
     parameters:
     - name: Authorization
       in: header
@@ -85,7 +88,7 @@ workflows:
     description: >-
       Confirm the general ledger expense account exists before posting the
       recognizing journal entry.
-    operationId: $sourceDescriptions.financialManagementApi.getAccount
+    operationId: $sourceDescriptions.accountsApi.getAccount
     parameters:
     - name: Authorization
       in: header
@@ -102,7 +105,7 @@ workflows:
     description: >-
       Post a journal entry to the general ledger recognizing the supplier
       invoice expense against the supplied period.
-    operationId: $sourceDescriptions.financialManagementApi.createJournalEntry
+    operationId: $sourceDescriptions.journalEntriesApi.createJournalEntry
     parameters:
     - name: Authorization
       in: header

@@ -10,8 +10,14 @@ info:
     be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: procurementApi
-  url: ../openapi/workday-finance-procurement-openapi.yml
+- name: purchaseOrdersApi
+  url: ../openapi/workday-finance-purchase-orders-api-openapi.yml
+  type: openapi
+- name: supplierInvoicesApi
+  url: ../openapi/workday-finance-supplier-invoices-api-openapi.yml
+  type: openapi
+- name: suppliersApi
+  url: ../openapi/workday-finance-suppliers-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: supplier-invoice-from-purchase-order
