@@ -1,30 +1,38 @@
 {
   "provider": "workday-finance",
   "sources": [
-    "workday-finance-accounts-api-openapi.yml",
-    "workday-finance-cost-centers-api-openapi.yml",
-    "workday-finance-financial-periods-api-openapi.yml",
-    "workday-finance-journal-entries-api-openapi.yml",
-    "workday-finance-purchase-orders-api-openapi.yml",
-    "workday-finance-requisitions-api-openapi.yml",
-    "workday-finance-supplier-invoices-api-openapi.yml",
-    "workday-finance-suppliers-api-openapi.yml",
-    "workday-finance-worktags-api-openapi.yml"
+    "_original/workday-finance-financial-management-openapi.yml",
+    "_original/workday-finance-procurement-openapi.yml"
   ],
   "outputs": [
     "workday-finance-accounts-api-openapi.yml",
     "workday-finance-cost-centers-api-openapi.yml",
     "workday-finance-financial-periods-api-openapi.yml",
     "workday-finance-journal-entries-api-openapi.yml",
+    "workday-finance-worktags-api-openapi.yml",
     "workday-finance-purchase-orders-api-openapi.yml",
     "workday-finance-requisitions-api-openapi.yml",
     "workday-finance-supplier-invoices-api-openapi.yml",
-    "workday-finance-suppliers-api-openapi.yml",
-    "workday-finance-worktags-api-openapi.yml"
+    "workday-finance-suppliers-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "workday-finance-financial-management-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "workday-finance-procurement-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "workday-finance-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-finance-cost-centers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-finance-financial-periods-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-finance-journal-entries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-finance-purchase-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-finance-requisitions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-finance-supplier-invoices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-finance-suppliers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-finance-worktags-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
