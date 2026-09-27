@@ -70,14 +70,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier of the account
-      schema:
-        type: string
     limit:
       name: limit
       in: query
@@ -93,19 +99,13 @@ components:
       schema:
         type: integer
         default: 0
-  responses:
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier of the account
+      schema:
+        type: string
   schemas:
     ErrorResponse:
       type: object

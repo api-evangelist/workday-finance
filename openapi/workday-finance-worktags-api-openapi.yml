@@ -76,6 +76,15 @@ components:
         type: integer
         default: 0
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
     Worktag:
       type: object
       properties:
@@ -92,15 +101,6 @@ components:
         href:
           type: string
           format: uri
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
   securitySchemes:
     bearerAuth:
       type: http
