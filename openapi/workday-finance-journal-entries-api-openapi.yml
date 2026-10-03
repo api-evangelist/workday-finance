@@ -97,8 +97,8 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:
@@ -109,40 +109,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request parameters
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-    JournalEntryCreate:
-      type: object
-      required:
-      - period
-      - lines
-      properties:
-        period:
-          type: string
-          description: Financial period identifier
-        postingDate:
-          type: string
-          format: date
-        memo:
-          type: string
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/JournalEntryLine'
     JournalEntryLine:
       type: object
       properties:
@@ -164,6 +137,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceReference'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
     ResourceReference:
       type: object
       properties:
@@ -208,7 +190,32 @@ components:
         href:
           type: string
           format: uri
+    JournalEntryCreate:
+      type: object
+      required:
+      - period
+      - lines
+      properties:
+        period:
+          type: string
+          description: Financial period identifier
+        postingDate:
+          type: string
+          format: date
+        memo:
+          type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/JournalEntryLine'
   parameters:
+    journalEntryId:
+      name: journalEntryId
+      in: path
+      required: true
+      description: The unique identifier of the journal entry
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -217,13 +224,6 @@ components:
         type: integer
         default: 20
         maximum: 100
-    journalEntryId:
-      name: journalEntryId
-      in: path
-      required: true
-      description: The unique identifier of the journal entry
-      schema:
-        type: string
     offset:
       name: offset
       in: query
