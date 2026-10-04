@@ -489,6 +489,9 @@ apis:
     url: >-
       https://community.workday.com/sites/default/files/file-hosting/productionapi/Resource_Management/v45.2/Resource_Management.wsdl
 common:
+- type: CapabilityMap
+  url: capabilities/workday-finance-capability-edges.yml
+  name: Workday Finance Business Capability Map
 - type: AgenticAccess
   url: agentic-access/workday-finance-agentic-access.yml
 - type: TrustCenter

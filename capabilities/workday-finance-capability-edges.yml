@@ -1,0 +1,79 @@
+slug: workday-finance
+provider: Workday Finance
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Journal Entries
+  spec_file: workday-finance-journal-entries-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.95
+  evidence: 'POST /journalEntries createJournalEntry Create Journal Entry; schemas: JournalEntryLine,
+    JournalEntry'
+  reason: Creating and reading journal entries with journal lines is general ledger accounting.
+- tag: Purchase Orders
+  spec_file: workday-finance-purchase-orders-api-openapi.yml
+  capability_id: BC-500.30
+  capability_id_l1: BC-500
+  capability_name: Purchase Order Management
+  confidence: 0.95
+  evidence: POST /purchaseOrders createPurchaseOrder Create Purchase Order
+  reason: PO creation and retrieval within a procurement API is squarely purchase order management.
+- tag: Accounts
+  spec_file: workday-finance-accounts-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.8
+  evidence: GET /accounts  listAccounts  List Financial Accounts
+  reason: Read access to financial accounts within a financial management API described as covering 'general
+    ledger, accounts payable, accounts receivable' — accounts here are the chart of accounts, i.e. General
+    Ledger Management. Some ambiguity on the exact sub-capability.
+- tag: Requisitions
+  spec_file: workday-finance-requisitions-api-openapi.yml
+  capability_id: BC-500.40
+  capability_id_l1: BC-500
+  capability_name: Procure-to-Pay Operations Management
+  confidence: 0.8
+  evidence: GET /requisitions listRequisitions List Purchase Requisitions
+  reason: Purchase requisitions are the requisition step of procure-to-pay operations described in the
+    doc ("purchase requisitions ... procure-to-pay lifecycle").
+- tag: Financial Periods
+  spec_file: workday-finance-financial-periods-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.75
+  evidence: 'GET /financialPeriods listFinancialPeriods List Financial Periods; description: "general
+    ledger, accounts payable, accounts receivable, financial reporting"'
+  reason: Financial accounting periods are a general-ledger construct (period close/accounting calendar)
+    within Workday's financial management core.
+- tag: Supplier Invoices
+  spec_file: workday-finance-supplier-invoices-api-openapi.yml
+  capability_id: BC-200.20
+  capability_id_l1: BC-200
+  capability_name: Accounts Payable Management
+  confidence: 0.75
+  evidence: POST /supplierInvoices createSupplierInvoice Create Supplier Invoice
+  reason: Supplier (vendor) invoice capture and processing is accounts payable invoice processing; sits
+    in the P2P lifecycle but the objects are payable invoices.
+- tag: Suppliers
+  spec_file: workday-finance-suppliers-api-openapi.yml
+  capability_id: BC-510
+  capability_id_l1: BC-510
+  capability_name: Supplier Management
+  confidence: 0.7
+  evidence: 'GET /suppliers listSuppliers; description: "supplier management, supplier invoices"'
+  reason: Read access to supplier records supports supplier management generally; evidence is too thin
+    to pick onboarding vs. performance sub-capability.
