@@ -489,6 +489,10 @@ apis:
     url: >-
       https://community.workday.com/sites/default/files/file-hosting/productionapi/Resource_Management/v45.2/Resource_Management.wsdl
 common:
+- type: Plans
+  url: plans/workday-finance-plans-pricing.yml
+- type: FinOps
+  url: finops/workday-finance-finops.yml
 - type: CapabilityMap
   url: capabilities/workday-finance-capability-edges.yml
   name: Workday Finance Business Capability Map
