@@ -1,4 +1,4 @@
-# Workday Finance (workday-finance)
+# Workday Finance
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,284 +66,229 @@
 
 APIs for Workday's cloud-based financial management system, enabling enterprise resource planning, accounting, financial analytics, procurement, grants management, inventory, and settlement services.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/workday-finance/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/workday-finance/refs/heads/main/apis.yml)
+**Areas:** Accounting · Cloud · Enterprise · ERP · Finance · Financial Management
 
-## Tags
+## Workday Finance on APIs.io
 
-- Accounting
-- Cloud
-- Enterprise
-- ERP
-- Finance
-- Financial Management
+Everything profiled for Workday Finance is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/workday-finance/](https://apis.io/providers/workday-finance/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (17)
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+- [Workday Revenue Management API](https://apis.io/apis/workday-finance/workday-revenue-management-api/) — SOAP API for managing revenue recognition, contracts, and billing processes. Supports revenue accounting workflows and contract analysis within Workday…
+- [Workday Expenses API](https://apis.io/apis/workday-finance/workday-expenses-api/) — SOAP API for expense management, including expense reports, approval workflows, and reimbursements. Part of Workday Spend Management for tracking and…
+- [Workday Cash Management API](https://apis.io/apis/workday-finance/workday-cash-management-api/) — SOAP API for managing cash positions, bank transactions, and treasury operations. Supports cash flow forecasting, bank account management, and financial…
+- [Workday Budgets API](https://apis.io/apis/workday-finance/workday-budgets-api/) — SOAP API for budget planning, tracking, and analysis. Enables programmatic management of budgets, budget amendments, and budget structure data within…
+- [Workday Projects API](https://apis.io/apis/workday-finance/workday-projects-api/) — SOAP API for project management, tracking project costs, billing, and resource allocation. Supports project-based accounting, cost capture, and resource…
+- [Workday Settlement Services API](https://apis.io/apis/workday-finance/workday-settlement-services-api/) — SOAP API for settlement management and payment services. Supports payment processing, bank routing, settlement runs, direct debit mandates, payment…
+- [Workday Inventory API](https://apis.io/apis/workday-finance/workday-inventory-api/) — SOAP API exposing Workday Financials Inventory data. Supports goods delivery, stock tracking, inventory adjustments, cycle counting, par management,…
+- [Workday Professional Services Automation API](https://apis.io/apis/workday-finance/workday-professional-services-automation-api/) — SOAP API for Professional Services Automation integrations. Exposes Workday Financials data for managing client-facing projects, services billing, resource…
+- [Workday Finance Accounts API](https://apis.io/apis/workday-finance/workday-finance-accounts-api/) — General ledger accounts and account structures
+- [Workday Finance Cost Centers API](https://apis.io/apis/workday-finance/workday-finance-cost-centers-api/) — Cost center management and reporting
+- [Workday Finance Financial Periods API](https://apis.io/apis/workday-finance/workday-finance-financial-periods-api/) — Fiscal period and year management
+- [Workday Finance Journal Entries API](https://apis.io/apis/workday-finance/workday-finance-journal-entries-api/) — Journal entry creation and retrieval
+- [Workday Finance Purchase Orders API](https://apis.io/apis/workday-finance/workday-finance-purchase-orders-api/) — Purchase order creation and management
+- [Workday Finance Requisitions API](https://apis.io/apis/workday-finance/workday-finance-requisitions-api/) — Purchase requisition management
+- [Workday Finance Supplier Invoices API](https://apis.io/apis/workday-finance/workday-finance-supplier-invoices-api/) — Supplier invoice processing
+- [Workday Finance Suppliers API](https://apis.io/apis/workday-finance/workday-finance-suppliers-api/) — Supplier account management
+- [Workday Finance Worktags API](https://apis.io/apis/workday-finance/workday-finance-worktags-api/) — Worktag dimension management
 
-## APIs
+### Published properties
 
-### Workday Financial Management API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Core SOAP API for financial management operations including general ledger, accounts payable, accounts receivable, financial reporting, tax, financial organizations, and worktag management. Exposes data relative to accounts, accounting, business plans, and related financial structures.
+#### Arazzo workflows (10)
 
-- **Human URL:** [https://www.workday.com/en-us/products/financial-management/overview.html](https://www.workday.com/en-us/products/financial-management/overview.html)
-- **Base URL:** `https://wd2-impl-services1.workday.com/ccx/service`
+Multi-step workflows that chain operations into a business task.
 
-#### Tags
+- [Workday Finance Audit Open Period Journals](https://apis.io/arazzos/workday-finance/workday-finance-audit-open-period-journals-workflow/)
+- [Workday Finance Onboard Supplier and Raise Purchase Order](https://apis.io/arazzos/workday-finance/workday-finance-onboard-supplier-purchase-order-workflow/)
+- [Workday Finance Reconcile Supplier Invoices](https://apis.io/arazzos/workday-finance/workday-finance-reconcile-supplier-invoices-workflow/)
+- [Workday Finance Record Balanced Journal Entry](https://apis.io/arazzos/workday-finance/workday-finance-record-balanced-journal-entry-workflow/)
+- [Workday Finance Record Supplier Invoice Expense](https://apis.io/arazzos/workday-finance/workday-finance-record-supplier-invoice-expense-workflow/)
+- [Workday Finance Requisition to Purchase Order](https://apis.io/arazzos/workday-finance/workday-finance-requisition-to-purchase-order-workflow/)
+- [Workday Finance Supplier Invoice From Purchase Order](https://apis.io/arazzos/workday-finance/workday-finance-supplier-invoice-from-purchase-order-workflow/)
+- [Workday Finance Supplier Spend Overview](https://apis.io/arazzos/workday-finance/workday-finance-supplier-spend-overview-workflow/)
+- [Workday Finance Tag Journal Entry With Worktags](https://apis.io/arazzos/workday-finance/workday-finance-tag-journal-entry-with-worktags-workflow/)
+- [Workday Finance Verify Account Balance](https://apis.io/arazzos/workday-finance/workday-finance-verify-account-balance-workflow/)
 
-- Accounting
-- Banking
-- Finance
-- General Ledger
+#### GraphQL (1)
 
-#### Properties
+GraphQL schemas.
 
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/Financial_Management/v41.2/index.html)
-- [Reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/Financial_Management/v41.2/Financial_Management.html)
-- [X-wsdl](https://community.workday.com/sites/default/files/file-hosting/productionapi/Financial_Management/v41.2/Financial_Management.wsdl)
-- [OpenAPI](openapi/workday-finance-financial-management-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/workday-finance-financial-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-financial-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Workday Financial Management GraphQL Schema](https://apis.io/graphqls/workday-finance/workday-finance-graphql/)
 
-### Workday Revenue Management API
+#### Agentic access (1)
 
-SOAP API for managing revenue recognition, contracts, and billing processes. Supports revenue accounting workflows and contract analysis within Workday Financial Management.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://www.workday.com/en-us/products/financial-management/revenue-management.html](https://www.workday.com/en-us/products/financial-management/revenue-management.html)
-- **Base URL:** `https://wd2-impl-services1.workday.com/ccx/service`
+- [Workday Finance Agentic Access](https://apis.io/agentic-access/workday-finance/workday-finance-agentic-access/)
 
-#### Tags
+#### JSON Schema (18)
 
-- Billing
-- Contracts
-- Revenue
+The data models the API reads and writes.
 
-#### Properties
+- [Account](https://apis.io/schemas/workday-finance/workday-finance-account/)
+- [CostCenter](https://apis.io/schemas/workday-finance/workday-finance-costcenter/)
+- [ErrorResponse](https://apis.io/schemas/workday-finance/workday-finance-errorresponse/)
+- [FinancialPeriod](https://apis.io/schemas/workday-finance/workday-finance-financialperiod/)
+- [Workday Finance Journal Entry](https://apis.io/schemas/workday-finance/workday-finance-journal-entry/)
+- [JournalEntry](https://apis.io/schemas/workday-finance/workday-finance-journalentry/)
+- [JournalEntryCreate](https://apis.io/schemas/workday-finance/workday-finance-journalentrycreate/)
+- [JournalEntryLine](https://apis.io/schemas/workday-finance/workday-finance-journalentryline/)
+- [Workday Finance Purchase Order](https://apis.io/schemas/workday-finance/workday-finance-purchase-order/)
+- [PurchaseOrder](https://apis.io/schemas/workday-finance/workday-finance-purchaseorder/)
+- [PurchaseOrderCreate](https://apis.io/schemas/workday-finance/workday-finance-purchaseordercreate/)
+- [Requisition](https://apis.io/schemas/workday-finance/workday-finance-requisition/)
+- [ResourceReference](https://apis.io/schemas/workday-finance/workday-finance-resourcereference/)
+- [Supplier](https://apis.io/schemas/workday-finance/workday-finance-supplier/)
+- [Workday Finance Supplier Invoice](https://apis.io/schemas/workday-finance/workday-finance-supplier-invoice/)
+- [SupplierInvoice](https://apis.io/schemas/workday-finance/workday-finance-supplierinvoice/)
+- [SupplierInvoiceCreate](https://apis.io/schemas/workday-finance/workday-finance-supplierinvoicecreate/)
+- [Worktag](https://apis.io/schemas/workday-finance/workday-finance-worktag/)
 
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/Revenue_Management/v41.2/index.html)
-- [Reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/Revenue_Management/v41.2/Revenue_Management.html)
-- [X-wsdl](https://community.workday.com/sites/default/files/file-hosting/productionapi/Revenue_Management/v41.2/Revenue_Management.wsdl)
-- [Postman Collection](collections/workday-finance-financial-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-financial-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/workday-finance-procurement.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-procurement.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### JSON Structure (2)
 
-### Workday Expenses API
+Data models expressed in JSON Structure.
 
-SOAP API for expense management, including expense reports, approval workflows, and reimbursements. Part of Workday Spend Management for tracking and controlling employee and organizational expenses.
+- [Workday Finance Journal Entry Structure](https://apis.io/json-structure/workday-finance/workday-finance-journal-entry-structure/)
+- [Workday Finance Structure](https://apis.io/json-structure/workday-finance/workday-finance-structure/)
 
-- **Human URL:** [https://www.workday.com/en-us/products/spend-management/expenses.html](https://www.workday.com/en-us/products/spend-management/expenses.html)
-- **Base URL:** `https://wd2-impl-services1.workday.com/ccx/service`
+#### JSON-LD (1)
 
-#### Tags
+Linked-data contexts for the provider's vocabulary.
 
-- Expenses
-- Reimbursement
-- Spend Management
+- [Workday Finance Context](https://apis.io/jsonld/workday-finance/workday-finance-context/)
 
-#### Properties
+#### Vocabulary (1)
 
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/Expenses/v41.2/index.html)
-- [X-wsdl](https://community.workday.com/sites/default/files/file-hosting/productionapi/Expenses/v41.2/Expenses.wsdl)
-- [Postman Collection](collections/workday-finance-financial-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-financial-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/workday-finance-procurement.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-procurement.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The provider's domain terms, defined.
 
-### Workday Cash Management API
+- [Workday Finance Vocabulary](https://apis.io/vocabularies/workday-finance/workday-finance-vocabulary/)
 
-SOAP API for managing cash positions, bank transactions, and treasury operations. Supports cash flow forecasting, bank account management, and financial reconciliation processes.
+#### Examples (2)
 
-- **Human URL:** [https://www.workday.com/en-us/products/financial-management/cash-management.html](https://www.workday.com/en-us/products/financial-management/cash-management.html)
-- **Base URL:** `https://wd2-impl-services1.workday.com/ccx/service`
+Example requests and responses.
 
-#### Tags
+- [Workday Finance Create Supplier Invoice Example](https://apis.io/examples/workday-finance/workday-finance-create-supplier-invoice-example/)
+- [Workday Finance List Journal Entries Example](https://apis.io/examples/workday-finance/workday-finance-list-journal-entries-example/)
 
-- Banking
-- Cash Management
-- Treasury
+#### Collections (13)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/Cash_Management/v41.2/index.html)
-- [Reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/Cash_Management/v41.2/Cash_Management.html)
-- [X-wsdl](https://community.workday.com/sites/default/files/file-hosting/productionapi/Cash_Management/v41.2/Cash_Management.wsdl)
-- [Postman Collection](collections/workday-finance-financial-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-financial-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/workday-finance-procurement.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-procurement.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Workday Finance Financial Management Accounts API](https://apis.io/collections/workday-finance/open-workday-finance-accounts-api/)
+- [Workday Finance Financial Management Accounts Cost Centers API](https://apis.io/collections/workday-finance/open-workday-finance-cost-centers-api/)
+- [Workday Finance Financial Management API](https://apis.io/collections/workday-finance/open-workday-finance-financial-management/)
+- [Workday Finance Financial Management Accounts Financial Periods API](https://apis.io/collections/workday-finance/open-workday-finance-financial-periods-api/)
+- [Workday Finance Financial Management Accounts Journal Entries API](https://apis.io/collections/workday-finance/open-workday-finance-journal-entries-api/)
+- [Workday Finance Procurement API](https://apis.io/collections/workday-finance/open-workday-finance-procurement/)
+- [Workday Finance Financial Management Accounts Purchase Orders API](https://apis.io/collections/workday-finance/open-workday-finance-purchase-orders-api/)
+- [Workday Finance Financial Management Accounts Requisitions API](https://apis.io/collections/workday-finance/open-workday-finance-requisitions-api/)
+- [Workday Finance Financial Management Accounts Supplier Invoices API](https://apis.io/collections/workday-finance/open-workday-finance-supplier-invoices-api/)
+- [Workday Finance Financial Management Accounts Suppliers API](https://apis.io/collections/workday-finance/open-workday-finance-suppliers-api/)
+- [Workday Finance Financial Management Accounts Worktags API](https://apis.io/collections/workday-finance/open-workday-finance-worktags-api/)
+- [Workday Finance Financial Management API](https://apis.io/collections/workday-finance/postman-workday-finance-financial-management/)
+- [Workday Finance Procurement API](https://apis.io/collections/workday-finance/postman-workday-finance-procurement/)
 
-### Workday Budgets API
+#### Governance rules (2)
 
-SOAP API for budget planning, tracking, and analysis. Enables programmatic management of budgets, budget amendments, and budget structure data within Workday Financial Management.
+Spectral rulesets for the provider's contracts.
 
-- **Human URL:** [https://www.workday.com/en-us/products/financial-management/budget-management.html](https://www.workday.com/en-us/products/financial-management/budget-management.html)
-- **Base URL:** `https://wd2-impl-services1.workday.com/ccx/service`
+- [Workday Finance — jsonschema rules](https://apis.io/rules/workday-finance/workday-finance-jsonschema-spectral-rules/)
+- [Workday Finance API Rules](https://apis.io/rules/workday-finance/workday-finance-rules/)
 
-#### Tags
+#### Security (3)
 
-- Budgets
-- Financial Planning
-- Planning
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Workday Finance Authentication](https://apis.io/security/workday-finance/workday-finance-authentication/)
+- [Workday Finance Domain Security](https://apis.io/security/workday-finance/workday-finance-domain-security/)
+- [Workday Finance Trust Center](https://apis.io/security/workday-finance/workday-finance-trust-center/)
 
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/Budgets/v41.2/index.html)
-- [X-wsdl](https://community.workday.com/sites/default/files/file-hosting/productionapi/Budgets/v41.2/Budgets.wsdl)
-- [Postman Collection](collections/workday-finance-financial-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-financial-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/workday-finance-procurement.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-procurement.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### Workday Projects API
+Published plans, tiers and prices.
 
-SOAP API for project management, tracking project costs, billing, and resource allocation. Supports project-based accounting, cost capture, and resource planning workflows.
+- [Workday Finance Plans Pricing](https://apis.io/plans/workday-finance/workday-finance-plans-pricing/)
 
-- **Human URL:** [https://www.workday.com/en-us/products/financial-management/projects.html](https://www.workday.com/en-us/products/financial-management/projects.html)
-- **Base URL:** `https://wd2-impl-services1.workday.com/ccx/service`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Cost Tracking
-- Project Management
-- Projects
+- [Workday Finance Rate Limits](https://apis.io/rate-limits/workday-finance/workday-finance-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/Projects/v41.2/index.html)
-- [X-wsdl](https://community.workday.com/sites/default/files/file-hosting/productionapi/Projects/v41.2/Projects.wsdl)
-- [Postman Collection](collections/workday-finance-financial-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-financial-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/workday-finance-procurement.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-procurement.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### Workday Resource Management API
+- [Workday Finance Finops](https://apis.io/finops/workday-finance/workday-finance-finops/)
 
-SOAP API exposing Workday Financials Resource Management data, including suppliers, supplier accounts, procurement, purchase orders, invoicing, business assets, asset depreciation, and travel and entertainment operations. Supports the full procure-to-pay lifecycle and asset management workflows.
+## Where to find this API
 
-- **Human URL:** [https://www.workday.com/en-us/products/spend-management/procure-to-pay.html](https://www.workday.com/en-us/products/spend-management/procure-to-pay.html)
-- **Base URL:** `https://wd2-impl-services1.workday.com/ccx/service`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Business Assets
-- Invoicing
-- Procurement
-- Resource Management
-- Suppliers
-
-#### Properties
-
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/Resource_Management/v45.2/index.html)
-- [Reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/Resource_Management/v45.2/Resource_Management.html)
-- [X-wsdl](https://community.workday.com/sites/default/files/file-hosting/productionapi/Resource_Management/v45.2/Resource_Management.wsdl)
-- [OpenAPI](openapi/workday-finance-procurement-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/workday-finance-procurement.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-procurement.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Workday Settlement Services API
-
-SOAP API for settlement management and payment services. Supports payment processing, bank routing, settlement runs, direct debit mandates, payment acknowledgements, cash balance checks, and escheatment management across supplier payments, employee reimbursements, and customer payments.
-
-- **Human URL:** [https://www.workday.com/en-us/products/financial-management/accounting-finance.html](https://www.workday.com/en-us/products/financial-management/accounting-finance.html)
-- **Base URL:** `https://wd2-impl-services1.workday.com/ccx/service`
-
-#### Tags
-
-- Banking
-- Direct Debit
-- Payments
-- Settlements
-
-#### Properties
-
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/Settlement_Services/v45.2/index.html)
-- [Reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/Settlement_Services/v45.2/Settlement_Services.html)
-- [X-wsdl](https://community.workday.com/sites/default/files/file-hosting/productionapi/Settlement_Services/v45.2/Settlement_Services.wsdl)
-- [Postman Collection](collections/workday-finance-financial-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-financial-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/workday-finance-procurement.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-procurement.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Workday Inventory API
-
-SOAP API exposing Workday Financials Inventory data. Supports goods delivery, stock tracking, inventory adjustments, cycle counting, par management, directed picks, put-away operations, recalls, and replenishment across storage locations and distribution networks.
-
-- **Human URL:** [https://www.workday.com/en-us/products/spend-management/inventory.html](https://www.workday.com/en-us/products/spend-management/inventory.html)
-- **Base URL:** `https://wd2-impl-services1.workday.com/ccx/service`
-
-#### Tags
-
-- Goods Delivery
-- Inventory
-- Stock Management
-- Supply Chain
-
-#### Properties
-
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/Inventory/v45.2/index.html)
-- [Reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/Inventory/v45.2/Inventory.html)
-- [X-wsdl](https://community.workday.com/sites/default/files/file-hosting/productionapi/Inventory/v45.2/Inventory.wsdl)
-- [Postman Collection](collections/workday-finance-financial-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-financial-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/workday-finance-procurement.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-procurement.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Workday Professional Services Automation API
-
-SOAP API for Professional Services Automation integrations. Exposes Workday Financials data for managing client-facing projects, services billing, resource staffing, and expense reporting within professional services organizations.
-
-- **Human URL:** [https://www.workday.com/en-us/products/professional-services-automation/overview.html](https://www.workday.com/en-us/products/professional-services-automation/overview.html)
-- **Base URL:** `https://wd2-impl-services1.workday.com/ccx/service`
-
-#### Tags
-
-- Professional Services
-- PSA
-- Resource Staffing
-- Services Billing
-
-#### Properties
-
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/Professional_Services_Automation/v45.2/index.html)
-- [Reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/Professional_Services_Automation/v45.2/Professional_Services_Automation.html)
-- [X-wsdl](https://community.workday.com/sites/default/files/file-hosting/productionapi/Professional_Services_Automation/v45.2/Professional_Services_Automation.wsdl)
-- [Postman Collection](collections/workday-finance-financial-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-financial-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/workday-finance-procurement.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-finance-procurement.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://community.workday.com/api)
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html)
-- [Getting Started](https://doc.workday.com/r/Enterprise_Interface_API_Concepts_and_Resources/Getting_Started_with_Workday_Web_Services)
-- [Authentication](https://doc.workday.com/r/Enterprise_Interface_API_Concepts_and_Resources/Authentication)
-- [Rate Limits](https://doc.workday.com/r/Enterprise_Interface_API_Concepts_and_Resources/Rate_Limiting)
-- [Console](https://developer.workday.com/about)
 - [Website](https://www.workday.com/en-us/products/financial-management/overview.html)
-- [Sign Up](https://resourcecenter.workday.com/)
-- [Blog](https://blog.workday.com/)
+- [Documentation](https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html)
+- [Getting started](https://doc.workday.com/r/Enterprise_Interface_API_Concepts_and_Resources/Getting_Started_with_Workday_Web_Services)
 - [Support](https://www.workday.com/en-us/services/support.html)
-- [Community](https://www.workday.com/en-us/services/community.html)
-- [Status Page](https://status.workday.com/)
-- [Terms of Service](https://www.workday.com/en-us/legal.html)
-- [Privacy Policy](https://www.workday.com/en-us/privacy.html)
-- [GitHub Organization](https://github.com/Workday)
-- [Marketplace](https://marketplace.workday.com/en-US/home)
 - [Changelog](https://community.workday.com/articles/16827)
-- [Reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html)
-- [Spectral  Rules](rules/workday-finance-rules.yml)
-- [JSON-LD](json-ld/workday-finance-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/workday-finance-journal-entry-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/workday-finance-supplier-invoice-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/workday-finance-purchase-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Vocabulary](vocabulary/workday-finance-vocabulary.yml)
+- [Blog](https://blog.workday.com/)
+- [Terms of service](https://www.workday.com/en-us/legal.html)
+- [Privacy policy](https://www.workday.com/en-us/privacy.html)
+- [GitHub](https://github.com/Workday)
+- [Status](https://status.workday.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 44.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 59.6 |
+| Contract governance | 27.3 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 34.5 |
+| Access clarity | 47.4 |
+
+**Agent readiness 24.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/workday-finance/](https://apis.io/providers/workday-finance/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Workday Finance: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/workday-finance/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
